@@ -9,7 +9,7 @@ const I18N = {
 
     "hero.hello": "Hi, my name is",
     "hero.title": "I build things close to the metal.",
-    "hero.desc": "Computer Engineering student at Başkent University (graduating Jan 2027) with industry experience in defense & aerospace. I work on edge AI optimization, embedded software and systems programming — primarily in C, C++ and Python.",
+    "hero.desc": "Final-year Computer Engineering student at Başkent University with internship experience in the Turkish defense industry. I build personal projects in edge-AI optimization, embedded software and systems programming — primarily in C, C++ and Python.",
     "hero.tag2": "Embedded Systems",
     "hero.tag3": "Systems Programming",
     "hero.tag4": "Optimization",
@@ -18,8 +18,9 @@ const I18N = {
 
     "about.title": "About Me",
     "about.p1": "I'm a computer engineering student focused on the layer where software meets hardware. I've written a TCP/IP stack, a bare-metal ARM OS and an RTOS from scratch — because the best way to understand a system is to build it yourself.",
-    "about.p2": "During my internships at BİTES and Meteksan Savunma I worked on edge-AI optimization for CNNs and embedded software in defense & aerospace environments. On the side I build optimization tools with Google OR-Tools — from university course scheduling to F1 pit-stop strategy.",
+    "about.p2": "During my internships at BİTES and Meteksan Savunma I gained hands-on experience with edge-AI optimization for CNNs and embedded software development in the defense industry. Alongside my studies I design and develop personal projects — from a from-scratch TCP/IP stack to optimization tools built with Google OR-Tools.",
     "about.p3": "Areas I currently enjoy the most:",
+    "about.p4": "Off the court: I'm a former professional basketball player — discipline, resilience and teamwork are habits I bring from the game into engineering.",
     "about.l1": "Edge AI & model quantization (INT8, ONNX)",
     "about.l2": "Bare-metal & RTOS development (AArch64, QEMU)",
     "about.l3": "Network protocols & systems programming in C",
@@ -44,9 +45,9 @@ const I18N = {
     "exp.n1sub": "Software Development",
     "exp.n1desc": "Software development and design; testing, debugging and project documentation.",
     "exp.eduname": "Başkent University",
-    "exp.edudate": "2022 – Jan 2027 · Ankara",
+    "exp.edudate": "Sept 2019 – 2026 (expected) · Ankara",
     "exp.edusub": "B.Sc. Computer Engineering",
-    "exp.edudesc": "Coursework and lab projects covering operating systems, computer networks, cryptography, artificial intelligence and software engineering.",
+    "exp.edudesc": "Coursework and lab projects covering data structures, algorithms, operating systems, computer networks, cryptography, embedded systems and AI/ML. Languages: Turkish (native), English (professional working proficiency).",
 
     "proj.title": "Projects",
     "proj.featured": "Featured",
@@ -65,6 +66,7 @@ const I18N = {
     "contact.title": "Get In Touch",
     "contact.desc": "I'm open to internship and entry-level opportunities in embedded systems, edge AI and systems programming. Whether you have a question or just want to say hi — my inbox is open.",
     "contact.cta": "Say Hello",
+    "contact.cv": "Download CV (PDF)",
 
     "footer.built": "Designed & built by",
     "footer.src": "Source on GitHub",
@@ -89,7 +91,7 @@ const I18N = {
 
     "hero.hello": "Merhaba, ben",
     "hero.title": "Donanıma en yakın katmanda yazılım geliştiriyorum.",
-    "hero.desc": "Başkent Üniversitesi Bilgisayar Mühendisliği öğrencisiyim (Ocak 2027 mezunu). Savunma ve havacılık sektöründe staj deneyimim var. Uç nokta yapay zekâ (edge AI) optimizasyonu, gömülü yazılım ve sistem programlama üzerine çalışıyorum — ağırlıklı olarak C, C++ ve Python ile.",
+    "hero.desc": "Başkent Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; Türk savunma sanayisinde staj deneyimim var. Edge AI optimizasyonu, gömülü yazılım ve sistem programlama alanlarında ağırlıklı olarak C, C++ ve Python ile kişisel projeler geliştiriyorum.",
     "hero.tag2": "Gömülü Sistemler",
     "hero.tag3": "Sistem Programlama",
     "hero.tag4": "Optimizasyon",
@@ -98,8 +100,9 @@ const I18N = {
 
     "about.title": "Hakkımda",
     "about.p1": "Yazılımın donanımla buluştuğu katmana odaklanan bir bilgisayar mühendisliği öğrencisiyim. Sıfırdan bir TCP/IP yığını, bare-metal bir ARM işletim sistemi ve bir RTOS yazdım — çünkü bir sistemi anlamanın en iyi yolu onu kendin inşa etmektir.",
-    "about.p2": "BİTES ve Meteksan Savunma stajlarımda, savunma ve havacılık ortamlarında CNN'ler için edge-AI optimizasyonu ve gömülü yazılım üzerine çalıştım. Bunun yanında Google OR-Tools ile optimizasyon araçları geliştiriyorum — üniversite ders programlamadan F1 pit-stop stratejisine kadar.",
+    "about.p2": "BİTES ve Meteksan Savunma stajlarımda, savunma sanayisinde CNN'ler için edge-AI optimizasyonu ve gömülü yazılım geliştirme konularında deneyim kazandım. Eğitimimin yanı sıra kişisel projeler tasarlayıp geliştiriyorum — sıfırdan yazdığım bir TCP/IP yığınından Google OR-Tools ile kurduğum optimizasyon araçlarına kadar.",
     "about.p3": "Şu an en çok keyif aldığım alanlar:",
+    "about.p4": "Saha dışında: eski bir profesyonel basketbolcuyum — disiplin, dayanıklılık ve takım çalışması, oyundan mühendisliğe taşıdığım alışkanlıklar.",
     "about.l1": "Edge AI ve model nicemleme (INT8, ONNX)",
     "about.l2": "Bare-metal ve RTOS geliştirme (AArch64, QEMU)",
     "about.l3": "C ile ağ protokolleri ve sistem programlama",
@@ -124,9 +127,9 @@ const I18N = {
     "exp.n1sub": "Yazılım Geliştirme",
     "exp.n1desc": "Yazılım geliştirme ve tasarım; test, hata ayıklama ve proje dokümantasyonu.",
     "exp.eduname": "Başkent Üniversitesi",
-    "exp.edudate": "2022 – Oca 2027 · Ankara",
+    "exp.edudate": "Eyl 2019 – 2026 (beklenen) · Ankara",
     "exp.edusub": "Bilgisayar Mühendisliği (Lisans)",
-    "exp.edudesc": "İşletim sistemleri, bilgisayar ağları, kriptografi, yapay zekâ ve yazılım mühendisliği üzerine dersler ve laboratuvar projeleri.",
+    "exp.edudesc": "Veri yapıları, algoritmalar, işletim sistemleri, bilgisayar ağları, kriptografi, gömülü sistemler ve yapay zekâ/ML üzerine dersler ve laboratuvar projeleri. Diller: Türkçe (ana dil), İngilizce (profesyonel düzey).",
 
     "proj.title": "Projeler",
     "proj.featured": "Öne Çıkanlar",
@@ -145,6 +148,7 @@ const I18N = {
     "contact.title": "İletişime Geç",
     "contact.desc": "Gömülü sistemler, edge AI ve sistem programlama alanlarında staj ve yeni mezun pozisyonlarına açığım. Bir sorunuz varsa ya da sadece merhaba demek isterseniz — kutum açık.",
     "contact.cta": "Merhaba De",
+    "contact.cv": "CV'yi İndir (PDF)",
 
     "footer.built": "Tasarım ve geliştirme:",
     "footer.src": "Kaynak kodu GitHub'da",
@@ -466,6 +470,7 @@ function computeRailPositions() {
     dot._target = target;
     dot.style.top = (target / max * 100) + "%";
   });
+  if (spineTicks.length) computeSpinePositions();
 }
 
 function updateRail() {
@@ -481,6 +486,11 @@ function updateRail() {
     if (passed) active = i;
   });
   railDots.forEach((dot, i) => dot.classList.toggle("active", i === active));
+
+  const activeSection = railDots[active] ? railDots[active].dataset.section : "";
+  document.querySelectorAll(".nav-links a").forEach(a => {
+    a.classList.toggle("active", a.getAttribute("href") === "#" + activeSection);
+  });
 }
 
 function updateTimelineFill() {
@@ -495,6 +505,122 @@ function updateTimelineFill() {
   });
 }
 
+/* ===================== Background spine ===================== */
+const SPINE_TICK_SECTIONS = ["about", "experience", "projects", "skills", "contact"];
+const spineTicks = [];
+let spineSections = []; // cached {el, top} pairs, refreshed on resize/lang change
+let spinePathLen = 0;
+let spineLenTable = []; // sampled {len, x, y} along the path, y is monotonic
+
+function buildSpine() {
+  const wrap = document.getElementById("spine-ticks");
+  if (!wrap) return;
+  SPINE_TICK_SECTIONS.forEach((id, i) => {
+    const tick = document.createElement("span");
+    tick.className = "spine-tick";
+    tick.dataset.section = id;
+    tick.textContent = "0" + (i + 1);
+    wrap.appendChild(tick);
+    spineTicks.push(tick);
+  });
+  computeSpinePositions();
+}
+
+/* Generate a winding path: smooth cubic curves swinging left and
+   right around the page center, with vertical tangents at each turn
+   so the line always flows downward. */
+function buildSpinePath() {
+  const svg = document.getElementById("spine-svg");
+  if (!svg) return;
+  const docH = document.documentElement.scrollHeight;
+  const W = document.documentElement.clientWidth;
+  svg.setAttribute("viewBox", "0 0 " + W + " " + docH);
+  svg.setAttribute("width", W);
+  svg.setAttribute("height", docH);
+
+  const cx = W / 2;
+  const amp = Math.max(60, Math.min(W * 0.2, 240));
+  const seg = 620;
+  let d = "M " + cx + " 0";
+  let px = cx, y = 0, side = 1, i = 0;
+  while (y < docH) {
+    const ny = Math.min(docH, y + seg);
+    const wob = 0.6 + 0.4 * Math.abs(Math.sin(i * 2.4)); // deterministic amplitude variation
+    const nx = ny >= docH ? cx : Math.round(cx + side * amp * wob);
+    const my = Math.round(y + (ny - y) / 2);
+    d += " C " + px + " " + my + ", " + nx + " " + my + ", " + nx + " " + ny;
+    px = nx; y = ny; side = -side; i++;
+  }
+
+  ["spine-path-track", "spine-path-under", "spine-path-fill"].forEach(id => {
+    document.getElementById(id).setAttribute("d", d);
+  });
+
+  const fill = document.getElementById("spine-path-fill");
+  spinePathLen = fill.getTotalLength();
+  [fill, document.getElementById("spine-path-under")].forEach(p => {
+    p.style.strokeDasharray = spinePathLen;
+    p.style.strokeDashoffset = spinePathLen;
+  });
+
+  spineLenTable = [];
+  const samples = Math.max(80, Math.round(spinePathLen / 24));
+  for (let s = 0; s <= samples; s++) {
+    const len = spinePathLen * s / samples;
+    const pt = fill.getPointAtLength(len);
+    spineLenTable.push({ len, x: pt.x, y: pt.y });
+  }
+}
+
+function spinePointAtY(yTarget) {
+  const tb = spineLenTable;
+  if (!tb.length) return null;
+  if (yTarget <= tb[0].y) return tb[0];
+  if (yTarget >= tb[tb.length - 1].y) return tb[tb.length - 1];
+  let lo = 0, hi = tb.length - 1;
+  while (hi - lo > 1) {
+    const mid = (lo + hi) >> 1;
+    if (tb[mid].y < yTarget) lo = mid; else hi = mid;
+  }
+  const a = tb[lo], b = tb[hi];
+  const f = b.y === a.y ? 0 : (yTarget - a.y) / (b.y - a.y);
+  return { len: a.len + f * (b.len - a.len), x: a.x + f * (b.x - a.x), y: yTarget };
+}
+
+function computeSpinePositions() {
+  buildSpinePath();
+  spineTicks.forEach(tick => {
+    const el = document.getElementById(tick.dataset.section);
+    if (el) {
+      tick._top = docTop(el);
+      tick.style.top = tick._top + "px";
+      const pt = spinePointAtY(tick._top);
+      if (pt) tick.style.left = Math.round(pt.x + 18) + "px";
+    }
+  });
+  spineSections = [...document.querySelectorAll("main .section")]
+    .map(el => ({ el, top: docTop(el) }));
+}
+
+function updateSpine() {
+  const docH = document.documentElement.scrollHeight;
+  /* the light head travels slightly above mid-viewport */
+  const headY = Math.min(docH - 8, window.scrollY + window.innerHeight * 0.45);
+  const pt = spinePointAtY(headY);
+  if (!pt) return;
+
+  const offset = Math.max(0, spinePathLen - pt.len);
+  document.getElementById("spine-path-fill").style.strokeDashoffset = offset;
+  document.getElementById("spine-path-under").style.strokeDashoffset = offset;
+
+  const glow = document.getElementById("spine-glow");
+  glow.style.top = headY + "px";
+  glow.style.left = Math.round(pt.x) + "px";
+
+  spineTicks.forEach(tick => tick.classList.toggle("passed", headY >= (tick._top || 0)));
+  spineSections.forEach(s => s.el.classList.toggle("spine-lit", headY >= s.top + 60));
+}
+
 let scrollTicking = false;
 function onScrollFX() {
   if (scrollTicking) return;
@@ -502,6 +628,7 @@ function onScrollFX() {
   requestAnimationFrame(() => {
     updateRail();
     updateTimelineFill();
+    updateSpine();
     scrollTicking = false;
   });
 }
@@ -540,6 +667,7 @@ function setupBurger() {
 }
 
 /* ===================== Init ===================== */
+buildSpine();
 buildRail();
 setLang(currentLang);
 setupReveal();

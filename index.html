@@ -18,6 +18,23 @@
 </head>
 <body>
 
+  <div class="spine" aria-hidden="true">
+    <svg class="spine-svg" id="spine-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#58e6d9" stop-opacity="0.15"/>
+          <stop offset="0.7" stop-color="#58e6d9" stop-opacity="0.85"/>
+          <stop offset="1" stop-color="#7c8cff"/>
+        </linearGradient>
+      </defs>
+      <path id="spine-path-track" class="spine-path-track"/>
+      <path id="spine-path-under" class="spine-path-under"/>
+      <path id="spine-path-fill" class="spine-path-fill"/>
+    </svg>
+    <div class="spine-glow" id="spine-glow"><span class="spine-core"></span></div>
+    <div class="spine-ticks" id="spine-ticks"></div>
+  </div>
+
   <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill" id="scroll-progress-fill"></div></div>
 
   <aside class="scroll-rail" id="scroll-rail" aria-label="Scroll progress">
@@ -54,9 +71,9 @@
         <h1 class="hero-name">Ata Kaan Can <span class="accent">Olcay</span></h1>
         <h2 class="hero-title" data-i18n="hero.title">I build things close to the metal.</h2>
         <p class="hero-desc" data-i18n="hero.desc">
-          Computer Engineering student at Başkent University (graduating Jan 2027) with industry
-          experience in defense &amp; aerospace. I work on edge AI optimization, embedded software
-          and systems programming — primarily in C, C++ and Python.
+          Final-year Computer Engineering student at Başkent University with internship experience
+          in the Turkish defense industry. I build personal projects in edge-AI optimization,
+          embedded software and systems programming — primarily in C, C++ and Python.
         </p>
         <div class="hero-tags">
           <span class="chip mono">Edge AI</span>
@@ -102,12 +119,16 @@
             <li data-i18n="about.l3">Network protocols &amp; systems programming in C</li>
             <li data-i18n="about.l4">Constraint programming with CP-SAT / OR-Tools</li>
           </ul>
+          <p data-i18n="about.p4">
+            Off the court: I'm a former professional basketball player — discipline, resilience
+            and teamwork are habits I bring from the game into engineering.
+          </p>
         </div>
         <div class="stats-cards">
           <div class="stat-card"><span class="stat-num" id="stat-repos">29</span><span class="stat-label" data-i18n="about.s1">Public repos</span></div>
           <div class="stat-card"><span class="stat-num">4</span><span class="stat-label" data-i18n="about.s2">Internships</span></div>
           <div class="stat-card"><span class="stat-num">6+</span><span class="stat-label" data-i18n="about.s3">Languages used</span></div>
-          <div class="stat-card"><span class="stat-num">2027</span><span class="stat-label" data-i18n="about.s4">Graduation</span></div>
+          <div class="stat-card"><span class="stat-num">2026</span><span class="stat-label" data-i18n="about.s4">Graduation</span></div>
         </div>
       </div>
     </section>
@@ -233,7 +254,10 @@
         I'm open to internship and entry-level opportunities in embedded systems, edge AI and
         systems programming. Whether you have a question or just want to say hi — my inbox is open.
       </p>
-      <a class="btn btn-primary btn-lg" href="mailto:kaancanolcay@gmail.com" data-i18n="contact.cta">Say Hello</a>
+      <div class="contact-actions">
+        <a class="btn btn-primary btn-lg" href="mailto:kaancanolcay@gmail.com" data-i18n="contact.cta">Say Hello</a>
+        <a class="btn btn-ghost btn-lg" href="assets/cv/Ata-Kaan-Can-Olcay-CV.pdf" download data-i18n="contact.cv">Download CV (PDF)</a>
+      </div>
       <div class="contact-links mono">
         <a href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
         <span>·</span>
