@@ -35,6 +35,103 @@ a:hover { text-decoration: underline; }
 
 ::selection { background: var(--accent); color: var(--bg); }
 
+/* ===== Scroll progress (mobile top bar) ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 200;
+  pointer-events: none;
+  display: none;
+}
+.scroll-progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 8px rgba(88, 230, 217, 0.6);
+}
+
+/* ===== Scroll rail (guide line) ===== */
+.scroll-rail {
+  position: fixed;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60vh;
+  z-index: 90;
+}
+
+.rail-track {
+  position: relative;
+  width: 2px;
+  height: 100%;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.rail-fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(88, 230, 217, 0.4);
+}
+
+.rail-head {
+  position: absolute;
+  left: 1px; top: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent), 0 0 28px rgba(88, 230, 217, 0.5);
+  pointer-events: none;
+}
+
+.rail-dot {
+  position: absolute;
+  left: 1px;
+  transform: translate(-50%, -50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.rail-dot:hover { border-color: var(--accent); }
+.rail-dot.passed { background: var(--accent); border-color: var(--accent); }
+.rail-dot.active { box-shadow: 0 0 10px rgba(88, 230, 217, 0.8); }
+
+.rail-label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 2px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  pointer-events: none;
+}
+.rail-dot:hover .rail-label,
+.rail-dot.active .rail-label { opacity: 1; }
+.rail-dot.active .rail-label { color: var(--accent); border-color: rgba(88, 230, 217, 0.4); }
+
+@media (max-width: 1023px) {
+  .scroll-rail { display: none; }
+  .scroll-progress { display: block; }
+}
+
 /* ===== Nav ===== */
 .nav {
   position: fixed;
@@ -301,16 +398,34 @@ a:hover { text-decoration: underline; }
 .t-item { position: relative; margin-bottom: 28px; }
 .t-item:last-child { margin-bottom: 0; }
 
+.t-fill {
+  position: absolute;
+  left: 7px; top: 8px;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(88, 230, 217, 0.35);
+}
+
 .t-dot {
   position: absolute;
   left: -28px; top: 24px;
   width: 16px; height: 16px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--bg-card);
   border: 3px solid var(--bg);
-  box-shadow: 0 0 0 2px var(--accent);
+  box-shadow: 0 0 0 2px var(--border);
+  transition: background 0.3s, box-shadow 0.3s;
 }
-.t-dot-edu { background: var(--accent-2); box-shadow: 0 0 0 2px var(--accent-2); }
+.t-item.lit .t-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 0 14px rgba(88, 230, 217, 0.55);
+}
+.t-item.lit .t-dot-edu {
+  background: var(--accent-2);
+  box-shadow: 0 0 0 2px var(--accent-2), 0 0 14px rgba(124, 140, 255, 0.55);
+}
 
 .t-card {
   background: var(--bg-card);

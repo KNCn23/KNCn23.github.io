@@ -69,6 +69,8 @@ const I18N = {
     "footer.built": "Designed & built by",
     "footer.src": "Source on GitHub",
 
+    "rail.top": "Home",
+
     "filter.all": "All",
     "filter.systems": "Embedded & Systems",
     "filter.ai": "AI & ML",
@@ -146,6 +148,8 @@ const I18N = {
 
     "footer.built": "Tasarım ve geliştirme:",
     "footer.src": "Kaynak kodu GitHub'da",
+
+    "rail.top": "Başlangıç",
 
     "filter.all": "Tümü",
     "filter.systems": "Gömülü ve Sistemler",
@@ -369,6 +373,11 @@ function setLang(lang) {
   renderFeatured();
   renderFilters();
   renderProjects();
+
+  if (railDots.length) {
+    computeRailPositions();
+    onScrollFX();
+  }
 }
 
 /* ===================== GitHub stars (live, best-effort) ===================== */
@@ -393,6 +402,115 @@ function fetchStars() {
       applyStars();
     })
     .catch(() => { /* rate-limited or offline — static content still works */ });
+}
+
+/* ===================== Scroll rail & progress ===================== */
+const RAIL_SECTIONS = [
+  { id: "top",        key: "rail.top" },
+  { id: "about",      key: "nav.about" },
+  { id: "experience", key: "nav.experience" },
+  { id: "projects",   key: "nav.projects" },
+  { id: "skills",     key: "nav.skills" },
+  { id: "contact",    key: "nav.contact" }
+];
+
+const railDots = [];
+
+function docTop(el) {
+  let y = 0;
+  while (el) { y += el.offsetTop; el = el.offsetParent; }
+  return y;
+}
+
+function maxScroll() {
+  return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+}
+
+function buildRail() {
+  const track = document.getElementById("rail-track");
+  if (!track) return;
+  RAIL_SECTIONS.forEach(s => {
+    const dot = document.createElement("button");
+    dot.className = "rail-dot";
+    dot.dataset.section = s.id;
+    dot.setAttribute("aria-label", s.id);
+
+    const label = document.createElement("span");
+    label.className = "rail-label";
+    label.dataset.i18n = s.key;
+    label.textContent = t(s.key);
+    dot.appendChild(label);
+
+    dot.addEventListener("click", () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: dot._target || 0, behavior: reduce ? "auto" : "smooth" });
+    });
+
+    track.appendChild(dot);
+    railDots.push(dot);
+  });
+  computeRailPositions();
+}
+
+/* Align each dot with the scroll position where its section lands
+   (nav height + scroll padding ≈ 80px), so the glowing head meets
+   the dot exactly when the section is reached. */
+function computeRailPositions() {
+  const max = maxScroll();
+  railDots.forEach(dot => {
+    const el = document.getElementById(dot.dataset.section);
+    if (!el) return;
+    const target = dot.dataset.section === "top"
+      ? 0
+      : Math.min(max, Math.max(0, docTop(el) - 80));
+    dot._target = target;
+    dot.style.top = (target / max * 100) + "%";
+  });
+}
+
+function updateRail() {
+  const pct = Math.min(1, Math.max(0, window.scrollY / maxScroll())) * 100 + "%";
+  document.getElementById("rail-fill").style.height = pct;
+  document.getElementById("rail-head").style.top = pct;
+  document.getElementById("scroll-progress-fill").style.width = pct;
+
+  let active = 0;
+  railDots.forEach((dot, i) => {
+    const passed = window.scrollY >= (dot._target || 0) - 2;
+    dot.classList.toggle("passed", passed);
+    if (passed) active = i;
+  });
+  railDots.forEach((dot, i) => dot.classList.toggle("active", i === active));
+}
+
+function updateTimelineFill() {
+  const fill = document.getElementById("t-fill");
+  const timeline = document.querySelector(".timeline");
+  if (!fill || !timeline) return;
+  const rect = timeline.getBoundingClientRect();
+  const trigger = window.innerHeight * 0.55;
+  fill.style.height = Math.min(rect.height - 16, Math.max(0, trigger - rect.top - 8)) + "px";
+  timeline.querySelectorAll(".t-item").forEach(item => {
+    item.classList.toggle("lit", item.getBoundingClientRect().top + 32 < trigger);
+  });
+}
+
+let scrollTicking = false;
+function onScrollFX() {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(() => {
+    updateRail();
+    updateTimelineFill();
+    scrollTicking = false;
+  });
+}
+
+function initScrollFX() {
+  window.addEventListener("scroll", onScrollFX, { passive: true });
+  window.addEventListener("resize", () => { computeRailPositions(); onScrollFX(); });
+  window.addEventListener("load", () => { computeRailPositions(); onScrollFX(); });
+  onScrollFX();
 }
 
 /* ===================== Misc UI ===================== */
@@ -422,7 +540,9 @@ function setupBurger() {
 }
 
 /* ===================== Init ===================== */
+buildRail();
 setLang(currentLang);
 setupReveal();
 setupBurger();
+initScrollFX();
 fetchStars();

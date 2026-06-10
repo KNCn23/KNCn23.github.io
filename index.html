@@ -18,6 +18,15 @@
 </head>
 <body>
 
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill" id="scroll-progress-fill"></div></div>
+
+  <aside class="scroll-rail" id="scroll-rail" aria-label="Scroll progress">
+    <div class="rail-track" id="rail-track">
+      <div class="rail-fill" id="rail-fill"></div>
+      <div class="rail-head" id="rail-head"></div>
+    </div>
+  </aside>
+
   <nav class="nav">
     <div class="nav-inner">
       <a href="#top" class="nav-logo"><span class="mono">~/</span>kaan-olcay</a>
@@ -106,6 +115,7 @@
     <section id="experience" class="section reveal">
       <h2 class="section-title"><span class="mono accent">02.</span> <span data-i18n="exp.title">Experience</span></h2>
       <div class="timeline">
+        <div class="t-fill" id="t-fill" aria-hidden="true"></div>
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
