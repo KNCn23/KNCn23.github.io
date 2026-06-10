@@ -73,6 +73,11 @@ const I18N = {
 
     "rail.top": "Home",
 
+    "meta.desc": "Portfolio of Ata Kaan Can Olcay — final-year Computer Engineering student at Başkent University. Embedded systems, edge AI and systems programming projects in C, C++ and Python.",
+    "gh.title": "Live from GitHub",
+    "gh.stars": "total stars",
+    "gh.push": "last push",
+
     "filter.all": "All",
     "filter.systems": "Embedded & Systems",
     "filter.ai": "AI & ML",
@@ -155,6 +160,11 @@ const I18N = {
 
     "rail.top": "Başlangıç",
 
+    "meta.desc": "Ata Kaan Can Olcay'ın portfolyosu — Başkent Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisi. C, C++ ve Python ile gömülü sistemler, edge AI ve sistem programlama projeleri.",
+    "gh.title": "GitHub'dan Canlı",
+    "gh.stars": "toplam yıldız",
+    "gh.push": "son push",
+
     "filter.all": "Tümü",
     "filter.systems": "Gömülü ve Sistemler",
     "filter.ai": "Yapay Zekâ ve ML",
@@ -168,39 +178,158 @@ const I18N = {
 /* ===================== Projects data ===================== */
 const GH = "https://github.com/KNCn23/";
 
+/* Small thematic illustrations for the featured cards (inline SVG,
+   themed via CSS custom properties). */
+const ART = {
+  tcp: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g font-family="monospace" font-size="9" text-anchor="middle">
+      <rect x="30" y="8" width="58" height="18" rx="3" fill="none" stroke="var(--accent)" opacity=".85"/>
+      <text x="59" y="21" fill="var(--accent)">ETH</text>
+      <rect x="88" y="8" width="58" height="18" rx="3" fill="none" stroke="var(--accent)" opacity=".55"/>
+      <text x="117" y="21" fill="var(--text-dim)">IPv4</text>
+      <rect x="146" y="8" width="58" height="18" rx="3" fill="none" stroke="var(--accent)" opacity=".55"/>
+      <text x="175" y="21" fill="var(--text-dim)">TCP</text>
+      <rect x="204" y="8" width="166" height="18" rx="3" fill="none" stroke="var(--border)"/>
+      <text x="287" y="21" fill="var(--text-dim)">PAYLOAD</text>
+    </g>
+    <line x1="60" y1="36" x2="60" y2="92" stroke="var(--border)"/>
+    <line x1="340" y1="36" x2="340" y2="92" stroke="var(--border)"/>
+    <g font-family="monospace" font-size="8" fill="var(--text-dim)">
+      <line x1="66" y1="46" x2="332" y2="52" stroke="var(--accent)" opacity=".7"/>
+      <polygon points="334,52 325,48 326,55" fill="var(--accent)" opacity=".7"/>
+      <text x="200" y="42">SYN</text>
+      <line x1="334" y1="62" x2="68" y2="68" stroke="var(--accent-2)" opacity=".7"/>
+      <polygon points="66,68 75,64 74,71" fill="var(--accent-2)" opacity=".7"/>
+      <text x="200" y="59">SYN-ACK</text>
+      <line x1="66" y1="78" x2="332" y2="84" stroke="var(--accent)" opacity=".7"/>
+      <polygon points="334,84 325,80 326,87" fill="var(--accent)" opacity=".7"/>
+      <text x="200" y="75">ACK</text>
+    </g>
+  </svg>`,
+
+  rtos: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g font-family="monospace" font-size="9" fill="var(--text-dim)">
+      <text x="12" y="24">T0</text><text x="12" y="52">T1</text><text x="12" y="80">T2</text>
+    </g>
+    <line x1="38" y1="20" x2="385" y2="20" stroke="var(--border)"/>
+    <line x1="38" y1="48" x2="385" y2="48" stroke="var(--border)"/>
+    <line x1="38" y1="76" x2="385" y2="76" stroke="var(--border)"/>
+    <g stroke="var(--border)" stroke-dasharray="3 4">
+      <line x1="108" y1="8" x2="108" y2="88"/><line x1="178" y1="8" x2="178" y2="88"/>
+      <line x1="248" y1="8" x2="248" y2="88"/><line x1="318" y1="8" x2="318" y2="88"/>
+    </g>
+    <g rx="2">
+      <rect x="38" y="15" width="70" height="10" rx="2" fill="var(--accent)" opacity=".75"/>
+      <rect x="248" y="15" width="70" height="10" rx="2" fill="var(--accent)" opacity=".75"/>
+      <rect x="108" y="43" width="70" height="10" rx="2" fill="var(--accent-2)" opacity=".75"/>
+      <rect x="318" y="43" width="67" height="10" rx="2" fill="var(--accent-2)" opacity=".75"/>
+      <rect x="178" y="71" width="70" height="10" rx="2" fill="var(--accent)" opacity=".45"/>
+    </g>
+    <text x="385" y="92" font-family="monospace" font-size="8" fill="var(--text-dim)" text-anchor="end">context switch →</text>
+  </svg>`,
+
+  kws: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <polyline points="18,48 26,36 33,60 40,28 47,66 54,38 61,56 68,44 75,52 82,34 89,60 96,46 103,50 110,48"
+      fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".85"/>
+    <text x="128" y="52" font-size="11" fill="var(--text-dim)">→</text>
+    <g>
+      <rect x="150" y="16" width="13" height="13" fill="var(--accent)" opacity=".25"/><rect x="165" y="16" width="13" height="13" fill="var(--accent)" opacity=".7"/><rect x="180" y="16" width="13" height="13" fill="var(--accent)" opacity=".4"/><rect x="195" y="16" width="13" height="13" fill="var(--accent)" opacity=".15"/>
+      <rect x="150" y="31" width="13" height="13" fill="var(--accent)" opacity=".6"/><rect x="165" y="31" width="13" height="13" fill="var(--accent)" opacity=".9"/><rect x="180" y="31" width="13" height="13" fill="var(--accent)" opacity=".3"/><rect x="195" y="31" width="13" height="13" fill="var(--accent)" opacity=".45"/>
+      <rect x="150" y="46" width="13" height="13" fill="var(--accent)" opacity=".35"/><rect x="165" y="46" width="13" height="13" fill="var(--accent)" opacity=".5"/><rect x="180" y="46" width="13" height="13" fill="var(--accent)" opacity=".8"/><rect x="195" y="46" width="13" height="13" fill="var(--accent)" opacity=".25"/>
+      <rect x="150" y="61" width="13" height="13" fill="var(--accent)" opacity=".2"/><rect x="165" y="61" width="13" height="13" fill="var(--accent)" opacity=".4"/><rect x="180" y="61" width="13" height="13" fill="var(--accent)" opacity=".55"/><rect x="195" y="61" width="13" height="13" fill="var(--accent)" opacity=".7"/>
+    </g>
+    <text x="225" y="52" font-size="11" fill="var(--text-dim)">→</text>
+    <g stroke="var(--border)">
+      <line x1="262" y1="22" x2="318" y2="34"/><line x1="262" y1="22" x2="318" y2="60"/>
+      <line x1="262" y1="48" x2="318" y2="34"/><line x1="262" y1="48" x2="318" y2="60"/>
+      <line x1="262" y1="74" x2="318" y2="34"/><line x1="262" y1="74" x2="318" y2="60"/>
+      <line x1="318" y1="34" x2="368" y2="48"/><line x1="318" y1="60" x2="368" y2="48"/>
+    </g>
+    <g fill="var(--bg-card)" stroke="var(--accent-2)" stroke-width="1.5">
+      <circle cx="262" cy="22" r="6"/><circle cx="262" cy="48" r="6"/><circle cx="262" cy="74" r="6"/>
+      <circle cx="318" cy="34" r="6"/><circle cx="318" cy="60" r="6"/>
+    </g>
+    <circle cx="368" cy="48" r="7" fill="var(--accent-2)" opacity=".9"/>
+  </svg>`,
+
+  sca: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <polyline points="16,30 28,26 40,34 52,22 64,36 76,28 88,32 100,20 112,38 124,26 136,32 148,24 160,34 172,28 184,30 196,22 208,36 220,26 232,34 244,28 256,30 268,24 280,34 292,28 304,32 316,26 328,30 340,24 352,34 364,28 376,30"
+      fill="none" stroke="var(--text-dim)" stroke-width="1" opacity=".6"/>
+    <polyline points="184,30 196,22 208,36 220,26 232,34 244,28" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="16" y1="84" x2="384" y2="84" stroke="var(--border)"/>
+    <g fill="var(--text-dim)" opacity=".6">
+      <rect x="40" y="76" width="5" height="8"/><rect x="70" y="78" width="5" height="6"/>
+      <rect x="100" y="75" width="5" height="9"/><rect x="130" y="78" width="5" height="6"/>
+      <rect x="160" y="76" width="5" height="8"/><rect x="250" y="77" width="5" height="7"/>
+      <rect x="280" y="75" width="5" height="9"/><rect x="310" y="78" width="5" height="6"/>
+      <rect x="340" y="76" width="5" height="8"/>
+    </g>
+    <rect x="208" y="50" width="6" height="34" fill="var(--accent)"/>
+    <text x="222" y="58" font-family="monospace" font-size="8" fill="var(--accent)">key byte ✓</text>
+  </svg>`,
+
+  sched: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g font-family="monospace" font-size="8" fill="var(--text-dim)" text-anchor="middle">
+      <text x="73" y="12">Mon</text><text x="141" y="12">Tue</text><text x="209" y="12">Wed</text>
+      <text x="277" y="12">Thu</text><text x="345" y="12">Fri</text>
+    </g>
+    <g fill="none" stroke="var(--border)">
+      <rect x="42" y="18" width="62" height="16" rx="2"/><rect x="110" y="18" width="62" height="16" rx="2"/><rect x="178" y="18" width="62" height="16" rx="2"/><rect x="246" y="18" width="62" height="16" rx="2"/><rect x="314" y="18" width="62" height="16" rx="2"/>
+      <rect x="42" y="38" width="62" height="16" rx="2"/><rect x="110" y="38" width="62" height="16" rx="2"/><rect x="178" y="38" width="62" height="16" rx="2"/><rect x="246" y="38" width="62" height="16" rx="2"/><rect x="314" y="38" width="62" height="16" rx="2"/>
+      <rect x="42" y="58" width="62" height="16" rx="2"/><rect x="110" y="58" width="62" height="16" rx="2"/><rect x="178" y="58" width="62" height="16" rx="2"/><rect x="246" y="58" width="62" height="16" rx="2"/><rect x="314" y="58" width="62" height="16" rx="2"/>
+    </g>
+    <g rx="2">
+      <rect x="42" y="38" width="62" height="16" rx="2" fill="var(--accent)" opacity=".55"/>
+      <rect x="110" y="18" width="62" height="16" rx="2" fill="var(--accent-2)" opacity=".55"/>
+      <rect x="178" y="58" width="62" height="16" rx="2" fill="var(--accent)" opacity=".4"/>
+      <rect x="246" y="38" width="62" height="16" rx="2" fill="var(--accent-2)" opacity=".4"/>
+      <rect x="314" y="18" width="62" height="16" rx="2" fill="var(--accent)" opacity=".55"/>
+    </g>
+    <text x="42" y="90" font-family="monospace" font-size="8" fill="var(--text-dim)">CP-SAT · 0 conflicts</text>
+  </svg>`,
+
+  f1: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M 70,26 C 120,8 180,14 220,24 C 262,34 300,14 338,28 C 368,40 352,60 312,62 C 272,64 252,48 202,52 C 152,56 132,70 92,62 C 52,54 32,40 70,26 Z"
+      fill="none" stroke="var(--accent)" stroke-width="2" opacity=".85"/>
+    <circle cx="220" cy="24" r="5" fill="var(--accent-2)"/>
+    <polyline points="40,88 70,84 90,76 110,86 140,82 160,72 190,84 220,80 250,70 280,84 310,78 340,74 370,82"
+      fill="none" stroke="var(--accent-2)" stroke-width="1.5" opacity=".7"/>
+  </svg>`
+};
+
 const FEATURED = [
   {
-    repo: "mini-tcp-stack", icon: "🌐", cat: "systems", lang: "C", langColor: "#555555",
+    repo: "mini-tcp-stack", icon: "🌐", art: ART.tcp, cat: "systems", lang: "C", langColor: "#555555",
     tags: ["Ethernet", "ARP", "TCP", "Linux TAP"],
     en: "A small, readable TCP/IP stack written from scratch in C — Ethernet, ARP, IPv4, ICMP and a full TCP state machine, with unit tests and a Linux TAP demo.",
     tr: "C ile sıfırdan yazılmış küçük ve okunabilir bir TCP/IP yığını — Ethernet, ARP, IPv4, ICMP ve tam bir TCP durum makinesi; birim testleri ve Linux TAP demosu ile."
   },
   {
-    repo: "mini-rtos", icon: "⚙️", cat: "systems", lang: "C", langColor: "#555555",
+    repo: "mini-rtos", icon: "⚙️", art: ART.rtos, cat: "systems", lang: "C", langColor: "#555555",
     tags: ["AArch64", "Scheduler", "QEMU"],
     en: "Cooperative + preemptive RTOS for AArch64 — round-robin and priority scheduling, context switching and semaphores, running on QEMU virt.",
     tr: "AArch64 için kooperatif + preemptif RTOS — round-robin ve öncelikli zamanlama, bağlam değiştirme ve semaforlar; QEMU virt üzerinde çalışıyor."
   },
   {
-    repo: "tinyml-keyword-spotting", icon: "🎙️", cat: "ai", lang: "C", langColor: "#555555",
+    repo: "tinyml-keyword-spotting", icon: "🎙️", art: ART.kws, cat: "ai", lang: "C", langColor: "#555555",
     tags: ["TinyML", "INT8", "DSP"],
     en: "End-to-end TinyML keyword spotting — log-mel features, a NumPy MLP, INT8 quantization and a pure-C inference engine that matches the Python model exactly.",
     tr: "Uçtan uca TinyML anahtar kelime tanıma — log-mel öznitelikler, NumPy ile MLP, INT8 nicemleme ve Python modeliyle birebir aynı sonucu veren saf C çıkarım motoru."
   },
   {
-    repo: "aes-sca-sim", icon: "🔐", cat: "security", lang: "C", langColor: "#555555",
+    repo: "aes-sca-sim", icon: "🔐", art: ART.sca, cat: "security", lang: "C", langColor: "#555555",
     tags: ["AES-128", "CPA", "Side-channel"],
     en: "AES-128 side-channel attack simulator — generates synthetic power traces and recovers the key with Correlation Power Analysis.",
     tr: "AES-128 yan kanal saldırı simülatörü — sentetik güç izleri üretir ve Korelasyon Güç Analizi (CPA) ile anahtarı geri kazanır."
   },
   {
-    repo: "OptiSchedule", icon: "📅", cat: "opt", lang: "TypeScript", langColor: "#3178c6",
+    repo: "OptiSchedule", icon: "📅", art: ART.sched, cat: "opt", lang: "TypeScript", langColor: "#3178c6",
     tags: ["CP-SAT", "OR-Tools", "PostgreSQL"],
     en: "Constraint-programming based university course scheduler using Google OR-Tools CP-SAT, with PostgreSQL persistence and Excel export.",
     tr: "Google OR-Tools CP-SAT kullanan, kısıt programlama tabanlı üniversite ders programı oluşturucu; PostgreSQL ve Excel dışa aktarımı ile."
   },
   {
-    repo: "f1-telemetry-dashboard", icon: "🏎️", cat: "web", lang: "JavaScript", langColor: "#f1e05a",
+    repo: "f1-telemetry-dashboard", icon: "🏎️", art: ART.f1, cat: "web", lang: "JavaScript", langColor: "#f1e05a",
     tags: ["FastAPI", "FastF1", "Vite"],
     demo: "https://f1-telemetry-dashboard-sepia.vercel.app",
     en: "F1 telemetry visualization dashboard built with FastAPI, FastF1 and Vite — track maps, driver telemetry and race standings.",
@@ -307,6 +436,7 @@ function renderFeatured() {
   const grid = document.getElementById("featured-grid");
   grid.innerHTML = FEATURED.map(p => `
     <article class="f-card">
+      ${p.art ? `<div class="f-art">${p.art}</div>` : ""}
       <div class="f-top">
         <span class="f-icon">${p.icon}</span>
         <div class="f-links">
@@ -374,6 +504,10 @@ function setLang(lang) {
     ? "Ata Kaan Can Olcay — Bilgisayar Mühendisi"
     : "Ata Kaan Can Olcay — Computer Engineer";
 
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute("content", t("meta.desc"));
+  if (ghRepos) renderGhPanel();
+
   renderFeatured();
   renderFilters();
   renderProjects();
@@ -384,8 +518,43 @@ function setLang(lang) {
   }
 }
 
-/* ===================== GitHub stars (live, best-effort) ===================== */
+/* ===================== GitHub stats (live, best-effort) ===================== */
 let starMap = null;
+let ghRepos = null;
+
+const LANG_COLORS = {
+  "C": "#555555", "C++": "#f34b7d", "Python": "#3572A5", "Java": "#b07219",
+  "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "HTML": "#e34c26",
+  "CSS": "#563d7c", "Shell": "#89e051"
+};
+
+function renderGhPanel() {
+  if (!ghRepos) return;
+  const counts = {};
+  ghRepos.forEach(r => { if (r.language) counts[r.language] = (counts[r.language] || 0) + 1; });
+  const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const top = entries.slice(0, 5);
+  const otherCount = entries.slice(5).reduce((s, e) => s + e[1], 0);
+  if (otherCount) top.push([currentLang === "tr" ? "Diğer" : "Other", otherCount]);
+  const total = top.reduce((s, e) => s + e[1], 0);
+  if (!total) return;
+
+  document.getElementById("gh-bar").innerHTML = top.map(([l, c]) =>
+    `<span style="width:${(c / total * 100).toFixed(1)}%;background:${LANG_COLORS[l] || "#8b9bb4"}"></span>`
+  ).join("");
+  document.getElementById("gh-legend").innerHTML = top.map(([l, c]) =>
+    `<span><span class="dot" style="background:${LANG_COLORS[l] || "#8b9bb4"}"></span>${l} ${(c / total * 100).toFixed(0)}%</span>`
+  ).join("");
+
+  const stars = ghRepos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+  const last = new Date(Math.max(...ghRepos.map(r => +new Date(r.pushed_at || 0))));
+  const dateStr = last.toLocaleDateString(currentLang === "tr" ? "tr-TR" : "en-US",
+    { year: "numeric", month: "short", day: "numeric" });
+  document.getElementById("gh-meta").textContent =
+    `★ ${stars} ${t("gh.stars")} · ${ghRepos.length} repo · ${t("gh.push")}: ${dateStr}`;
+
+  document.getElementById("gh-panel").hidden = false;
+}
 
 function applyStars() {
   if (!starMap) return;
@@ -399,11 +568,13 @@ function fetchStars() {
   fetch("https://api.github.com/users/KNCn23/repos?per_page=100")
     .then(r => (r.ok ? r.json() : Promise.reject()))
     .then(repos => {
+      ghRepos = repos;
       starMap = {};
       repos.forEach(r => { if (r.stargazers_count > 0) starMap[r.name] = r.stargazers_count; });
       const statEl = document.getElementById("stat-repos");
       if (statEl) statEl.textContent = repos.length;
       applyStars();
+      renderGhPanel();
     })
     .catch(() => { /* rate-limited or offline — static content still works */ });
 }
