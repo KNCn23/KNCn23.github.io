@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ata Kaan Can Olcay — Computer Engineer</title>
+  <meta name="description" content="Computer Engineering student at Başkent University. Edge AI, embedded systems, systems programming and optimization. C, C++, Python.">
+  <meta property="og:title" content="Ata Kaan Can Olcay — Computer Engineer">
+  <meta property="og:description" content="Edge AI · Embedded Systems · Systems Programming · Optimization">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/71110056?v=4">
+  <meta property="og:url" content="https://kncn23.github.io">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d1117'/%3E%3Ctext x='50' y='68' font-size='48' font-family='monospace' font-weight='bold' fill='%2358e6d9' text-anchor='middle'%3EKO%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo"><span class="mono">~/</span>kaan-olcay</a>
+      <div class="nav-links">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button id="lang-en" class="lang-btn" onclick="setLang('en')">EN</button>
+          <button id="lang-tr" class="lang-btn" onclick="setLang('tr')">TR</button>
+        </div>
+        <button class="nav-burger" id="nav-burger" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-hello mono" data-i18n="hero.hello">Hi, my name is</p>
+        <h1 class="hero-name">Ata Kaan Can <span class="accent">Olcay</span></h1>
+        <h2 class="hero-title" data-i18n="hero.title">I build things close to the metal.</h2>
+        <p class="hero-desc" data-i18n="hero.desc">
+          Computer Engineering student at Başkent University (graduating Jan 2027) with industry
+          experience in defense &amp; aerospace. I work on edge AI optimization, embedded software
+          and systems programming — primarily in C, C++ and Python.
+        </p>
+        <div class="hero-tags">
+          <span class="chip mono">Edge AI</span>
+          <span class="chip mono" data-i18n="hero.tag2">Embedded Systems</span>
+          <span class="chip mono" data-i18n="hero.tag3">Systems Programming</span>
+          <span class="chip mono" data-i18n="hero.tag4">Optimization</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="mailto:kaancanolcay@gmail.com" data-i18n="hero.email">Email me</a>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-ring">
+          <img src="https://avatars.githubusercontent.com/u/71110056?v=4" alt="Ata Kaan Can Olcay" width="220" height="220">
+        </div>
+        <p class="hero-loc mono">📍 Ankara, <span data-i18n="hero.country">Türkiye</span></p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section reveal">
+      <h2 class="section-title"><span class="mono accent">01.</span> <span data-i18n="about.title">About Me</span></h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-i18n="about.p1">
+            I'm a computer engineering student focused on the layer where software meets hardware.
+            I've written a TCP/IP stack, a bare-metal ARM OS and an RTOS from scratch — because the
+            best way to understand a system is to build it yourself.
+          </p>
+          <p data-i18n="about.p2">
+            During my internships at BİTES and Meteksan Savunma I worked on edge-AI optimization for
+            CNNs and embedded software in defense &amp; aerospace environments. On the side I build
+            optimization tools with Google OR-Tools — from university course scheduling to F1 pit-stop
+            strategy.
+          </p>
+          <p data-i18n="about.p3">Areas I currently enjoy the most:</p>
+          <ul class="about-list mono">
+            <li data-i18n="about.l1">Edge AI &amp; model quantization (INT8, ONNX)</li>
+            <li data-i18n="about.l2">Bare-metal &amp; RTOS development (AArch64, QEMU)</li>
+            <li data-i18n="about.l3">Network protocols &amp; systems programming in C</li>
+            <li data-i18n="about.l4">Constraint programming with CP-SAT / OR-Tools</li>
+          </ul>
+        </div>
+        <div class="stats-cards">
+          <div class="stat-card"><span class="stat-num" id="stat-repos">29</span><span class="stat-label" data-i18n="about.s1">Public repos</span></div>
+          <div class="stat-card"><span class="stat-num">4</span><span class="stat-label" data-i18n="about.s2">Internships</span></div>
+          <div class="stat-card"><span class="stat-num">6+</span><span class="stat-label" data-i18n="about.s3">Languages used</span></div>
+          <div class="stat-card"><span class="stat-num">2027</span><span class="stat-label" data-i18n="about.s4">Graduation</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section reveal">
+      <h2 class="section-title"><span class="mono accent">02.</span> <span data-i18n="exp.title">Experience</span></h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <div class="t-head">
+              <h3>BİTES <span class="t-role" data-i18n="exp.intern">— Intern</span></h3>
+              <span class="t-date mono" data-i18n="exp.b1date">Jan – Feb 2025 · Ankara</span>
+            </div>
+            <p class="t-sub mono" data-i18n="exp.b1sub">Defence &amp; Aerospace Technologies</p>
+            <p data-i18n="exp.b1desc">Researched and developed optimization techniques for edge AI within classical CNN algorithms. Focused on performance and efficiency improvements for edge-level inference in defense and aerospace applications.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <div class="t-head">
+              <h3>Meteksan Savunma <span class="t-role" data-i18n="exp.intern2">— Intern</span></h3>
+              <span class="t-date mono" data-i18n="exp.m1date">Aug 2024 · Ankara</span>
+            </div>
+            <p class="t-sub mono" data-i18n="exp.m1sub">Defense Technologies</p>
+            <p data-i18n="exp.m1desc">Embedded software development in C, C++ and Python within a defense technology environment. Worked on software integration and deployment in embedded systems.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <div class="t-head">
+              <h3>Kodfu <span class="t-role" data-i18n="exp.intern3">— Intern</span></h3>
+              <span class="t-date mono" data-i18n="exp.k1date">Jul – Aug 2023 · Ankara</span>
+            </div>
+            <p class="t-sub mono" data-i18n="exp.k1sub">Software Development</p>
+            <p data-i18n="exp.k1desc">Software development with a focus on code quality, optimization and team collaboration. Participated in code reviews and project delivery.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <div class="t-head">
+              <h3>Nomatto <span class="t-role" data-i18n="exp.intern4">— Intern</span></h3>
+              <span class="t-date mono" data-i18n="exp.n1date">Jul – Aug 2023</span>
+            </div>
+            <p class="t-sub mono" data-i18n="exp.n1sub">Software Development</p>
+            <p data-i18n="exp.n1desc">Software development and design; testing, debugging and project documentation.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-dot t-dot-edu"></div>
+          <div class="t-card">
+            <div class="t-head">
+              <h3 data-i18n="exp.eduname">Başkent University</h3>
+              <span class="t-date mono" data-i18n="exp.edudate">2022 – Jan 2027 · Ankara</span>
+            </div>
+            <p class="t-sub mono" data-i18n="exp.edusub">B.Sc. Computer Engineering</p>
+            <p data-i18n="exp.edudesc">Coursework and lab projects covering operating systems, computer networks, cryptography, artificial intelligence and software engineering.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section section-wide reveal">
+      <h2 class="section-title"><span class="mono accent">03.</span> <span data-i18n="proj.title">Projects</span></h2>
+
+      <h3 class="sub-title" data-i18n="proj.featured">Featured</h3>
+      <div class="featured-grid" id="featured-grid"></div>
+
+      <h3 class="sub-title" data-i18n="proj.all">More Projects</h3>
+      <div class="filter-bar" id="filter-bar"></div>
+      <div class="project-grid" id="project-grid"></div>
+      <p class="proj-more">
+        <a class="btn btn-ghost" href="https://github.com/KNCn23?tab=repositories" target="_blank" rel="noopener" data-i18n="proj.viewall">View all on GitHub →</a>
+      </p>
+    </section>
+
+    <section id="skills" class="section reveal">
+      <h2 class="section-title"><span class="mono accent">04.</span> <span data-i18n="skills.title">Skills &amp; Tools</span></h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3 class="mono" data-i18n="skills.g1">Languages</h3>
+          <div class="chip-row">
+            <span class="chip">C</span><span class="chip">C++</span><span class="chip">Python</span>
+            <span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
+            <span class="chip">SQL</span><span class="chip">Bash</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="mono" data-i18n="skills.g2">Embedded &amp; Systems</h3>
+          <div class="chip-row">
+            <span class="chip">AArch64 / ARM</span><span class="chip">QEMU</span><span class="chip">RTOS</span>
+            <span class="chip">Bare-metal</span><span class="chip">TCP/IP</span><span class="chip">Wireshark</span>
+            <span class="chip">Make / CMake</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="mono" data-i18n="skills.g3">AI &amp; Optimization</h3>
+          <div class="chip-row">
+            <span class="chip">OR-Tools / CP-SAT</span><span class="chip">ONNX</span><span class="chip">NumPy</span>
+            <span class="chip">OpenCV</span><span class="chip">MediaPipe</span><span class="chip">scikit-learn</span>
+            <span class="chip">TinyML</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="mono" data-i18n="skills.g4">Backend &amp; Tools</h3>
+          <div class="chip-row">
+            <span class="chip">Spring Boot</span><span class="chip">FastAPI</span><span class="chip">Flask</span>
+            <span class="chip">PostgreSQL</span><span class="chip">Git</span><span class="chip">Linux</span>
+            <span class="chip">Streamlit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section reveal contact">
+      <p class="mono accent" data-i18n="contact.kicker">05. What's next?</p>
+      <h2 class="contact-title" data-i18n="contact.title">Get In Touch</h2>
+      <p class="contact-desc" data-i18n="contact.desc">
+        I'm open to internship and entry-level opportunities in embedded systems, edge AI and
+        systems programming. Whether you have a question or just want to say hi — my inbox is open.
+      </p>
+      <a class="btn btn-primary btn-lg" href="mailto:kaancanolcay@gmail.com" data-i18n="contact.cta">Say Hello</a>
+      <div class="contact-links mono">
+        <a href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
+        <span>·</span>
+        <a href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
+        <span>·</span>
+        <a href="mailto:kaancanolcay@gmail.com">kaancanolcay@gmail.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer mono">
+    <p><span data-i18n="footer.built">Designed &amp; built by</span> Ata Kaan Can Olcay · <a href="https://github.com/KNCn23/KNCn23.github.io" target="_blank" rel="noopener" data-i18n="footer.src">Source on GitHub</a></p>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
