@@ -294,10 +294,58 @@ const ART = {
     <circle cx="220" cy="24" r="5" fill="var(--accent-2)"/>
     <polyline points="40,88 70,84 90,76 110,86 140,82 160,72 190,84 220,80 250,70 280,84 310,78 340,74 370,82"
       fill="none" stroke="var(--accent-2)" stroke-width="1.5" opacity=".7"/>
+  </svg>`,
+
+  swarm: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="200" cy="48" rx="150" ry="38" fill="none" stroke="var(--border)"/>
+    <ellipse cx="200" cy="48" rx="100" ry="25" fill="none" stroke="var(--border)"/>
+    <ellipse cx="206" cy="46" rx="130" ry="30" fill="none" stroke="#e2693f" opacity=".4" transform="rotate(-10 200 48)"/>
+    <circle cx="200" cy="48" r="6" fill="#ffb648"/>
+    <g fill="#e2693f" opacity=".85">
+      <circle cx="92" cy="62" r="1.5"/><circle cx="128" cy="30" r="1.3"/><circle cx="158" cy="74" r="1.5"/>
+      <circle cx="246" cy="22" r="1.3"/><circle cx="282" cy="68" r="1.5"/><circle cx="318" cy="38" r="1.3"/>
+      <circle cx="116" cy="48" r="1.3"/><circle cx="350" cy="54" r="1.5"/><circle cx="68" cy="38" r="1.3"/>
+      <circle cx="222" cy="78" r="1.5"/><circle cx="176" cy="18" r="1.3"/><circle cx="264" cy="44" r="1.3"/>
+    </g>
+    <g fill="#ff7a5c">
+      <circle cx="142" cy="58" r="1.8"/><circle cx="296" cy="28" r="1.8"/><circle cx="238" cy="62" r="1.8"/>
+      <circle cx="84" cy="26" r="1.8"/><circle cx="332" cy="70" r="1.8"/>
+    </g>
+    <circle cx="300" cy="48" r="3.4" fill="#4f9df7"/>
+    <circle cx="300" cy="48" r="11" fill="none" stroke="var(--accent)" stroke-dasharray="2 3" opacity=".8"/>
+    <text x="316" y="38" font-family="monospace" font-size="8" fill="var(--accent)">1 LD</text>
+  </svg>`,
+
+  orrery: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="200" cy="48" r="7" fill="#ffb648"/>
+    <ellipse cx="200" cy="48" rx="42" ry="13" fill="none" stroke="var(--border)"/>
+    <ellipse cx="200" cy="48" rx="78" ry="24" fill="none" stroke="var(--border)"/>
+    <ellipse cx="200" cy="48" rx="118" ry="36" fill="none" stroke="var(--accent)" opacity=".45"/>
+    <ellipse cx="200" cy="48" rx="160" ry="47" fill="none" stroke="var(--border)"/>
+    <circle cx="236" cy="58" r="2.4" fill="#9aa0a8"/>
+    <circle cx="134" cy="34" r="3" fill="#e8c468"/>
+    <circle cx="304" cy="68" r="3.4" fill="#4f9df7"/>
+    <circle cx="304" cy="68" r="8" fill="none" stroke="var(--accent)" stroke-dasharray="2 3" opacity=".8"/>
+    <circle cx="60" cy="32" r="2.8" fill="#e2693f"/>
+    <text x="320" y="60" font-family="monospace" font-size="8" fill="var(--accent)">⊕ 1.000 au</text>
   </svg>`
 };
 
 const FEATURED = [
+  {
+    repo: "neo-swarm", icon: "☄️", art: ART.swarm, cat: "web", lang: "JavaScript", langColor: "#f1e05a",
+    tags: ["NASA/JPL", "Kepler", "Canvas 2D", "41k stars"],
+    demo: "https://kncn23.github.io/neo-swarm/",
+    en: "The near-Earth asteroid swarm, live — 6,800+ real orbits from NASA/JPL's Small-Body Database, a close-approach watch mode, JPL Sentry risk data, a discovery timeline and the real night sky: 41k stars, 88 constellations.",
+    tr: "Yakın-Dünya asteroit sürüsü, canlı — NASA/JPL Küçük Cisimler Veritabanı'ndan 6.800+ gerçek yörünge, yakın geçiş izleme modu, JPL Sentry risk verisi, keşif zaman çizelgesi ve gerçek gökyüzü: 41 bin yıldız, 88 takımyıldız."
+  },
+  {
+    repo: "solar-system", icon: "🪐", art: ART.orrery, cat: "web", lang: "JavaScript", langColor: "#f1e05a",
+    tags: ["NASA/JPL", "Ephemeris", "Canvas 2D"],
+    demo: "https://kncn23.github.io/solar-system/",
+    en: "Interactive solar-system orrery — real planetary positions computed in the browser from NASA/JPL Keplerian elements, with time travel across 1800–2050, live physics readouts and EN/TR UI. Zero dependencies.",
+    tr: "İnteraktif Güneş Sistemi modeli — NASA/JPL Kepler elemanlarından tarayıcıda hesaplanan gerçek gezegen konumları, 1800–2050 arası zaman yolculuğu, canlı fizik değerleri ve EN/TR arayüz. Sıfır bağımlılık."
+  },
   {
     repo: "mini-tcp-stack", icon: "🌐", art: ART.tcp, cat: "systems", lang: "C", langColor: "#555555",
     tags: ["Ethernet", "ARP", "TCP", "Linux TAP"],
