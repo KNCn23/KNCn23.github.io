@@ -314,20 +314,6 @@ const ART = {
     <circle cx="300" cy="48" r="3.4" fill="#4f9df7"/>
     <circle cx="300" cy="48" r="11" fill="none" stroke="var(--accent)" stroke-dasharray="2 3" opacity=".8"/>
     <text x="316" y="38" font-family="monospace" font-size="8" fill="var(--accent)">1 LD</text>
-  </svg>`,
-
-  orrery: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="200" cy="48" r="7" fill="#ffb648"/>
-    <ellipse cx="200" cy="48" rx="42" ry="13" fill="none" stroke="var(--border)"/>
-    <ellipse cx="200" cy="48" rx="78" ry="24" fill="none" stroke="var(--border)"/>
-    <ellipse cx="200" cy="48" rx="118" ry="36" fill="none" stroke="var(--accent)" opacity=".45"/>
-    <ellipse cx="200" cy="48" rx="160" ry="47" fill="none" stroke="var(--border)"/>
-    <circle cx="236" cy="58" r="2.4" fill="#9aa0a8"/>
-    <circle cx="134" cy="34" r="3" fill="#e8c468"/>
-    <circle cx="304" cy="68" r="3.4" fill="#4f9df7"/>
-    <circle cx="304" cy="68" r="8" fill="none" stroke="var(--accent)" stroke-dasharray="2 3" opacity=".8"/>
-    <circle cx="60" cy="32" r="2.8" fill="#e2693f"/>
-    <text x="320" y="60" font-family="monospace" font-size="8" fill="var(--accent)">⊕ 1.000 au</text>
   </svg>`
 };
 
@@ -338,13 +324,6 @@ const FEATURED = [
     demo: "https://kncn23.github.io/neo-swarm/",
     en: "The near-Earth asteroid swarm, live — 6,800+ real orbits from NASA/JPL's Small-Body Database, a close-approach watch mode, JPL Sentry risk data, a discovery timeline and the real night sky: 41k stars, 88 constellations.",
     tr: "Yakın-Dünya asteroit sürüsü, canlı — NASA/JPL Küçük Cisimler Veritabanı'ndan 6.800+ gerçek yörünge, yakın geçiş izleme modu, JPL Sentry risk verisi, keşif zaman çizelgesi ve gerçek gökyüzü: 41 bin yıldız, 88 takımyıldız."
-  },
-  {
-    repo: "solar-system", icon: "🪐", art: ART.orrery, cat: "web", lang: "JavaScript", langColor: "#f1e05a",
-    tags: ["NASA/JPL", "Ephemeris", "Canvas 2D"],
-    demo: "https://kncn23.github.io/solar-system/",
-    en: "Interactive solar-system orrery — real planetary positions computed in the browser from NASA/JPL Keplerian elements, with time travel across 1800–2050, live physics readouts and EN/TR UI. Zero dependencies.",
-    tr: "İnteraktif Güneş Sistemi modeli — NASA/JPL Kepler elemanlarından tarayıcıda hesaplanan gerçek gezegen konumları, 1800–2050 arası zaman yolculuğu, canlı fizik değerleri ve EN/TR arayüz. Sıfır bağımlılık."
   },
   {
     repo: "mini-tcp-stack", icon: "🌐", art: ART.tcp, cat: "systems", lang: "C", langColor: "#555555",
