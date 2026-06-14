@@ -228,6 +228,41 @@ const ART = {
     <text x="385" y="92" font-family="monospace" font-size="8" fill="var(--text-dim)" text-anchor="end">context switch →</text>
   </svg>`,
 
+  microcnn: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="var(--border)" fill="none">
+      <rect x="14" y="26" width="44" height="44" rx="2"/>
+    </g>
+    <g fill="var(--accent)">
+      <rect x="20" y="44" width="6" height="6" opacity=".3"/><rect x="26" y="38" width="6" height="6" opacity=".7"/><rect x="32" y="38" width="6" height="6" opacity=".9"/><rect x="38" y="44" width="6" height="6" opacity=".6"/><rect x="44" y="50" width="6" height="6" opacity=".4"/>
+      <rect x="32" y="44" width="6" height="6" opacity=".8"/><rect x="32" y="50" width="6" height="6" opacity=".7"/><rect x="32" y="56" width="6" height="6" opacity=".5"/>
+    </g>
+    <text x="72" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g>
+      <rect x="88" y="30" width="30" height="30" fill="none" stroke="var(--accent)" opacity=".5"/>
+      <rect x="96" y="38" width="30" height="30" fill="none" stroke="var(--accent)" opacity=".7"/>
+      <rect x="104" y="46" width="30" height="30" fill="none" stroke="var(--accent)" opacity=".9"/>
+      <text x="119" y="90" font-family="monospace" font-size="7" fill="var(--text-dim)" text-anchor="middle">conv</text>
+    </g>
+    <text x="146" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g font-family="monospace">
+      <rect x="162" y="38" width="58" height="22" rx="3" fill="rgba(88,230,217,0.12)" stroke="var(--accent)"/>
+      <text x="191" y="53" font-size="11" fill="var(--accent)" text-anchor="middle">INT8</text>
+      <text x="191" y="74" font-size="7" fill="var(--text-dim)" text-anchor="middle">5.2 KB</text>
+    </g>
+    <text x="228" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g font-family="monospace">
+      <rect x="244" y="34" width="52" height="30" rx="3" fill="rgba(124,140,255,0.1)" stroke="var(--accent-2)"/>
+      <text x="270" y="47" font-size="11" fill="var(--accent-2)" text-anchor="middle">pure C</text>
+      <text x="270" y="59" font-size="7" fill="var(--text-dim)" text-anchor="middle">int32 acc</text>
+    </g>
+    <text x="304" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g font-family="monospace">
+      <text x="356" y="44" font-size="9" fill="var(--accent)" text-anchor="middle">bit-exact</text>
+      <text x="356" y="58" font-size="20" font-weight="700" fill="var(--accent)" text-anchor="middle">7</text>
+      <text x="356" y="74" font-size="7" fill="var(--text-dim)" text-anchor="middle">argmax</text>
+    </g>
+  </svg>`,
+
   kws: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <polyline points="18,48 26,36 33,60 40,28 47,66 54,38 61,56 68,44 75,52 82,34 89,60 96,46 103,50 110,48"
       fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".85"/>
@@ -324,6 +359,12 @@ const FEATURED = [
     demo: "https://kncn23.github.io/neo-swarm/",
     en: "The near-Earth asteroid swarm, live — 6,800+ real orbits from NASA/JPL's Small-Body Database, a close-approach watch mode, JPL Sentry risk data, a discovery timeline and the real night sky: 41k stars, 88 constellations.",
     tr: "Yakın-Dünya asteroit sürüsü, canlı — NASA/JPL Küçük Cisimler Veritabanı'ndan 6.800+ gerçek yörünge, yakın geçiş izleme modu, JPL Sentry risk verisi, keşif zaman çizelgesi ve gerçek gökyüzü: 41 bin yıldız, 88 takımyıldız."
+  },
+  {
+    repo: "micro-cnn", icon: "🧠", art: ART.microcnn, cat: "ai", lang: "C", langColor: "#555555",
+    tags: ["INT8", "Quantization", "Cortex-M"],
+    en: "From-scratch INT8 CNN inference engine — a NumPy CNN trained on MNIST, TFLite-style quantization, and a ~250-line pure-C runtime that reproduces the reference bit-for-bit. 5.2 KB model, integer-only, no malloc.",
+    tr: "Sıfırdan INT8 CNN çıkarım motoru — MNIST üzerinde eğitilmiş NumPy CNN, TFLite tarzı nicemleme ve referansı birebir (bit-exact) yeniden üreten ~250 satırlık saf-C çalışma zamanı. 5.2 KB model, yalnızca tamsayı, malloc yok."
   },
   {
     repo: "mini-tcp-stack", icon: "🌐", art: ART.tcp, cat: "systems", lang: "C", langColor: "#555555",
