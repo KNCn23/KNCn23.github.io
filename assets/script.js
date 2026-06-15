@@ -349,6 +349,31 @@ const ART = {
     <circle cx="300" cy="48" r="3.4" fill="#4f9df7"/>
     <circle cx="300" cy="48" r="11" fill="none" stroke="var(--accent)" stroke-dasharray="2 3" opacity=".8"/>
     <text x="316" y="38" font-family="monospace" font-size="8" fill="var(--accent)">1 LD</text>
+  </svg>`,
+
+  movie: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="16" y="22" width="44" height="60" rx="4" fill="rgba(88,230,217,0.12)" stroke="var(--accent)"/>
+    <polygon points="32,42 32,64 51,53" fill="var(--accent)"/>
+    <text x="38" y="16" font-family="monospace" font-size="7" fill="var(--text-dim)" text-anchor="middle">film</text>
+    <text x="72" y="57" font-size="12" fill="var(--text-dim)">→</text>
+    <g font-family="monospace">
+      <rect x="90" y="34" width="58" height="22" rx="3" fill="rgba(88,230,217,0.12)" stroke="var(--accent)"/>
+      <text x="119" y="49" font-size="10" fill="var(--accent)" text-anchor="middle">TF-IDF</text>
+      <text x="119" y="73" font-size="7" fill="var(--text-dim)" text-anchor="middle">plot + genre</text>
+    </g>
+    <text x="156" y="57" font-size="12" fill="var(--text-dim)">→</text>
+    <g font-family="monospace">
+      <rect x="174" y="34" width="56" height="22" rx="3" fill="rgba(124,140,255,0.1)" stroke="var(--accent-2)"/>
+      <text x="202" y="49" font-size="10" fill="var(--accent-2)" text-anchor="middle">cosine</text>
+    </g>
+    <text x="238" y="57" font-size="12" fill="var(--text-dim)">→</text>
+    <g>
+      <rect x="256" y="26" width="110" height="9" rx="2" fill="var(--accent)" opacity=".9"/>
+      <rect x="256" y="40" width="92" height="9" rx="2" fill="var(--accent)" opacity=".7"/>
+      <rect x="256" y="54" width="74" height="9" rx="2" fill="var(--accent)" opacity=".5"/>
+      <rect x="256" y="68" width="58" height="9" rx="2" fill="var(--accent-2)" opacity=".45"/>
+    </g>
+    <text x="366" y="90" font-family="monospace" font-size="7" fill="var(--text-dim)" text-anchor="end">★ top-12 similar</text>
   </svg>`
 };
 
@@ -365,6 +390,13 @@ const FEATURED = [
     tags: ["INT8", "Quantization", "Cortex-M"],
     en: "From-scratch INT8 CNN inference engine — a NumPy CNN trained on MNIST, TFLite-style quantization, and a ~250-line pure-C runtime that reproduces the reference bit-for-bit. 5.2 KB model, integer-only, no malloc.",
     tr: "Sıfırdan INT8 CNN çıkarım motoru — MNIST üzerinde eğitilmiş NumPy CNN, TFLite tarzı nicemleme ve referansı birebir (bit-exact) yeniden üreten ~250 satırlık saf-C çalışma zamanı. 5.2 KB model, yalnızca tamsayı, malloc yok."
+  },
+  {
+    repo: "movie-recommendation", icon: "🎬", art: ART.movie, cat: "ai", lang: "Python", langColor: "#3572A5",
+    tags: ["TF-IDF", "Cosine", "9.5k films", "EN/TR"],
+    demo: "https://kncn23.github.io/movie-recommendation/",
+    en: "Content-based movie recommender over 9,500+ films, live — TF-IDF over each plot plus a genre signal, with cosine similarity precomputed offline and served as a fully static site. Instant search, posters, genre browsing and an EN/TR UI, with no backend.",
+    tr: "9.500+ film üzerinde içerik tabanlı film öneri sistemi, canlı — her konu için TF-IDF artı bir tür sinyali; kosinüs benzerliği çevrimdışı hesaplanıp tamamen statik site olarak sunulur. Anında arama, posterler, türe göre keşif ve EN/TR arayüz; sunucu yok."
   },
   {
     repo: "mini-tcp-stack", icon: "🌐", art: ART.tcp, cat: "systems", lang: "C", langColor: "#555555",
@@ -440,11 +472,6 @@ const PROJECTS = [
     repo: "AR-Virtual-Painter", cat: "ai", lang: "Python", langColor: "#3572A5",
     en: "Augmented-reality drawing app using OpenCV and MediaPipe — draw in the air with hand tracking.",
     tr: "OpenCV ve MediaPipe kullanan artırılmış gerçeklik çizim uygulaması — el takibiyle havada çizim yapın."
-  },
-  {
-    repo: "movie-recommendation", cat: "ai", lang: "Python", langColor: "#3572A5",
-    en: "Content-based movie recommendation engine using TF-IDF and cosine similarity on the Netflix dataset.",
-    tr: "Netflix veri kümesi üzerinde TF-IDF ve kosinüs benzerliği kullanan içerik tabanlı film öneri motoru."
   },
   {
     repo: "present-hw-sim", cat: "security", lang: "C", langColor: "#555555",
