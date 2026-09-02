@@ -8,13 +8,28 @@ const I18N = {
     "nav.contact": "Contact",
 
     "hero.hello": "Hi, my name is",
-    "hero.title": "I build things close to the metal.",
+    "hero.title": "Software at the layer closest to the hardware.",
     "hero.desc": "Final-year Computer Engineering student at Başkent University with internship experience in the Turkish defense industry. I build personal projects in edge-AI optimization, embedded software and systems programming — primarily in C, C++ and Python.",
     "hero.tag2": "Embedded Systems",
     "hero.tag3": "Systems Programming",
     "hero.tag4": "Optimization",
     "hero.email": "Email me",
     "hero.country": "Türkiye",
+    "hero.doc": "Doc. no. AKO-2026 · Computer Engineer · Ankara",
+    "fig.cap": "Fig. 1 — Portrait",
+
+    "spec.k1": "Focus",
+    "spec.v1": "Embedded & Edge AI",
+    "spec.k2": "Languages",
+    "spec.k3": "Graduation",
+    "spec.v3": "2026 (expected)",
+    "spec.k4": "Status",
+    "spec.v4": "Open to internships",
+
+    "metric.repos": "Public repos",
+    "metric.intern": "Internships",
+    "metric.model": "Smallest CNN model",
+    "metric.deps": "Runtime dependencies",
 
     "about.title": "About Me",
     "about.p1": "I'm a final-year computer engineering student focused on embedded systems and software that runs close to the hardware. My personal projects include a TCP/IP stack written from scratch, a bare-metal ARM operating system and a small real-time operating system.",
@@ -62,8 +77,8 @@ const I18N = {
     "skills.g3": "AI & Optimization",
     "skills.g4": "Backend & Tools",
 
-    "contact.kicker": "05. What's next?",
-    "contact.title": "Get In Touch",
+    "contact.kicker": "§ 05 — Contact",
+    "contact.title": "Got something on the embedded side?",
     "contact.desc": "I'm open to internship and entry-level opportunities in embedded systems, edge AI and systems programming. Whether you have a question or just want to say hi — my inbox is open.",
     "contact.cta": "Say Hello",
     "contact.cv": "Download CV (PDF)",
@@ -95,13 +110,28 @@ const I18N = {
     "nav.contact": "İletişim",
 
     "hero.hello": "Merhaba, ben",
-    "hero.title": "Donanıma en yakın katmanda yazılım geliştiriyorum.",
+    "hero.title": "Donanıma en yakın katmanda yazılım.",
     "hero.desc": "Başkent Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; Türk savunma sanayisinde staj deneyimim var. Edge AI optimizasyonu, gömülü yazılım ve sistem programlama alanlarında ağırlıklı olarak C, C++ ve Python ile kişisel projeler geliştiriyorum.",
     "hero.tag2": "Gömülü Sistemler",
     "hero.tag3": "Sistem Programlama",
     "hero.tag4": "Optimizasyon",
     "hero.email": "E-posta gönder",
     "hero.country": "Türkiye",
+    "hero.doc": "Belge no. AKO-2026 · Bilgisayar Mühendisi · Ankara",
+    "fig.cap": "Şek. 1 — Portre",
+
+    "spec.k1": "Odak",
+    "spec.v1": "Gömülü & Edge AI",
+    "spec.k2": "Diller",
+    "spec.k3": "Mezuniyet",
+    "spec.v3": "2026 (beklenen)",
+    "spec.k4": "Durum",
+    "spec.v4": "Staja açık",
+
+    "metric.repos": "Açık repo",
+    "metric.intern": "Staj",
+    "metric.model": "En küçük CNN modeli",
+    "metric.deps": "Çalışma zamanı bağımlılığı",
 
     "about.title": "Hakkımda",
     "about.p1": "Gömülü sistemlere ve donanıma yakın çalışan yazılımlara odaklanan son sınıf bilgisayar mühendisliği öğrencisiyim. Kişisel projelerim arasında sıfırdan yazdığım bir TCP/IP yığını, bare-metal bir ARM işletim sistemi ve küçük bir gerçek zamanlı işletim sistemi (RTOS) bulunuyor.",
@@ -149,8 +179,8 @@ const I18N = {
     "skills.g3": "Yapay Zekâ ve Optimizasyon",
     "skills.g4": "Backend ve Araçlar",
 
-    "contact.kicker": "05. Sırada ne var?",
-    "contact.title": "İletişime Geç",
+    "contact.kicker": "§ 05 — İletişim",
+    "contact.title": "Gömülü tarafta bir işiniz var mı?",
     "contact.desc": "Gömülü sistemler, edge AI ve sistem programlama alanlarında staj ve yeni mezun pozisyonlarına açığım. Bir sorunuz varsa ya da sadece merhaba demek isterseniz — kutum açık.",
     "contact.cta": "Merhaba De",
     "contact.cv": "CV'yi İndir (PDF)",
@@ -529,21 +559,23 @@ function t(key) {
 /* ===================== Rendering ===================== */
 function renderFeatured() {
   const grid = document.getElementById("featured-grid");
-  grid.innerHTML = FEATURED.map(p => `
+  grid.innerHTML = FEATURED.map((p, i) => `
     <article class="f-card">
       ${p.art ? `<div class="f-art">${p.art}</div>` : ""}
       <div class="f-top">
-        <span class="f-icon">${p.icon}</span>
+        <span class="f-index">PRJ-${String(i + 1).padStart(2, "0")}</span>
         <div class="f-links">
           ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener">${t("proj.demo")} ↗</a>` : ""}
           <a href="${GH}${p.repo}" target="_blank" rel="noopener">${t("proj.code")} ↗</a>
         </div>
       </div>
-      <h3><a href="${GH}${p.repo}" target="_blank" rel="noopener">${p.repo}</a></h3>
-      <p class="f-desc">${p[currentLang] || p.en}</p>
-      <div class="f-meta">
-        <span><span class="dot" style="background:${p.langColor}"></span>${p.lang}</span>
-        ${p.tags.map(tag => `<span>${tag}</span>`).join("")}
+      <div class="f-body">
+        <h3><a href="${GH}${p.repo}" target="_blank" rel="noopener">${p.repo}</a></h3>
+        <p class="f-desc">${p[currentLang] || p.en}</p>
+        <div class="f-meta">
+          <span><span class="dot" style="background:${p.langColor}"></span>${p.lang}</span>
+          ${p.tags.map(tag => `<span>${tag}</span>`).join("")}
+        </div>
       </div>
     </article>
   `).join("");
@@ -568,8 +600,9 @@ function renderFilters() {
 function renderProjects() {
   const grid = document.getElementById("project-grid");
   const list = PROJECTS.filter(p => currentFilter === "all" || p.cat === currentFilter);
-  grid.innerHTML = list.map(p => `
+  grid.innerHTML = list.map((p, i) => `
     <article class="p-card">
+      <span class="p-no">${String(i + 1).padStart(2, "0")}</span>
       <h4><a href="${GH}${p.repo}" target="_blank" rel="noopener">${p.repo}</a></h4>
       <p class="p-desc">${p[currentLang] || p.en}</p>
       <div class="f-meta">
@@ -666,8 +699,10 @@ function fetchStars() {
       ghRepos = repos;
       starMap = {};
       repos.forEach(r => { if (r.stargazers_count > 0) starMap[r.name] = r.stargazers_count; });
-      const statEl = document.getElementById("stat-repos");
-      if (statEl) statEl.textContent = repos.length;
+      ["stat-repos", "metric-repos"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = repos.length;
+      });
       applyStars();
       renderGhPanel();
     })
