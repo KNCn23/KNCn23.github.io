@@ -22,7 +22,7 @@ const I18N = {
     "spec.v1": "Embedded & Edge AI",
     "spec.k2": "Languages",
     "spec.k3": "Graduation",
-    "spec.v3": "2026 (expected)",
+    "spec.v3": "2027 (expected)",
     "spec.k4": "Status",
     "spec.v4": "Open to internships",
 
@@ -60,7 +60,7 @@ const I18N = {
     "exp.n1sub": "Software Development",
     "exp.n1desc": "Software development and design; testing, debugging and project documentation.",
     "exp.eduname": "Başkent University",
-    "exp.edudate": "Sept 2019 – 2026 (expected) · Ankara",
+    "exp.edudate": "Sept 2019 – 2027 (expected) · Ankara",
     "exp.edusub": "B.Sc. Computer Engineering",
     "exp.edudesc": "Coursework and lab projects covering data structures, algorithms, operating systems, computer networks, cryptography, embedded systems and AI/ML. Languages: Turkish (native), English (professional working proficiency).",
 
@@ -124,7 +124,7 @@ const I18N = {
     "spec.v1": "Gömülü & Edge AI",
     "spec.k2": "Diller",
     "spec.k3": "Mezuniyet",
-    "spec.v3": "2026 (beklenen)",
+    "spec.v3": "2027 (beklenen)",
     "spec.k4": "Durum",
     "spec.v4": "Staja açık",
 
@@ -162,7 +162,7 @@ const I18N = {
     "exp.n1sub": "Yazılım Geliştirme",
     "exp.n1desc": "Yazılım geliştirme ve tasarım; test, hata ayıklama ve proje dokümantasyonu.",
     "exp.eduname": "Başkent Üniversitesi",
-    "exp.edudate": "Eyl 2019 – 2026 (beklenen) · Ankara",
+    "exp.edudate": "Eyl 2019 – 2027 (beklenen) · Ankara",
     "exp.edusub": "Bilgisayar Mühendisliği (Lisans)",
     "exp.edudesc": "Veri yapıları, algoritmalar, işletim sistemleri, bilgisayar ağları, kriptografi, gömülü sistemler ve yapay zekâ/ML üzerine dersler ve laboratuvar projeleri. Diller: Türkçe (ana dil), İngilizce (profesyonel düzey).",
 
