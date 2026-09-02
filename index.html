@@ -38,10 +38,10 @@
                    "Constraint Programming", "TinyML", "Computer Networks"]
   }
   </script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d1117'/%3E%3Ctext x='50' y='68' font-size='48' font-family='monospace' font-weight='bold' fill='%2358e6d9' text-anchor='middle'%3EKO%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314161a'/%3E%3Ctext x='50' y='68' font-size='44' font-family='monospace' font-weight='bold' fill='%23f6f3ec' text-anchor='middle'%3EKO%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -50,9 +50,9 @@
     <svg class="spine-svg" id="spine-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#58e6d9" stop-opacity="0.15"/>
-          <stop offset="0.7" stop-color="#58e6d9" stop-opacity="0.85"/>
-          <stop offset="1" stop-color="#7c8cff"/>
+          <stop offset="0" stop-color="#c24c1b" stop-opacity="0.2"/>
+          <stop offset="0.7" stop-color="#c24c1b" stop-opacity="0.9"/>
+          <stop offset="1" stop-color="#14161a"/>
         </linearGradient>
       </defs>
       <path id="spine-path-track" class="spine-path-track"/>
@@ -74,7 +74,7 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#top" class="nav-logo"><span class="mono">~/</span>kaan-olcay</a>
+      <a href="#top" class="nav-logo"><span class="nav-mark">AKO</span><span class="nav-name">Ata Kaan Can Olcay</span></a>
       <div class="nav-links">
         <a href="#about" data-i18n="nav.about">About</a>
         <a href="#experience" data-i18n="nav.experience">Experience</a>
@@ -83,6 +83,7 @@
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
       <div class="nav-right">
+        <span class="nav-rev">REV 2026.09</span>
         <div class="lang-switch" role="group" aria-label="Language">
           <button id="lang-en" class="lang-btn" onclick="setLang('en')">EN</button>
           <button id="lang-tr" class="lang-btn" onclick="setLang('tr')">TR</button>
@@ -95,38 +96,75 @@
   <header class="hero" id="top">
     <div class="hero-inner">
       <div class="hero-text">
-        <p class="hero-hello mono" data-i18n="hero.hello">Hi, my name is</p>
-        <h1 class="hero-name">Ata Kaan Can <span class="accent">Olcay</span></h1>
-        <h2 class="hero-title" data-i18n="hero.title">I build things close to the metal.</h2>
+        <p class="hero-doc mono" data-i18n="hero.doc">Doc. no. AKO-2026 · Computer Engineer · Ankara</p>
+        <h1 class="hero-name">Ata Kaan Can Olcay</h1>
+        <h2 class="hero-title" data-i18n="hero.title">Software at the layer closest to the hardware.</h2>
         <p class="hero-desc" data-i18n="hero.desc">
           Final-year Computer Engineering student at Başkent University with internship experience
           in the Turkish defense industry. I build personal projects in edge-AI optimization,
           embedded software and systems programming — primarily in C, C++ and Python.
         </p>
-        <div class="hero-tags">
-          <span class="chip mono">Edge AI</span>
-          <span class="chip mono" data-i18n="hero.tag2">Embedded Systems</span>
-          <span class="chip mono" data-i18n="hero.tag3">Systems Programming</span>
-          <span class="chip mono" data-i18n="hero.tag4">Optimization</span>
+        <div class="hero-spec">
+          <div>
+            <span class="spec-k" data-i18n="spec.k1">Focus</span>
+            <span class="spec-v" data-i18n="spec.v1">Embedded &amp; Edge AI</span>
+          </div>
+          <div>
+            <span class="spec-k" data-i18n="spec.k2">Languages</span>
+            <span class="spec-v">C · C++ · Python</span>
+          </div>
+          <div>
+            <span class="spec-k" data-i18n="spec.k3">Graduation</span>
+            <span class="spec-v" data-i18n="spec.v3">2027 (expected)</span>
+          </div>
+          <div>
+            <span class="spec-k" data-i18n="spec.k4">Status</span>
+            <span class="spec-v spec-live" data-i18n="spec.v4">Open to internships</span>
+          </div>
         </div>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-ghost" href="mailto:kaancanolcay@gmail.com" data-i18n="hero.email">Email me</a>
+          <a class="btn btn-link" href="mailto:kaancanolcay@gmail.com">kaancanolcay@gmail.com</a>
         </div>
       </div>
       <div class="hero-avatar">
-        <div class="avatar-ring">
+        <figure class="avatar-ring">
+          <figcaption class="figure-cap">
+            <span data-i18n="fig.cap">Fig. 1 — Portrait</span>
+            <span>AKO-2026</span>
+          </figcaption>
           <img src="https://avatars.githubusercontent.com/u/71110056?v=4" alt="Ata Kaan Can Olcay" width="220" height="220">
-        </div>
-        <p class="hero-loc mono">📍 Ankara, <span data-i18n="hero.country">Türkiye</span></p>
+        </figure>
+        <p class="hero-loc mono">Ankara, <span data-i18n="hero.country">Türkiye</span></p>
       </div>
     </div>
   </header>
 
+  <div class="metrics" aria-label="Key figures">
+    <div class="metrics-inner">
+      <div class="metric">
+        <span class="metric-num" id="metric-repos">38</span>
+        <span class="metric-label" data-i18n="metric.repos">Public repos</span>
+      </div>
+      <div class="metric">
+        <span class="metric-num">4</span>
+        <span class="metric-label" data-i18n="metric.intern">Internships</span>
+      </div>
+      <div class="metric">
+        <span class="metric-num">5.2<small> KB</small></span>
+        <span class="metric-label" data-i18n="metric.model">Smallest CNN model</span>
+      </div>
+      <div class="metric">
+        <span class="metric-num">0</span>
+        <span class="metric-label" data-i18n="metric.deps">Runtime dependencies</span>
+      </div>
+    </div>
+  </div>
+
   <main>
     <section id="about" class="section reveal">
-      <h2 class="section-title"><span class="mono accent">01.</span> <span data-i18n="about.title">About Me</span></h2>
+      <h2 class="section-title"><span class="mono accent">&sect; 01</span> <span data-i18n="about.title">About Me</span></h2>
       <div class="about-grid">
         <div class="about-text">
           <p data-i18n="about.p1">
@@ -157,7 +195,7 @@
             <div class="stat-card"><span class="stat-num" id="stat-repos">29</span><span class="stat-label" data-i18n="about.s1">Public repos</span></div>
             <div class="stat-card"><span class="stat-num">4</span><span class="stat-label" data-i18n="about.s2">Internships</span></div>
             <div class="stat-card"><span class="stat-num">6+</span><span class="stat-label" data-i18n="about.s3">Languages used</span></div>
-            <div class="stat-card"><span class="stat-num">2026</span><span class="stat-label" data-i18n="about.s4">Graduation</span></div>
+            <div class="stat-card"><span class="stat-num">2027</span><span class="stat-label" data-i18n="about.s4">Graduation</span></div>
           </div>
           <div class="gh-panel" id="gh-panel" hidden>
             <h3 class="mono" data-i18n="gh.title">Live from GitHub</h3>
@@ -170,7 +208,7 @@
     </section>
 
     <section id="experience" class="section reveal">
-      <h2 class="section-title"><span class="mono accent">02.</span> <span data-i18n="exp.title">Experience</span></h2>
+      <h2 class="section-title"><span class="mono accent">&sect; 02</span> <span data-i18n="exp.title">Experience</span></h2>
       <div class="timeline">
         <div class="t-fill" id="t-fill" aria-hidden="true"></div>
         <div class="t-item">
@@ -232,7 +270,7 @@
     </section>
 
     <section id="projects" class="section section-wide reveal">
-      <h2 class="section-title"><span class="mono accent">03.</span> <span data-i18n="proj.title">Projects</span></h2>
+      <h2 class="section-title"><span class="mono accent">&sect; 03</span> <span data-i18n="proj.title">Projects</span></h2>
 
       <h3 class="sub-title" data-i18n="proj.featured">Featured</h3>
       <div class="featured-grid" id="featured-grid"></div>
@@ -246,7 +284,7 @@
     </section>
 
     <section id="skills" class="section reveal">
-      <h2 class="section-title"><span class="mono accent">04.</span> <span data-i18n="skills.title">Skills &amp; Tools</span></h2>
+      <h2 class="section-title"><span class="mono accent">&sect; 04</span> <span data-i18n="skills.title">Skills &amp; Tools</span></h2>
       <div class="skills-grid">
         <div class="skill-group">
           <h3 class="mono" data-i18n="skills.g1">Languages</h3>
@@ -283,23 +321,31 @@
       </div>
     </section>
 
-    <section id="contact" class="section reveal contact">
-      <p class="mono accent" data-i18n="contact.kicker">05. What's next?</p>
-      <h2 class="contact-title" data-i18n="contact.title">Get In Touch</h2>
-      <p class="contact-desc" data-i18n="contact.desc">
-        I'm open to internship and entry-level opportunities in embedded systems, edge AI and
-        systems programming. Whether you have a question or just want to say hi — my inbox is open.
-      </p>
-      <div class="contact-actions">
-        <a class="btn btn-primary btn-lg" href="mailto:kaancanolcay@gmail.com" data-i18n="contact.cta">Say Hello</a>
-        <a class="btn btn-ghost btn-lg" href="assets/cv/Ata-Kaan-Can-Olcay-CV.pdf" download data-i18n="contact.cv">Download CV (PDF)</a>
-      </div>
-      <div class="contact-links mono">
-        <a href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
-        <span>·</span>
-        <a href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
-        <span>·</span>
-        <a href="mailto:kaancanolcay@gmail.com">kaancanolcay@gmail.com</a>
+    <section id="contact" class="section section-wide reveal contact">
+      <div class="contact-panel">
+        <div class="contact-head">
+          <div>
+            <p class="mono accent" data-i18n="contact.kicker">§ 05 — Contact</p>
+            <h2 class="contact-title" data-i18n="contact.title">Got something on the embedded side?</h2>
+          </div>
+          <div>
+            <p class="contact-desc" data-i18n="contact.desc">
+              I'm open to internship and entry-level opportunities in embedded systems, edge AI and
+              systems programming. Whether you have a question or just want to say hi — my inbox is open.
+            </p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:kaancanolcay@gmail.com">kaancanolcay@gmail.com</a>
+              <a class="btn btn-ghost" href="assets/cv/Ata-Kaan-Can-Olcay-CV.pdf" download data-i18n="contact.cv">Download CV (PDF)</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-links mono">
+          <a href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
+          <span>·</span>
+          <a href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
+          <span>·</span>
+          <span>AKO-2026 · REV 2026.09 · Ankara, TR</span>
+        </div>
       </div>
     </section>
   </main>
