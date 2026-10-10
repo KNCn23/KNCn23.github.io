@@ -43,8 +43,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <script>
+    (function () {
+      var d = document.documentElement;
+      if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      d.classList.add("motion");
+      try { if (!sessionStorage.getItem("ako-boot")) d.classList.add("booting"); } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner mono">
+      <div class="boot-head"><span>AKO-2026</span><span>REV 2026.09</span></div>
+      <div class="boot-rule"></div>
+      <ol class="boot-log" id="boot-log"></ol>
+      <div class="boot-skip">click / any key to skip</div>
+    </div>
+  </div>
 
   <div class="spine" aria-hidden="true">
     <svg class="spine-svg" id="spine-svg" xmlns="http://www.w3.org/2000/svg">
@@ -95,10 +112,12 @@
 
   <header class="hero" id="top">
     <div class="hero-inner">
-      <div class="hero-text">
+      <div class="hero-head">
         <p class="hero-doc mono" data-i18n="hero.doc">Doc. no. AKO-2026 · Computer Engineer · Ankara</p>
         <h1 class="hero-name">Ata Kaan Can Olcay</h1>
-        <h2 class="hero-title" data-i18n="hero.title">Software at the layer closest to the hardware.</h2>
+        <h2 class="hero-title" id="hero-title" data-i18n="hero.title">Software at the layer closest to the hardware.</h2>
+      </div>
+      <div class="hero-text">
         <p class="hero-desc" data-i18n="hero.desc">
           Final-year Computer Engineering student at Başkent University with internship experience
           in the Turkish defense industry. I build personal projects in edge-AI optimization,
@@ -136,6 +155,17 @@
           </figcaption>
           <img src="https://avatars.githubusercontent.com/u/71110056?v=4" alt="Ata Kaan Can Olcay" width="220" height="220">
         </figure>
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="stamp-ring" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="var(--paper)" stroke="var(--ink)"/>
+          <circle cx="60" cy="60" r="33" fill="none" stroke="var(--rule)"/>
+          <g class="stamp-ring">
+            <text font-family="IBM Plex Mono, monospace" font-size="9.5" fill="var(--ink)">
+              <textPath href="#stamp-ring" textLength="272" lengthAdjust="spacing" data-i18n="stamp.text">QUALITY CONTROL · PASSED · AKO-2026 · </textPath>
+            </text>
+          </g>
+          <path d="M47 61 l9 9 l18 -20" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="square"/>
+        </svg>
         <p class="hero-loc mono">Ankara, <span data-i18n="hero.country">Türkiye</span></p>
       </div>
     </div>
@@ -144,19 +174,19 @@
   <div class="metrics" aria-label="Key figures">
     <div class="metrics-inner">
       <div class="metric">
-        <span class="metric-num" id="metric-repos">38</span>
+        <span class="metric-num"><span class="count" id="metric-repos" data-to="38">38</span></span>
         <span class="metric-label" data-i18n="metric.repos">Public repos</span>
       </div>
       <div class="metric">
-        <span class="metric-num">4</span>
+        <span class="metric-num"><span class="count" data-to="4">4</span></span>
         <span class="metric-label" data-i18n="metric.intern">Internships</span>
       </div>
       <div class="metric">
-        <span class="metric-num">5.2<small> KB</small></span>
+        <span class="metric-num"><span class="count" data-to="5.2" data-dec="1">5.2</span><small> KB</small></span>
         <span class="metric-label" data-i18n="metric.model">Smallest CNN model</span>
       </div>
       <div class="metric">
-        <span class="metric-num">0</span>
+        <span class="metric-num"><span class="count" data-from="24" data-to="0">0</span></span>
         <span class="metric-label" data-i18n="metric.deps">Runtime dependencies</span>
       </div>
     </div>
@@ -355,5 +385,6 @@
   </footer>
 
   <script src="assets/script.js"></script>
+  <script src="assets/motion.js"></script>
 </body>
 </html>

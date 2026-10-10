@@ -25,6 +25,7 @@ Embedded systems · Edge AI · Systems programming · Optimization
 - ⭐ **Live GitHub data** — star counts and repo stats fetched from the GitHub API at runtime; degrades gracefully when offline or rate-limited
 - 🗂️ **Filterable project grid** — Embedded & Systems · AI & ML · Security & Crypto · Optimization · Web & Backend · Games
 - 🧵 **Scroll spine & rail** — animated SVG path that follows your reading progress through the page
+- 🎞️ **Motion layer, still zero dependencies** — boot sequence, eased wheel scrolling, a crosshair cursor with a live X/Y readout, count-up figures, self-drawing rules and project diagrams that run while on screen (a TCP handshake, an RTOS scheduler, the INT8 pipeline). All of it switches off under `prefers-reduced-motion`
 - 🔍 **SEO-ready** — sitemap, robots.txt, Open Graph card, semantic markup
 
 ## 🎨 Design language
@@ -56,6 +57,7 @@ colour used only where something is live or selected.
 ├── assets/
 │   ├── style.css          # design tokens + all styles
 │   ├── script.js          # i18n dictionary, project data, filters, GitHub API, scroll spine
+│   ├── motion.js          # boot sequence, smooth scrolling, crosshair, count-ups, live diagrams
 │   ├── og-image.png       # social preview card
 │   └── cv/                # downloadable CV (PDF)
 ├── robots.txt
