@@ -70,6 +70,10 @@ const I18N = {
     "proj.viewall": "View all on GitHub →",
     "proj.demo": "Live demo",
     "proj.code": "Code",
+    "proj.prod": "In production",
+    "proj.private": "Private repo",
+    "proj.with": "Co-developer:",
+    "stamp.text": "QUALITY CONTROL · PASSED · AKO-2026 · ",
 
     "skills.title": "Skills & Tools",
     "skills.g1": "Languages",
@@ -172,6 +176,10 @@ const I18N = {
     "proj.viewall": "Tümünü GitHub'da gör →",
     "proj.demo": "Canlı demo",
     "proj.code": "Kod",
+    "proj.prod": "Yayında",
+    "proj.private": "Kapalı repo",
+    "proj.with": "Ortak geliştirici:",
+    "stamp.text": "KALİTE KONTROL · ONAYLANDI · AKO-2026 · ",
 
     "skills.title": "Yetenekler ve Araçlar",
     "skills.g1": "Diller",
@@ -211,29 +219,42 @@ const GH = "https://github.com/KNCn23/";
 /* Small thematic illustrations for the featured cards (inline SVG,
    themed via CSS custom properties). */
 const ART = {
+  maxy: `<svg viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g font-family="monospace" text-anchor="middle">
+      <line x1="150" y1="98" x2="925" y2="98" stroke="var(--border)" stroke-dasharray="4 5"/>
+      <g class="stage" style="--d:0s"><rect class="stage-box" x="70" y="30" width="160" height="48" fill="var(--paper-2)" stroke="var(--ink)"/><text x="150" y="52" font-size="12" fill="var(--ink)">SEARCH</text><text x="150" y="67" font-size="9" fill="var(--text-dim)">tours · cars</text></g>
+      <g class="stage" style="--d:1.32s"><rect class="stage-box" x="270" y="30" width="160" height="48" fill="var(--paper-2)" stroke="var(--ink)"/><text x="350" y="52" font-size="12" fill="var(--ink)">CART</text><text x="350" y="67" font-size="9" fill="var(--text-dim)">multi-tour · tiered</text></g>
+      <g class="stage" style="--d:2.52s"><rect class="stage-box" x="470" y="30" width="160" height="48" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="550" y="52" font-size="12" fill="var(--accent)">CHECKOUT</text><text x="550" y="67" font-size="9" fill="var(--text-dim)">coupon · EUR/TRY</text></g>
+      <g class="stage" style="--d:3.72s"><rect class="stage-box" x="670" y="30" width="160" height="48" fill="var(--paper-2)" stroke="var(--ink)"/><text x="750" y="52" font-size="12" fill="var(--ink)">E-TICKET</text><text x="750" y="67" font-size="9" fill="var(--text-dim)">PDF · QR</text></g>
+      <g class="stage" style="--d:4.92s"><rect class="stage-box" x="870" y="30" width="110" height="48" fill="var(--ink)" stroke="var(--ink)"/><text x="925" y="52" font-size="12" fill="var(--paper)">ADMIN</text><text x="925" y="67" font-size="9" fill="#9c958a">CRM · audit</text></g>
+      <rect class="mx-token" x="146" y="94" width="8" height="8" fill="var(--accent)"/>
+      <g font-size="9" fill="var(--text-dim)">
+        <text x="70" y="18" text-anchor="start">TR · EN · DE · PL</text>
+        <text x="980" y="18" text-anchor="end">553 unit · 97 e2e</text>
+      </g>
+    </g>
+  </svg>`,
+
   tcp: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <g font-family="monospace" font-size="9" text-anchor="middle">
-      <rect x="30" y="8" width="58" height="18" rx="3" fill="none" stroke="var(--accent)" opacity=".85"/>
-      <text x="59" y="21" fill="var(--accent)">ETH</text>
-      <rect x="88" y="8" width="58" height="18" rx="3" fill="none" stroke="var(--accent)" opacity=".55"/>
-      <text x="117" y="21" fill="var(--text-dim)">IPv4</text>
-      <rect x="146" y="8" width="58" height="18" rx="3" fill="none" stroke="var(--accent)" opacity=".55"/>
-      <text x="175" y="21" fill="var(--text-dim)">TCP</text>
-      <rect x="204" y="8" width="166" height="18" rx="3" fill="none" stroke="var(--border)"/>
+      <rect x="30" y="8" width="58" height="18" fill="none" stroke="var(--ink)"/>
+      <text x="59" y="21" fill="var(--ink)">ETH</text>
+      <rect x="88" y="8" width="58" height="18" fill="none" stroke="var(--ink)"/>
+      <text x="117" y="21" fill="var(--ink)">IPv4</text>
+      <rect x="146" y="8" width="58" height="18" fill="var(--accent-soft)" stroke="var(--accent)"/>
+      <text x="175" y="21" fill="var(--accent)">TCP</text>
+      <rect x="204" y="8" width="166" height="18" fill="none" stroke="var(--border)" stroke-dasharray="3 3"/>
       <text x="287" y="21" fill="var(--text-dim)">PAYLOAD</text>
     </g>
-    <line x1="60" y1="36" x2="60" y2="92" stroke="var(--border)"/>
-    <line x1="340" y1="36" x2="340" y2="92" stroke="var(--border)"/>
+    <line x1="60" y1="34" x2="60" y2="92" stroke="var(--border)"/>
+    <line x1="340" y1="34" x2="340" y2="92" stroke="var(--border)"/>
     <g font-family="monospace" font-size="8" fill="var(--text-dim)">
-      <line x1="66" y1="46" x2="332" y2="52" stroke="var(--accent)" opacity=".7"/>
-      <polygon points="334,52 325,48 326,55" fill="var(--accent)" opacity=".7"/>
-      <text x="200" y="42">SYN</text>
-      <line x1="334" y1="62" x2="68" y2="68" stroke="var(--accent-2)" opacity=".7"/>
-      <polygon points="66,68 75,64 74,71" fill="var(--accent-2)" opacity=".7"/>
-      <text x="200" y="59">SYN-ACK</text>
-      <line x1="66" y1="78" x2="332" y2="84" stroke="var(--accent)" opacity=".7"/>
-      <polygon points="334,84 325,80 326,87" fill="var(--accent)" opacity=".7"/>
-      <text x="200" y="75">ACK</text>
+      <line class="msg-line" style="--d:0s" pathLength="1" x1="66" y1="46" x2="330" y2="52" stroke="var(--accent)"/>
+      <g class="msg-head" style="--d:0s"><polygon points="334,52 325,48 326,55" fill="var(--accent)"/><text x="200" y="42">SYN</text></g>
+      <line class="msg-line" style="--d:.8s" pathLength="1" x1="334" y1="62" x2="70" y2="68" stroke="var(--ink)"/>
+      <g class="msg-head" style="--d:.8s"><polygon points="66,68 75,64 74,71" fill="var(--ink)"/><text x="200" y="59">SYN-ACK</text></g>
+      <line class="msg-line" style="--d:1.6s" pathLength="1" x1="66" y1="78" x2="330" y2="84" stroke="var(--accent)"/>
+      <g class="msg-head" style="--d:1.6s"><polygon points="334,84 325,80 326,87" fill="var(--accent)"/><text x="200" y="75">ACK</text></g>
     </g>
   </svg>`,
 
@@ -248,48 +269,49 @@ const ART = {
       <line x1="108" y1="8" x2="108" y2="88"/><line x1="178" y1="8" x2="178" y2="88"/>
       <line x1="248" y1="8" x2="248" y2="88"/><line x1="318" y1="8" x2="318" y2="88"/>
     </g>
-    <g rx="2">
-      <rect x="38" y="15" width="70" height="10" rx="2" fill="var(--accent)" opacity=".75"/>
-      <rect x="248" y="15" width="70" height="10" rx="2" fill="var(--accent)" opacity=".75"/>
-      <rect x="108" y="43" width="70" height="10" rx="2" fill="var(--accent-2)" opacity=".75"/>
-      <rect x="318" y="43" width="67" height="10" rx="2" fill="var(--accent-2)" opacity=".75"/>
-      <rect x="178" y="71" width="70" height="10" rx="2" fill="var(--accent)" opacity=".45"/>
+    <g>
+      <rect class="rtos-task" style="--d:0s" x="38" y="15" width="70" height="10" fill="var(--accent)"/>
+      <rect class="rtos-task" style="--d:.8s" x="108" y="43" width="70" height="10" fill="var(--ink)"/>
+      <rect class="rtos-task" style="--d:1.6s" x="178" y="71" width="70" height="10" fill="var(--accent-2)"/>
+      <rect class="rtos-task" style="--d:2.4s" x="248" y="15" width="70" height="10" fill="var(--accent)"/>
+      <rect class="rtos-task" style="--d:3.2s" x="318" y="43" width="67" height="10" fill="var(--ink)"/>
     </g>
-    <text x="385" y="92" font-family="monospace" font-size="8" fill="var(--text-dim)" text-anchor="end">context switch →</text>
+    <line class="rtos-head" x1="38" y1="6" x2="38" y2="90" stroke="var(--accent)" stroke-width="1.5"/>
+    <text x="385" y="94" font-family="monospace" font-size="8" fill="var(--text-dim)" text-anchor="end">context switch →</text>
   </svg>`,
 
   microcnn: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="var(--border)" fill="none">
-      <rect x="14" y="26" width="44" height="44" rx="2"/>
+    <g class="stage" style="--d:0s">
+      <rect class="stage-box" x="14" y="26" width="44" height="44" fill="none" stroke="var(--border)"/>
+      <g fill="var(--ink)">
+        <rect x="20" y="44" width="6" height="6" opacity=".3"/><rect x="26" y="38" width="6" height="6" opacity=".7"/><rect x="32" y="38" width="6" height="6" opacity=".9"/><rect x="38" y="44" width="6" height="6" opacity=".6"/><rect x="44" y="50" width="6" height="6" opacity=".4"/>
+        <rect x="32" y="44" width="6" height="6" opacity=".8"/><rect x="32" y="50" width="6" height="6" opacity=".7"/><rect x="32" y="56" width="6" height="6" opacity=".5"/>
+      </g>
     </g>
-    <g fill="var(--accent)">
-      <rect x="20" y="44" width="6" height="6" opacity=".3"/><rect x="26" y="38" width="6" height="6" opacity=".7"/><rect x="32" y="38" width="6" height="6" opacity=".9"/><rect x="38" y="44" width="6" height="6" opacity=".6"/><rect x="44" y="50" width="6" height="6" opacity=".4"/>
-      <rect x="32" y="44" width="6" height="6" opacity=".8"/><rect x="32" y="50" width="6" height="6" opacity=".7"/><rect x="32" y="56" width="6" height="6" opacity=".5"/>
-    </g>
-    <text x="72" y="52" font-size="12" fill="var(--text-dim)">→</text>
-    <g>
-      <rect x="88" y="30" width="30" height="30" fill="none" stroke="var(--accent)" opacity=".5"/>
-      <rect x="96" y="38" width="30" height="30" fill="none" stroke="var(--accent)" opacity=".7"/>
-      <rect x="104" y="46" width="30" height="30" fill="none" stroke="var(--accent)" opacity=".9"/>
+    <text x="68" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g class="stage" style="--d:.55s">
+      <rect x="88" y="30" width="30" height="30" fill="none" stroke="var(--border)"/>
+      <rect x="96" y="38" width="30" height="30" fill="none" stroke="var(--border)"/>
+      <rect class="stage-box" x="104" y="46" width="30" height="30" fill="var(--paper-2)" stroke="var(--ink)"/>
       <text x="119" y="90" font-family="monospace" font-size="7" fill="var(--text-dim)" text-anchor="middle">conv</text>
     </g>
-    <text x="146" y="52" font-size="12" fill="var(--text-dim)">→</text>
-    <g font-family="monospace">
-      <rect x="162" y="38" width="58" height="22" rx="3" fill="rgba(88,230,217,0.12)" stroke="var(--accent)"/>
-      <text x="191" y="53" font-size="11" fill="var(--accent)" text-anchor="middle">INT8</text>
-      <text x="191" y="74" font-size="7" fill="var(--text-dim)" text-anchor="middle">5.2 KB</text>
+    <text x="142" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g class="stage" style="--d:1.1s" font-family="monospace">
+      <rect class="stage-box" x="160" y="38" width="58" height="22" fill="var(--accent-soft)" stroke="var(--accent)"/>
+      <text x="189" y="53" font-size="11" fill="var(--accent)" text-anchor="middle">INT8</text>
+      <text x="189" y="74" font-size="7" fill="var(--text-dim)" text-anchor="middle">5.2 KB</text>
     </g>
-    <text x="228" y="52" font-size="12" fill="var(--text-dim)">→</text>
-    <g font-family="monospace">
-      <rect x="244" y="34" width="52" height="30" rx="3" fill="rgba(124,140,255,0.1)" stroke="var(--accent-2)"/>
-      <text x="270" y="47" font-size="11" fill="var(--accent-2)" text-anchor="middle">pure C</text>
+    <text x="226" y="52" font-size="12" fill="var(--text-dim)">→</text>
+    <g class="stage" style="--d:1.65s" font-family="monospace">
+      <rect class="stage-box" x="244" y="34" width="52" height="30" fill="var(--paper-2)" stroke="var(--ink)"/>
+      <text x="270" y="47" font-size="11" fill="var(--ink)" text-anchor="middle">pure C</text>
       <text x="270" y="59" font-size="7" fill="var(--text-dim)" text-anchor="middle">int32 acc</text>
     </g>
     <text x="304" y="52" font-size="12" fill="var(--text-dim)">→</text>
     <g font-family="monospace">
       <text x="356" y="44" font-size="9" fill="var(--accent)" text-anchor="middle">bit-exact</text>
-      <text x="356" y="58" font-size="20" font-weight="700" fill="var(--accent)" text-anchor="middle">7</text>
-      <text x="356" y="74" font-size="7" fill="var(--text-dim)" text-anchor="middle">argmax</text>
+      <text class="cnn-out" x="356" y="62" font-size="22" font-weight="700" fill="var(--accent)" text-anchor="middle">7</text>
+      <text x="356" y="76" font-size="7" fill="var(--text-dim)" text-anchor="middle">argmax</text>
     </g>
   </svg>`,
 
@@ -382,18 +404,18 @@ const ART = {
   </svg>`,
 
   movie: `<svg viewBox="0 0 400 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="16" y="22" width="44" height="60" rx="4" fill="rgba(88,230,217,0.12)" stroke="var(--accent)"/>
+    <rect x="16" y="22" width="44" height="60" rx="4" fill="var(--accent-soft)" stroke="var(--accent)"/>
     <polygon points="32,42 32,64 51,53" fill="var(--accent)"/>
     <text x="38" y="16" font-family="monospace" font-size="7" fill="var(--text-dim)" text-anchor="middle">film</text>
     <text x="72" y="57" font-size="12" fill="var(--text-dim)">→</text>
     <g font-family="monospace">
-      <rect x="90" y="34" width="58" height="22" rx="3" fill="rgba(88,230,217,0.12)" stroke="var(--accent)"/>
+      <rect x="90" y="34" width="58" height="22" rx="3" fill="var(--accent-soft)" stroke="var(--accent)"/>
       <text x="119" y="49" font-size="10" fill="var(--accent)" text-anchor="middle">TF-IDF</text>
       <text x="119" y="73" font-size="7" fill="var(--text-dim)" text-anchor="middle">plot + genre</text>
     </g>
     <text x="156" y="57" font-size="12" fill="var(--text-dim)">→</text>
     <g font-family="monospace">
-      <rect x="174" y="34" width="56" height="22" rx="3" fill="rgba(124,140,255,0.1)" stroke="var(--accent-2)"/>
+      <rect x="174" y="34" width="56" height="22" rx="3" fill="rgba(74,107,99,0.1)" stroke="var(--accent-2)"/>
       <text x="202" y="49" font-size="10" fill="var(--accent-2)" text-anchor="middle">cosine</text>
     </g>
     <text x="238" y="57" font-size="12" fill="var(--text-dim)">→</text>
@@ -408,6 +430,20 @@ const ART = {
 };
 
 const FEATURED = [
+  {
+    repo: "MaxyTrip", title: "MaxyTrip", art: ART.maxy, cat: "web", lang: "JavaScript", langColor: "#f1e05a",
+    wide: true, private: true, site: "https://maxytrip.com",
+    credit: { name: "Görkem Varna", user: "MrHypno" },
+    tags: ["Vanilla JS", "Supabase", "Cloudflare Workers", "PWA", "Playwright"],
+    spec: {
+      en: [["Languages", "TR · EN · DE · PL"], ["Unit tests", "553 passing"], ["End-to-end", "97 Playwright"],
+           ["Stack", "Supabase · Cloudflare"], ["Period", "Jul 2026 – present"]],
+      tr: [["Diller", "TR · EN · DE · PL"], ["Birim testi", "553 geçiyor"], ["Uçtan uca", "97 Playwright"],
+           ["Altyapı", "Supabase · Cloudflare"], ["Dönem", "Tem 2026 – günümüz"]]
+    },
+    en: "A tour, activity and car-rental platform that Görkem Varna and I built from scratch and shipped to production. Framework-free vanilla JS: a four-language UI, a multi-tour cart, a coupon and pricing-rule engine, a payment abstraction, QR-coded PDF e-tickets, an admin panel with roles and an audit log, a CRM and live EUR/TRY rates. It runs on Supabase and Cloudflare Workers and installs as an offline-capable PWA.",
+    tr: "Görkem Varna ile birlikte sıfırdan geliştirip yayına aldığımız tur, aktivite ve araç kiralama platformu. Framework'süz vanilla JS: dört dilli arayüz, çok turlu sepet, kupon ve fiyat kuralı motoru, ödeme soyutlaması, QR kodlu PDF e-bilet, rol ve denetim kaydı olan yönetim paneli, CRM ve canlı EUR/TRY kuru. Supabase ve Cloudflare Workers üzerinde çalışıyor; PWA olarak çevrimdışı da açılıyor."
+  },
   {
     repo: "neo-swarm", icon: "☄️", art: ART.swarm, cat: "web", lang: "JavaScript", langColor: "#f1e05a",
     tags: ["NASA/JPL", "Kepler", "Canvas 2D", "41k stars"],
@@ -559,26 +595,35 @@ function t(key) {
 /* ===================== Rendering ===================== */
 function renderFeatured() {
   const grid = document.getElementById("featured-grid");
-  grid.innerHTML = FEATURED.map((p, i) => `
-    <article class="f-card">
+  grid.innerHTML = FEATURED.map((p, i) => {
+    const home = p.site || `${GH}${p.repo}`;
+    const spec = p.spec && (p.spec[currentLang] || p.spec.en);
+    return `
+    <article class="f-card${p.wide ? " f-card-wide" : ""}" style="--i:${i}">
       ${p.art ? `<div class="f-art">${p.art}</div>` : ""}
       <div class="f-top">
-        <span class="f-index">PRJ-${String(i + 1).padStart(2, "0")}</span>
+        <span class="f-index">PRJ-${String(i + 1).padStart(2, "0")}${p.site ? ` <span class="f-status">${t("proj.prod")}</span>` : ""}</span>
         <div class="f-links">
+          ${p.private ? `<span class="f-private">${t("proj.private")}</span>` : ""}
+          ${p.site ? `<a href="${p.site}" target="_blank" rel="noopener">${p.site.replace(/^https?:\/\//, "")} ↗</a>` : ""}
           ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener">${t("proj.demo")} ↗</a>` : ""}
-          <a href="${GH}${p.repo}" target="_blank" rel="noopener">${t("proj.code")} ↗</a>
+          ${p.private ? "" : `<a href="${GH}${p.repo}" target="_blank" rel="noopener">${t("proj.code")} ↗</a>`}
         </div>
       </div>
       <div class="f-body">
-        <h3><a href="${GH}${p.repo}" target="_blank" rel="noopener">${p.repo}</a></h3>
-        <p class="f-desc">${p[currentLang] || p.en}</p>
-        <div class="f-meta">
-          <span><span class="dot" style="background:${p.langColor}"></span>${p.lang}</span>
-          ${p.tags.map(tag => `<span>${tag}</span>`).join("")}
+        <div class="f-main">
+          <h3><a href="${home}" target="_blank" rel="noopener">${p.title || p.repo}</a></h3>
+          ${p.credit ? `<p class="f-credit">${t("proj.with")} <a href="https://github.com/${p.credit.user}" target="_blank" rel="noopener"><b>${p.credit.name}</b> · @${p.credit.user} ↗</a></p>` : ""}
+          <p class="f-desc">${p[currentLang] || p.en}</p>
+          <div class="f-meta">
+            <span><span class="dot" style="background:${p.langColor}"></span>${p.lang}</span>
+            ${p.tags.map(tag => `<span>${tag}</span>`).join("")}
+          </div>
         </div>
+        ${spec ? `<dl class="f-spec">${spec.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>` : ""}
       </div>
-    </article>
-  `).join("");
+    </article>`;
+  }).join("");
 }
 
 function renderFilters() {
@@ -601,7 +646,7 @@ function renderProjects() {
   const grid = document.getElementById("project-grid");
   const list = PROJECTS.filter(p => currentFilter === "all" || p.cat === currentFilter);
   grid.innerHTML = list.map((p, i) => `
-    <article class="p-card">
+    <article class="p-card" style="--i:${i}">
       <span class="p-no">${String(i + 1).padStart(2, "0")}</span>
       <h4><a href="${GH}${p.repo}" target="_blank" rel="noopener">${p.repo}</a></h4>
       <p class="p-desc">${p[currentLang] || p.en}</p>
@@ -701,7 +746,7 @@ function fetchStars() {
       repos.forEach(r => { if (r.stargazers_count > 0) starMap[r.name] = r.stargazers_count; });
       ["stat-repos", "metric-repos"].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.textContent = repos.length;
+        if (el) { el.textContent = repos.length; el.dataset.to = repos.length; }
       });
       applyStars();
       renderGhPanel();
