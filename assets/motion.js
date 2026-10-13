@@ -90,8 +90,11 @@
   }
 
   /* ===================== Light ribbons ===================== */
-  // A bundle of luminous strands sweeping from lower-left to upper-right,
-  // pinched into a bright knot right of centre. Additive blending does the glow.
+  // A bundle of luminous strands on a fixed layer behind the whole page.
+  // In the hero they sweep lower-left to upper-right and pinch into a bright
+  // knot right of centre; scrolling moves the knot, turns the sweep and rolls
+  // the waves along, so the lines keep travelling as you read. Past the hero
+  // the CSS mask (--mid) keeps them out of the text column.
   function ribbons(animate) {
     const cv = document.getElementById("ribbons");
     if (!cv || !cv.getContext) return;
@@ -114,22 +117,40 @@
       tone: rand()
     }));
 
+    const clamp01 = x => Math.max(0, Math.min(1, x));
+    const scrollUnits = () => window.scrollY / Math.max(1, window.innerHeight);
+
     let w = 0, h = 0;
     function size() {
       const dpr = Math.min(small ? 1 : 1.6, window.devicePixelRatio || 1);
-      const r = cv.getBoundingClientRect();
-      w = r.width;
-      h = r.height;
+      w = cv.clientWidth;
+      h = cv.clientHeight;
       cv.width = Math.max(1, Math.round(w * dpr));
       cv.height = Math.max(1, Math.round(h * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    const knotX = small ? 0.66 : 0.6;
-    const knotY = small ? 0.42 : 0.52;
+    // 1 in the hero, ~0.26 once the hero has scrolled away
+    let lastMid = -1;
+    function setMask(sc) {
+      const mid = 1 - 0.74 * clamp01((sc - 0.15) / 0.75);
+      if (Math.abs(mid - lastMid) > 0.005) {
+        cv.style.setProperty("--mid", mid.toFixed(3));
+        lastMid = mid;
+      }
+    }
 
-    function draw(t) {
+    const baseX = small ? 0.66 : 0.6;
+    const baseY = small ? 0.42 : 0.52;
+
+    function draw(t, sc) {
+      const knotX = baseX + 0.3 * Math.sin(sc * 0.85);
+      const knotY = baseY + 0.14 * Math.sin(sc * 1.25);
+      const slope = 0.55 * Math.cos(sc * 0.6);
+      const roll = sc * 1.2;
+
       ctx.clearRect(0, 0, w, h);
+      ctx.globalAlpha = 1 - 0.45 * clamp01(sc);
       ctx.globalCompositeOperation = "lighter";
 
       const g = ctx.createRadialGradient(w * knotX, h * knotY, 0, w * knotX, h * knotY, Math.max(w, h) * 0.36);
@@ -139,58 +160,74 @@
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 
-      for (const s of strands) {
-        const side = s.k - 0.5;
+      for (const st of strands) {
+        const side = st.k - 0.5;
         ctx.beginPath();
         for (let j = 0; j <= STEPS; j++) {
           const u = -0.08 + (j / STEPS) * 1.16;
           const d = Math.abs(u - knotX);
-          const base = knotY + (knotX - u) * 0.55 + Math.sin((u - knotX) * 2.4) * 0.06;
+          const base = knotY + (knotX - u) * slope + Math.sin((u - knotX) * 2.4) * 0.06;
           const spread = side * (0.03 + Math.pow(d, 1.35) * 1.15);
-          const wave = Math.sin(u * s.freq * Math.PI + t * s.speed + s.phase) * s.amp * (0.25 + d * 2.2);
+          const wave = Math.sin(u * st.freq * Math.PI + t * st.speed + st.phase + roll) * st.amp * (0.25 + d * 2.2);
           const x = u * w;
           const y = (base + spread + wave) * h;
           if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y);
         }
         const core = 1 - Math.abs(side) * 2; // 1 at the middle of the bundle
         const a = 0.08 + core * 0.32;
-        const r = 150 + s.tone * 80, gr = 220 + s.tone * 30, b = 40 + s.tone * 70;
+        const r = 150 + st.tone * 80, gr = 220 + st.tone * 30, b = 40 + st.tone * 70;
         ctx.strokeStyle = `rgba(${r | 0},${gr | 0},${b | 0},${a.toFixed(3)})`;
-        ctx.lineWidth = s.width;
+        ctx.lineWidth = st.width;
         ctx.stroke();
       }
       ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 1;
     }
 
     size();
-    let resizeTimer = 0;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => { size(); if (!animate) draw(8); }, 120);
-    }, { passive: true });
+    setMask(scrollUnits());
 
     if (!animate) {
-      draw(8);
+      // still frame; scrolling only fades the text column, nothing moves
+      draw(8, 0);
       cv.classList.add("is-on");
+      let queued = false;
+      window.addEventListener("scroll", () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => { queued = false; setMask(scrollUnits()); });
+      }, { passive: true });
+      let resizeTimer = 0;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => { size(); draw(8, 0); }, 120);
+      }, { passive: true });
       return;
     }
 
-    let visible = true;
-    let raf = 0;
-    const t0 = performance.now();
-    const loop = now => { draw((now - t0) / 1000); raf = requestAnimationFrame(loop); };
-    const run = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(loop); };
-    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+    window.addEventListener("resize", size, { passive: true });
 
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([e]) => {
-        visible = e.isIntersecting;
-        if (visible) run(); else stop();
-      }).observe(cv);
-    }
+    // scroll position is eased, so a flick of the wheel turns into a glide
+    let target = scrollUnits();
+    let current = target;
+    window.addEventListener("scroll", () => { target = scrollUnits(); }, { passive: true });
+
+    let raf = 0;
+    let last = performance.now();
+    const t0 = last;
+    const loop = now => {
+      const dt = Math.min(64, now - last);
+      last = now;
+      current += (target - current) * (1 - Math.pow(1 - 0.08, dt / 16.67));
+      draw((now - t0) / 1000, current);
+      setMask(current);
+      raf = requestAnimationFrame(loop);
+    };
+    const run = () => { if (!raf && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(loop); } };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
     document.addEventListener("visibilitychange", () => (document.hidden ? stop() : run()));
 
-    draw(0);
+    draw(0, current);
     cv.classList.add("is-on");
     run();
   }

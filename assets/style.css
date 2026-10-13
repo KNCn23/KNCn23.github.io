@@ -309,14 +309,18 @@ a:hover { color: var(--lime); }
 /* ===== Hero ===== */
 .hero {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   min-height: min(940px, 100vh);
   display: flex;
   align-items: center;
   padding: calc(var(--nav-h) + 72px) 24px 88px;
 }
+/* page-wide light ribbons, fixed behind everything. Past the hero, --mid
+   (set from scroll in motion.js) fades the strands out of the text column
+   and leaves them vivid only in the side margins. */
 .ribbons {
-  position: absolute;
+  position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -324,9 +328,18 @@ a:hover { color: var(--lime); }
   pointer-events: none;
   opacity: 0;
   transition: opacity 1.8s ease;
-  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
-  mask-image: linear-gradient(180deg, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, var(--mid, 1)) 24%, rgba(0, 0, 0, var(--mid, 1)) 76%, #000 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, var(--mid, 1)) 24%, rgba(0, 0, 0, var(--mid, 1)) 76%, #000 100%);
 }
+@media (max-width: 860px) {
+  /* on a phone the text runs edge to edge, so the strands dim evenly */
+  .ribbons {
+    -webkit-mask-image: linear-gradient(rgba(0, 0, 0, var(--mid, 1)), rgba(0, 0, 0, var(--mid, 1)));
+    mask-image: linear-gradient(rgba(0, 0, 0, var(--mid, 1)), rgba(0, 0, 0, var(--mid, 1)));
+  }
+}
+/* content stacks above the fixed ribbon layer */
+.metrics, main, .footer { position: relative; z-index: 1; }
 .ribbons.is-on { opacity: 1; }
 /* keeps the strands from running through the copy column */
 .hero::after {
@@ -336,6 +349,9 @@ a:hover { color: var(--lime); }
   z-index: 0;
   pointer-events: none;
   background: linear-gradient(90deg, rgba(10, 12, 9, 0.94) 0%, rgba(10, 12, 9, 0.78) 34%, rgba(10, 12, 9, 0) 60%);
+  /* fades out at the bottom so there is no seam where the hero ends */
+  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent);
+  mask-image: linear-gradient(180deg, #000 72%, transparent);
 }
 @media (max-width: 900px) {
   .hero::after { background: linear-gradient(180deg, rgba(10, 12, 9, 0.2) 0%, rgba(10, 12, 9, 0.88) 46%, rgba(10, 12, 9, 0.6) 100%); }
