@@ -7,6 +7,9 @@
   --bg-2: #12150f;
   --glass: rgba(255, 255, 255, 0.035);
   --glass-2: rgba(255, 255, 255, 0.065);
+  /* cards sit on this so the light layer reads as a glow behind them */
+  --card: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)), rgba(14, 17, 12, 0.84);
+  --card-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.03)), rgba(14, 17, 12, 0.88);
   --line: rgba(255, 255, 255, 0.08);
   --line-2: rgba(255, 255, 255, 0.14);
   --text: #e9ecdf;
@@ -316,9 +319,9 @@ a:hover { color: var(--lime); }
   align-items: center;
   padding: calc(var(--nav-h) + 72px) 24px 88px;
 }
-/* page-wide light ribbons, fixed behind everything. Past the hero, --mid
-   (set from scroll in motion.js) fades the strands out of the text column
-   and leaves them vivid only in the side margins. */
+/* page-wide light ribbons, fixed behind everything so they follow the
+   reader. motion.js defocuses them past the hero; --mid (also set there)
+   eases them back a little behind the text column. */
 .ribbons {
   position: fixed;
   inset: 0;
@@ -518,7 +521,7 @@ html:not(.motion) .g-pulses { display: none; }
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--glass);
+  background: var(--card);
   overflow: hidden;
 }
 .metric { padding: 26px 26px; border-left: 1px solid var(--line); }
@@ -641,7 +644,7 @@ html:not(.motion) .g-pulses { display: none; }
 /* glass surface shared by cards */
 .f-card, .stat-card, .gh-panel, .skill-group, .t-card, .project-grid, .contact-panel {
   border: 1px solid var(--line);
-  background: var(--glass);
+  background: var(--card);
 }
 
 /* cursor-following glow (positions come from motion.js) */
@@ -682,7 +685,7 @@ html:not(.motion) .g-pulses { display: none; }
   padding: 10px 14px 10px 32px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--glass);
+  background: var(--card);
   font-size: 0.8rem;
   color: var(--body);
 }
@@ -804,7 +807,7 @@ html:not(.motion) .g-pulses { display: none; }
   align-items: start;
   transition: border-color 0.2s, background 0.2s;
 }
-.t-card:hover { border-color: var(--line-2); background: var(--glass-2); }
+.t-card:hover { border-color: var(--line-2); background: var(--card-hover); }
 .t-head { display: flex; flex-direction: column; gap: 4px; grid-column: 1; }
 .t-head h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; }
 .t-role { color: var(--muted); font-weight: 400; font-size: 0.95rem; }
@@ -1043,7 +1046,7 @@ html:not(.motion) .g-pulses { display: none; }
   background:
     radial-gradient(700px 360px at 85% 0%, rgba(200, 241, 53, 0.13), transparent 60%),
     radial-gradient(500px 300px at 0% 100%, rgba(143, 224, 178, 0.06), transparent 60%),
-    var(--glass);
+    rgba(14, 17, 12, 0.86);
   border-color: var(--line-2);
 }
 .contact-head {

@@ -91,10 +91,11 @@
 
   /* ===================== Light ribbons ===================== */
   // A bundle of luminous strands on a fixed layer behind the whole page.
-  // In the hero they sweep lower-left to upper-right and pinch into a bright
-  // knot right of centre; scrolling moves the knot, turns the sweep and rolls
-  // the waves along, so the lines keep travelling as you read. Past the hero
-  // the CSS mask (--mid) keeps them out of the text column.
+  // In the hero it is sharp: it sweeps lower-left to upper-right and pinches
+  // into a bright knot right of centre. Scrolling down, the bundle stays with
+  // the viewer but drifts out of focus — strands widen, soften and spread into
+  // an aurora-like glow that keeps wandering and turning as you read. Being
+  // soft rather than sharp is what keeps the text readable over it.
   function ribbons(animate) {
     const cv = document.getElementById("ribbons");
     if (!cv || !cv.getContext) return;
@@ -103,7 +104,8 @@
 
     const small = window.matchMedia("(max-width: 860px)").matches;
     const N = small ? 26 : 44;
-    const STEPS = small ? 48 : 72;
+    const STEPS_SHARP = small ? 48 : 72;
+    const STEPS_SOFT = small ? 28 : 40;
     // seeded so the still frame (reduced motion) is the same on every visit
     let seed = 7;
     const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -118,22 +120,34 @@
     }));
 
     const clamp01 = x => Math.max(0, Math.min(1, x));
+    const smooth = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
     const scrollUnits = () => window.scrollY / Math.max(1, window.innerHeight);
+    // 0 = sharp hero bundle, 1 = fully defocused glow
+    const focusLoss = sc => smooth(0.06, 0.8, sc);
 
-    let w = 0, h = 0;
-    function size() {
-      const dpr = Math.min(small ? 1 : 1.6, window.devicePixelRatio || 1);
+    // Two render resolutions: full while sharp, half once soft — a blurred
+    // glow needs no detail, and the browser's upscale adds to the softness.
+    const sharpScale = Math.min(small ? 1 : 1.6, window.devicePixelRatio || 1);
+    const softScale = small ? 0.5 : 0.55;
+    let scale = 0, w = 0, h = 0;
+    function size(next) {
+      scale = next || scale || sharpScale;
       w = cv.clientWidth;
       h = cv.clientHeight;
-      cv.width = Math.max(1, Math.round(w * dpr));
-      cv.height = Math.max(1, Math.round(h * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cv.width = Math.max(1, Math.round(w * scale));
+      cv.height = Math.max(1, Math.round(h * scale));
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    }
+    function pickScale(b) {
+      // hysteresis so the switch never flickers around the threshold
+      if (scale === sharpScale && b > 0.42) size(softScale);
+      else if (scale === softScale && b < 0.32) size(sharpScale);
     }
 
-    // 1 in the hero, ~0.26 once the hero has scrolled away
+    // past the hero the strands ease back a little behind the text column
     let lastMid = -1;
-    function setMask(sc) {
-      const mid = 1 - 0.74 * clamp01((sc - 0.15) / 0.75);
+    function setMask(b) {
+      const mid = 1 - 0.4 * b;
       if (Math.abs(mid - lastMid) > 0.005) {
         cv.style.setProperty("--mid", mid.toFixed(3));
         lastMid = mid;
@@ -143,17 +157,22 @@
     const baseX = small ? 0.66 : 0.6;
     const baseY = small ? 0.42 : 0.52;
 
-    function draw(t, sc) {
-      const knotX = baseX + 0.3 * Math.sin(sc * 0.85);
-      const knotY = baseY + 0.14 * Math.sin(sc * 1.25);
-      const slope = 0.55 * Math.cos(sc * 0.6);
-      const roll = sc * 1.2;
+    // t: seconds; sc: scroll in viewport heights (drives the wandering);
+    // b: focus loss 0..1
+    function draw(t, sc, b) {
+      const kx = baseX - 0.3 * b + 0.1 * Math.sin(sc * 0.7) * b;
+      const ky = baseY - 0.06 * b + 0.12 * Math.sin(sc * 0.9 + 1) * b;
+      const slope = 0.55 * (1 - b) + b * 0.9 * Math.sin(sc * 0.45 + 0.6);
+      const roll = sc * 0.9;
+      const widen = 1 + 1.1 * b;
+      const steps = b > 0.42 ? STEPS_SOFT : STEPS_SHARP;
 
       ctx.clearRect(0, 0, w, h);
-      ctx.globalAlpha = 1 - 0.45 * clamp01(sc);
+      ctx.globalAlpha = 1 - 0.38 * b;
       ctx.globalCompositeOperation = "lighter";
 
-      const g = ctx.createRadialGradient(w * knotX, h * knotY, 0, w * knotX, h * knotY, Math.max(w, h) * 0.36);
+      const R = Math.max(w, h) * (0.36 + 0.22 * b);
+      const g = ctx.createRadialGradient(w * kx, h * ky, 0, w * kx, h * ky, R);
       g.addColorStop(0, "rgba(200,241,53,0.16)");
       g.addColorStop(0.35, "rgba(160,220,60,0.05)");
       g.addColorStop(1, "rgba(0,0,0,0)");
@@ -163,49 +182,59 @@
       for (const st of strands) {
         const side = st.k - 0.5;
         ctx.beginPath();
-        for (let j = 0; j <= STEPS; j++) {
-          const u = -0.08 + (j / STEPS) * 1.16;
-          const d = Math.abs(u - knotX);
-          const base = knotY + (knotX - u) * slope + Math.sin((u - knotX) * 2.4) * 0.06;
-          const spread = side * (0.03 + Math.pow(d, 1.35) * 1.15);
+        for (let j = 0; j <= steps; j++) {
+          const u = -0.08 + (j / steps) * 1.16;
+          const d = Math.abs(u - kx);
+          const base = ky + (kx - u) * slope + Math.sin((u - kx) * 2.4) * 0.06;
+          const spread = side * (0.03 + Math.pow(d, 1.35) * 1.15) * widen;
           const wave = Math.sin(u * st.freq * Math.PI + t * st.speed + st.phase + roll) * st.amp * (0.25 + d * 2.2);
           const x = u * w;
           const y = (base + spread + wave) * h;
           if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y);
         }
         const core = 1 - Math.abs(side) * 2; // 1 at the middle of the bundle
-        const a = 0.08 + core * 0.32;
-        const r = 150 + st.tone * 80, gr = 220 + st.tone * 30, b = 40 + st.tone * 70;
-        ctx.strokeStyle = `rgba(${r | 0},${gr | 0},${b | 0},${a.toFixed(3)})`;
-        ctx.lineWidth = st.width;
+        const a = (0.08 + core * 0.32) * (1 - 0.8 * b);
+        // out of focus, part of the bundle drifts toward teal, as in the reference
+        const r = 150 + st.tone * 80 - 70 * b * st.tone;
+        const gr = 220 + st.tone * 30;
+        const bl = 40 + st.tone * 70 + 90 * b * st.tone;
+        ctx.strokeStyle = `rgba(${r | 0},${gr | 0},${bl | 0},${a.toFixed(3)})`;
+        ctx.lineWidth = st.width * (1 + 18 * b);
+        ctx.lineCap = "round";
         ctx.stroke();
       }
       ctx.globalCompositeOperation = "source-over";
       ctx.globalAlpha = 1;
     }
 
-    size();
-    setMask(scrollUnits());
+    size(sharpScale);
 
     if (!animate) {
-      // still frame; scrolling only fades the text column, nothing moves
-      draw(8, 0);
+      // Reduced motion: nothing moves. Scrolling only trades the sharp
+      // bundle for the soft glow (a focus change, redrawn on demand).
+      const still = () => {
+        const b = focusLoss(scrollUnits());
+        pickScale(b);
+        draw(8, 0, b);
+        setMask(b);
+      };
+      still();
       cv.classList.add("is-on");
       let queued = false;
       window.addEventListener("scroll", () => {
         if (queued) return;
         queued = true;
-        requestAnimationFrame(() => { queued = false; setMask(scrollUnits()); });
+        requestAnimationFrame(() => { queued = false; still(); });
       }, { passive: true });
       let resizeTimer = 0;
       window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => { size(); draw(8, 0); }, 120);
+        resizeTimer = setTimeout(() => { size(); still(); }, 120);
       }, { passive: true });
       return;
     }
 
-    window.addEventListener("resize", size, { passive: true });
+    window.addEventListener("resize", () => size(), { passive: true });
 
     // scroll position is eased, so a flick of the wheel turns into a glide
     let target = scrollUnits();
@@ -218,16 +247,21 @@
     const loop = now => {
       const dt = Math.min(64, now - last);
       last = now;
-      current += (target - current) * (1 - Math.pow(1 - 0.08, dt / 16.67));
-      draw((now - t0) / 1000, current);
-      setMask(current);
+      current += (target - current) * (1 - Math.pow(1 - 0.07, dt / 16.67));
+      const b = focusLoss(current);
+      pickScale(b);
+      draw((now - t0) / 1000, current, b);
+      setMask(b);
       raf = requestAnimationFrame(loop);
     };
     const run = () => { if (!raf && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(loop); } };
     const stop = () => { cancelAnimationFrame(raf); raf = 0; };
     document.addEventListener("visibilitychange", () => (document.hidden ? stop() : run()));
 
-    draw(0, current);
+    const b0 = focusLoss(current);
+    pickScale(b0);
+    draw(0, current, b0);
+    setMask(b0);
     cv.classList.add("is-on");
     run();
   }
