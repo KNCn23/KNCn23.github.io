@@ -1,7 +1,8 @@
-/* Motion layer — boot sequence, smooth wheel scrolling, crosshair cursor,
-   count-up figures, line-drawn reveals and live project diagrams.
-   No dependencies. Everything here is decoration: with JavaScript off or
-   "reduce motion" on, the page renders complete and still. */
+/* Motion layer — boot sequence, cinematic light ribbons behind the hero,
+   smooth wheel scrolling, cursor-following card glow, count-up figures and
+   live project diagrams. No dependencies. Everything here is decoration:
+   with JavaScript off or "reduce motion" on, the page renders complete and
+   still (the ribbons are drawn once, as a still frame). */
 
 (function () {
   const root = document.documentElement;
@@ -14,7 +15,7 @@
     ["clock tree · caches", "OK"],
     ["mount /projects", "38"],
     ["link github.com/KNCn23", "UP"],
-    ["render datasheet", "▮"]
+    ["render portfolio", "▮"]
   ];
 
   function runBoot(done) {
@@ -30,7 +31,6 @@
       timers.forEach(clearTimeout);
       try { sessionStorage.setItem("ako-boot", "1"); } catch (e) { /* private mode */ }
       boot.classList.add("is-leaving");
-      // the hero starts rising while the sheet lifts away
       setTimeout(done, 260);
       setTimeout(() => root.classList.remove("booting"), 900);
       removeEventListener("keydown", finish);
@@ -55,27 +55,144 @@
   }
 
   /* ===================== Hero headline ===================== */
-  // Each word rises out of its own mask. Built with DOM nodes so the
-  // translated string is never parsed as HTML.
+  // Each word rises out of its own mask. Words inside <em> keep their italic
+  // serif accent. Built from text content so the string is never parsed as HTML.
   function splitHeadline() {
     const el = document.getElementById("hero-title");
     if (!el) return;
-    const words = el.textContent.trim().split(/\s+/);
-    el.textContent = "";
-    words.forEach((w, i) => {
-      const mask = document.createElement("span");
-      const inner = document.createElement("span");
-      mask.className = "w";
-      inner.style.setProperty("--i", i);
-      inner.textContent = w;
-      mask.appendChild(inner);
-      el.appendChild(mask);
-      if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
+    const frag = document.createDocumentFragment();
+    let i = 0;
+    const addWords = (text, em) => {
+      text.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          if (frag.lastChild) frag.appendChild(document.createTextNode(" "));
+          return;
+        }
+        const mask = document.createElement("span");
+        const inner = document.createElement(em ? "em" : "span");
+        mask.className = "w";
+        inner.style.setProperty("--i", i++);
+        inner.textContent = part;
+        mask.appendChild(inner);
+        frag.appendChild(mask);
+      });
+    };
+    Array.from(el.childNodes).forEach(n => {
+      if (n.nodeType === Node.TEXT_NODE) addWords(n.textContent, false);
+      else if (n.nodeType === Node.ELEMENT_NODE) addWords(n.textContent, n.tagName === "EM");
     });
+    el.replaceChildren(frag);
   }
 
   function heroIn() {
     root.classList.add("hero-in");
+  }
+
+  /* ===================== Light ribbons ===================== */
+  // A bundle of luminous strands sweeping from lower-left to upper-right,
+  // pinched into a bright knot right of centre. Additive blending does the glow.
+  function ribbons(animate) {
+    const cv = document.getElementById("ribbons");
+    if (!cv || !cv.getContext) return;
+    const ctx = cv.getContext("2d");
+    if (!ctx) return;
+
+    const small = window.matchMedia("(max-width: 860px)").matches;
+    const N = small ? 26 : 44;
+    const STEPS = small ? 48 : 72;
+    // seeded so the still frame (reduced motion) is the same on every visit
+    let seed = 7;
+    const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const strands = Array.from({ length: N }, (_, i) => ({
+      k: i / (N - 1),
+      phase: rand() * Math.PI * 2,
+      freq: 2.2 + rand() * 2.4,
+      amp: 0.018 + rand() * 0.05,
+      speed: 0.12 + rand() * 0.22,
+      width: 0.5 + rand() * 1.1,
+      tone: rand()
+    }));
+
+    let w = 0, h = 0;
+    function size() {
+      const dpr = Math.min(small ? 1 : 1.6, window.devicePixelRatio || 1);
+      const r = cv.getBoundingClientRect();
+      w = r.width;
+      h = r.height;
+      cv.width = Math.max(1, Math.round(w * dpr));
+      cv.height = Math.max(1, Math.round(h * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    const knotX = small ? 0.66 : 0.6;
+    const knotY = small ? 0.42 : 0.52;
+
+    function draw(t) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = "lighter";
+
+      const g = ctx.createRadialGradient(w * knotX, h * knotY, 0, w * knotX, h * knotY, Math.max(w, h) * 0.36);
+      g.addColorStop(0, "rgba(200,241,53,0.16)");
+      g.addColorStop(0.35, "rgba(160,220,60,0.05)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+
+      for (const s of strands) {
+        const side = s.k - 0.5;
+        ctx.beginPath();
+        for (let j = 0; j <= STEPS; j++) {
+          const u = -0.08 + (j / STEPS) * 1.16;
+          const d = Math.abs(u - knotX);
+          const base = knotY + (knotX - u) * 0.55 + Math.sin((u - knotX) * 2.4) * 0.06;
+          const spread = side * (0.03 + Math.pow(d, 1.35) * 1.15);
+          const wave = Math.sin(u * s.freq * Math.PI + t * s.speed + s.phase) * s.amp * (0.25 + d * 2.2);
+          const x = u * w;
+          const y = (base + spread + wave) * h;
+          if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+        }
+        const core = 1 - Math.abs(side) * 2; // 1 at the middle of the bundle
+        const a = 0.08 + core * 0.32;
+        const r = 150 + s.tone * 80, gr = 220 + s.tone * 30, b = 40 + s.tone * 70;
+        ctx.strokeStyle = `rgba(${r | 0},${gr | 0},${b | 0},${a.toFixed(3)})`;
+        ctx.lineWidth = s.width;
+        ctx.stroke();
+      }
+      ctx.globalCompositeOperation = "source-over";
+    }
+
+    size();
+    let resizeTimer = 0;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { size(); if (!animate) draw(8); }, 120);
+    }, { passive: true });
+
+    if (!animate) {
+      draw(8);
+      cv.classList.add("is-on");
+      return;
+    }
+
+    let visible = true;
+    let raf = 0;
+    const t0 = performance.now();
+    const loop = now => { draw((now - t0) / 1000); raf = requestAnimationFrame(loop); };
+    const run = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(loop); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible) run(); else stop();
+      }).observe(cv);
+    }
+    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : run()));
+
+    draw(0);
+    cv.classList.add("is-on");
+    run();
   }
 
   /* ===================== Smooth wheel scrolling ===================== */
@@ -155,46 +272,18 @@
     });
   }
 
-  /* ===================== Crosshair cursor ===================== */
-  // Oscilloscope-style cursor: two hairlines and a live X/Y readout in page
-  // coordinates. Lines turn to the signal colour over anything clickable.
-  function crosshair() {
-    const wrap = document.createElement("div");
-    wrap.className = "xhair";
-    wrap.setAttribute("aria-hidden", "true");
-    wrap.innerHTML = '<div class="xh-v"></div><div class="xh-h"></div><div class="xh-read"></div>';
-    document.body.appendChild(wrap);
-    root.classList.add("has-xhair");
-
-    const v = wrap.children[0];
-    const h = wrap.children[1];
-    const read = wrap.children[2];
-    let x = -100, y = -100, queued = false;
-
-    const pad = n => String(Math.max(0, Math.round(n))).padStart(4, "0");
-
-    function draw() {
-      queued = false;
-      v.style.transform = `translate3d(${x}px,0,0)`;
-      h.style.transform = `translate3d(0,${y}px,0)`;
-      const flipX = x > window.innerWidth - 150;
-      const flipY = y > window.innerHeight - 40;
-      read.style.transform = `translate3d(${flipX ? x - 132 : x + 14}px,${flipY ? y - 28 : y + 14}px,0)`;
-      read.textContent = `X ${pad(x)}  Y ${pad(y + window.scrollY)}`;
-    }
-    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(draw); } };
-
-    window.addEventListener("pointermove", e => {
+  /* ===================== Card glow ===================== */
+  // Cards light up under the cursor: the pointer position feeds a radial
+  // gradient in CSS (--mx / --my).
+  function cardGlow() {
+    document.addEventListener("pointermove", e => {
       if (e.pointerType !== "mouse") return;
-      x = e.clientX;
-      y = e.clientY;
-      wrap.classList.add("is-on");
-      wrap.classList.toggle("on-link", !!e.target.closest("a, button"));
-      queue();
+      const card = e.target.closest(".f-card, .skill-group, .stat-card, .hero-panel, .contact-panel");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      card.style.setProperty("--my", (e.clientY - r.top) + "px");
     }, { passive: true });
-    window.addEventListener("scroll", queue, { passive: true });
-    document.addEventListener("pointerleave", () => wrap.classList.remove("is-on"));
-    window.addEventListener("blur", () => wrap.classList.remove("is-on"));
   }
 
   /* ===================== Count-up figures ===================== */
@@ -252,8 +341,14 @@
   }
 
   /* ===================== Start ===================== */
-  if (finePointer) crosshair();
-  if (!motionOn) return;
+  ribbons(motionOn);
+  if (finePointer) cardGlow();
+
+  if (!motionOn) {
+    // the hero graph's pulses are SMIL; hold them still as well
+    document.querySelectorAll("svg.hero-graph").forEach(svg => svg.pauseAnimations && svg.pauseAnimations());
+    return;
+  }
 
   indexStaggers();
   splitHeadline();
@@ -261,7 +356,7 @@
   setupLiveDiagrams();
   if (finePointer) smoothWheel();
 
-  // a language switch rewrites the headline as plain text; split it again
+  // a language switch rewrites the headline; split it again
   const title = document.getElementById("hero-title");
   if (title) {
     new MutationObserver(() => {
