@@ -38,10 +38,11 @@
                    "Constraint Programming", "TinyML", "Computer Networks"]
   }
   </script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314161a'/%3E%3Ctext x='50' y='68' font-size='44' font-family='monospace' font-weight='bold' fill='%23f6f3ec' text-anchor='middle'%3EKO%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c09'/%3E%3Ctext x='50' y='68' font-size='44' font-family='monospace' font-weight='bold' fill='%23c8f135' text-anchor='middle'%3EKO%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0a0c09">
   <link rel="stylesheet" href="assets/style.css">
   <script>
     (function () {
@@ -56,7 +57,7 @@
 
   <div class="boot" id="boot" aria-hidden="true">
     <div class="boot-inner mono">
-      <div class="boot-head"><span>AKO-2026</span><span>REV 2026.09</span></div>
+      <div class="boot-head"><span>AKO-2026</span><span>kncn23.github.io</span></div>
       <div class="boot-rule"></div>
       <ol class="boot-log" id="boot-log"></ol>
       <div class="boot-skip">click / any key to skip</div>
@@ -100,7 +101,7 @@
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
       <div class="nav-right">
-        <span class="nav-rev">REV 2026.09</span>
+        <span class="nav-status mono" data-i18n="spec.v4">Open to internships</span>
         <div class="lang-switch" role="group" aria-label="Language">
           <button id="lang-en" class="lang-btn" onclick="setLang('en')">EN</button>
           <button id="lang-tr" class="lang-btn" onclick="setLang('tr')">TR</button>
@@ -111,18 +112,22 @@
   </nav>
 
   <header class="hero" id="top">
+    <canvas class="ribbons" id="ribbons" aria-hidden="true"></canvas>
     <div class="hero-inner">
-      <div class="hero-head">
-        <p class="hero-doc mono" data-i18n="hero.doc">Doc. no. AKO-2026 · Computer Engineer · Ankara</p>
-        <h1 class="hero-name">Ata Kaan Can Olcay</h1>
-        <h2 class="hero-title" id="hero-title" data-i18n="hero.title">Software at the layer closest to the hardware.</h2>
-      </div>
       <div class="hero-text">
+        <p class="pill mono"><span class="pill-dot"></span><span data-i18n="hero.doc">Embedded · Edge AI · Systems programming</span></p>
+        <h1 class="hero-name">Ata Kaan Can Olcay</h1>
+        <h2 class="hero-title" id="hero-title" data-i18n="hero.title">Software at the layer closest to the <em>hardware.</em></h2>
         <p class="hero-desc" data-i18n="hero.desc">
           Final-year Computer Engineering student at Başkent University with internship experience
           in the Turkish defense industry. I build personal projects in edge-AI optimization,
           embedded software and systems programming — primarily in C, C++ and Python.
         </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects" data-i18n="hero.cta1">See the work</a>
+          <a class="btn btn-ghost" href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
         <div class="hero-spec">
           <div>
             <span class="spec-k" data-i18n="spec.k1">Focus</span>
@@ -136,37 +141,45 @@
             <span class="spec-k" data-i18n="spec.k3">Graduation</span>
             <span class="spec-v" data-i18n="spec.v3">2027 (expected)</span>
           </div>
-          <div>
-            <span class="spec-k" data-i18n="spec.k4">Status</span>
-            <span class="spec-v spec-live" data-i18n="spec.v4">Open to internships</span>
-          </div>
         </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="https://github.com/KNCn23" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-link" href="mailto:kaancanolcay@gmail.com">kaancanolcay@gmail.com</a>
-        </div>
+        <p class="hero-loc mono"><a href="mailto:kaancanolcay@gmail.com">kaancanolcay@gmail.com</a> · Ankara, <span data-i18n="hero.country">Türkiye</span></p>
       </div>
-      <div class="hero-avatar">
-        <figure class="avatar-ring">
-          <figcaption class="figure-cap">
-            <span data-i18n="fig.cap">Fig. 1 — Portrait</span>
-            <span>AKO-2026</span>
-          </figcaption>
-          <img src="https://avatars.githubusercontent.com/u/71110056?v=4" alt="Ata Kaan Can Olcay" width="220" height="220">
-        </figure>
-        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><path id="stamp-ring" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
-          <circle cx="60" cy="60" r="58" fill="var(--paper)" stroke="var(--ink)"/>
-          <circle cx="60" cy="60" r="33" fill="none" stroke="var(--rule)"/>
-          <g class="stamp-ring">
-            <text font-family="IBM Plex Mono, monospace" font-size="9.5" fill="var(--ink)">
-              <textPath href="#stamp-ring" textLength="272" lengthAdjust="spacing" data-i18n="stamp.text">QUALITY CONTROL · PASSED · AKO-2026 · </textPath>
-            </text>
-          </g>
-          <path d="M47 61 l9 9 l18 -20" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="square"/>
-        </svg>
-        <p class="hero-loc mono">Ankara, <span data-i18n="hero.country">Türkiye</span></p>
+      <div class="hero-panel">
+        <div class="hp-head">
+          <img class="hp-avatar" src="https://avatars.githubusercontent.com/u/71110056?v=4" alt="Ata Kaan Can Olcay" width="34" height="34">
+          <div class="hp-id"><b>Ata Kaan Can Olcay</b><span class="mono">@KNCn23</span></div>
+          <span class="hp-status mono" data-i18n="spec.v4">Open to internships</span>
+        </div>
+        <div class="hp-graph">
+          <svg class="hero-graph" viewBox="0 0 460 230" role="img" aria-label="Stack graph: C and C++ feeding micro-cnn, mini-rtos and mini-tcp-stack, all running on edge targets">
+              <g class="g-edges">
+                <path id="ge1" d="M100,115 C135,115 135,42 170,42"/>
+                <path id="ge2" d="M100,115 L170,115"/>
+                <path id="ge3" d="M100,115 C135,115 135,188 170,188"/>
+                <path id="ge4" d="M294,42 C325,42 325,100 356,100"/>
+                <path id="ge5" d="M294,115 L356,115"/>
+                <path id="ge6" d="M294,188 C325,188 325,130 356,130"/>
+              </g>
+              <g class="g-pulses">
+                <circle r="2.6"><animateMotion dur="2.4s" begin="0s" repeatCount="indefinite"><mpath href="#ge1"/></animateMotion></circle>
+                <circle r="2.6"><animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite"><mpath href="#ge2"/></animateMotion></circle>
+                <circle r="2.6"><animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite"><mpath href="#ge3"/></animateMotion></circle>
+                <circle r="2.6"><animateMotion dur="2.4s" begin="0.4s" repeatCount="indefinite"><mpath href="#ge4"/></animateMotion></circle>
+                <circle r="2.6"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#ge5"/></animateMotion></circle>
+                <circle r="2.6"><animateMotion dur="2.4s" begin="2s" repeatCount="indefinite"><mpath href="#ge6"/></animateMotion></circle>
+              </g>
+              <g class="g-node"><rect x="14" y="95" width="86" height="40" rx="9"/><text x="26" y="112">C · C++</text><text class="g-sub" x="26" y="126">toolchain</text></g>
+              <g class="g-node"><rect x="170" y="22" width="124" height="40" rx="9"/><text x="182" y="39">micro-cnn</text><text class="g-sub" x="182" y="53">INT8 · 5.2 KB</text></g>
+              <g class="g-node"><rect x="170" y="95" width="124" height="40" rx="9"/><text x="182" y="112">mini-rtos</text><text class="g-sub" x="182" y="126">AArch64 · QEMU</text></g>
+              <g class="g-node"><rect x="170" y="168" width="124" height="40" rx="9"/><text x="182" y="185">mini-tcp-stack</text><text class="g-sub" x="182" y="199">Ethernet → TCP</text></g>
+              <g class="g-node g-hot"><rect x="356" y="58" width="90" height="114" rx="11"/><text x="368" y="80">edge</text><text class="g-sub" x="368" y="104">Cortex-M</text><text class="g-sub" x="368" y="122">QEMU virt</text><text class="g-sub" x="368" y="140">Linux TAP</text></g>
+            </svg>
+        </div>
+        <ul class="hp-log mono">
+          <li><span>micro-cnn</span><span>5.2 KB · bit-exact</span><b>✓</b></li>
+          <li><span>mini-tcp-stack</span><span>SYN → SYN-ACK → ACK</span><b>✓</b></li>
+          <li><span>maxytrip.com</span><span>4 lang · 553 tests</span><b class="hp-live">live</b></li>
+        </ul>
       </div>
     </div>
   </header>
@@ -194,7 +207,7 @@
 
   <main>
     <section id="about" class="section reveal">
-      <h2 class="section-title"><span class="mono accent">&sect; 01</span> <span data-i18n="about.title">About Me</span></h2>
+      <h2 class="section-title"><span class="mono accent">01</span> <span data-i18n="about.title">About Me</span></h2>
       <div class="about-grid">
         <div class="about-text">
           <p data-i18n="about.p1">
@@ -238,7 +251,7 @@
     </section>
 
     <section id="experience" class="section reveal">
-      <h2 class="section-title"><span class="mono accent">&sect; 02</span> <span data-i18n="exp.title">Experience</span></h2>
+      <h2 class="section-title"><span class="mono accent">02</span> <span data-i18n="exp.title">Experience</span></h2>
       <div class="timeline">
         <div class="t-fill" id="t-fill" aria-hidden="true"></div>
         <div class="t-item">
@@ -300,7 +313,7 @@
     </section>
 
     <section id="projects" class="section section-wide reveal">
-      <h2 class="section-title"><span class="mono accent">&sect; 03</span> <span data-i18n="proj.title">Projects</span></h2>
+      <h2 class="section-title"><span class="mono accent">03</span> <span data-i18n="proj.title">Projects</span></h2>
 
       <h3 class="sub-title" data-i18n="proj.featured">Featured</h3>
       <div class="featured-grid" id="featured-grid"></div>
@@ -314,7 +327,7 @@
     </section>
 
     <section id="skills" class="section reveal">
-      <h2 class="section-title"><span class="mono accent">&sect; 04</span> <span data-i18n="skills.title">Skills &amp; Tools</span></h2>
+      <h2 class="section-title"><span class="mono accent">04</span> <span data-i18n="skills.title">Skills &amp; Tools</span></h2>
       <div class="skills-grid">
         <div class="skill-group">
           <h3 class="mono" data-i18n="skills.g1">Languages</h3>
@@ -355,8 +368,8 @@
       <div class="contact-panel">
         <div class="contact-head">
           <div>
-            <p class="mono accent" data-i18n="contact.kicker">§ 05 — Contact</p>
-            <h2 class="contact-title" data-i18n="contact.title">Got something on the embedded side?</h2>
+            <p class="mono accent" data-i18n="contact.kicker">05 — Contact</p>
+            <h2 class="contact-title" data-i18n="contact.title">Got something on the <em>embedded side?</em></h2>
           </div>
           <div>
             <p class="contact-desc" data-i18n="contact.desc">
@@ -374,7 +387,7 @@
           <span>·</span>
           <a href="https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/" target="_blank" rel="noopener">LinkedIn</a>
           <span>·</span>
-          <span>AKO-2026 · REV 2026.09 · Ankara, TR</span>
+          <span>Ankara, TR</span>
         </div>
       </div>
     </section>

@@ -8,14 +8,15 @@ const I18N = {
     "nav.contact": "Contact",
 
     "hero.hello": "Hi, my name is",
-    "hero.title": "Software at the layer closest to the hardware.",
+    "hero.title": "Software at the layer closest to the <em>hardware.</em>",
     "hero.desc": "Final-year Computer Engineering student at Başkent University with internship experience in the Turkish defense industry. I build personal projects in edge-AI optimization, embedded software and systems programming — primarily in C, C++ and Python.",
     "hero.tag2": "Embedded Systems",
     "hero.tag3": "Systems Programming",
     "hero.tag4": "Optimization",
     "hero.email": "Email me",
     "hero.country": "Türkiye",
-    "hero.doc": "Doc. no. AKO-2026 · Computer Engineer · Ankara",
+    "hero.doc": "Embedded · Edge AI · Systems programming",
+    "hero.cta1": "See the work",
     "fig.cap": "Fig. 1 — Portrait",
 
     "spec.k1": "Focus",
@@ -73,7 +74,6 @@ const I18N = {
     "proj.prod": "In production",
     "proj.private": "Private repo",
     "proj.with": "Co-developer:",
-    "stamp.text": "QUALITY CONTROL · PASSED · AKO-2026 · ",
 
     "skills.title": "Skills & Tools",
     "skills.g1": "Languages",
@@ -81,8 +81,8 @@ const I18N = {
     "skills.g3": "AI & Optimization",
     "skills.g4": "Backend & Tools",
 
-    "contact.kicker": "§ 05 — Contact",
-    "contact.title": "Got something on the embedded side?",
+    "contact.kicker": "05 — Contact",
+    "contact.title": "Got something on the <em>embedded side?</em>",
     "contact.desc": "I'm open to internship and entry-level opportunities in embedded systems, edge AI and systems programming. Whether you have a question or just want to say hi — my inbox is open.",
     "contact.cta": "Say Hello",
     "contact.cv": "Download CV (PDF)",
@@ -114,14 +114,15 @@ const I18N = {
     "nav.contact": "İletişim",
 
     "hero.hello": "Merhaba, ben",
-    "hero.title": "Donanıma en yakın katmanda yazılım.",
+    "hero.title": "Donanıma en yakın katmanda <em>yazılım.</em>",
     "hero.desc": "Başkent Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; Türk savunma sanayisinde staj deneyimim var. Edge AI optimizasyonu, gömülü yazılım ve sistem programlama alanlarında ağırlıklı olarak C, C++ ve Python ile kişisel projeler geliştiriyorum.",
     "hero.tag2": "Gömülü Sistemler",
     "hero.tag3": "Sistem Programlama",
     "hero.tag4": "Optimizasyon",
     "hero.email": "E-posta gönder",
     "hero.country": "Türkiye",
-    "hero.doc": "Belge no. AKO-2026 · Bilgisayar Mühendisi · Ankara",
+    "hero.doc": "Gömülü · Edge AI · Sistem programlama",
+    "hero.cta1": "Projelere göz at",
     "fig.cap": "Şek. 1 — Portre",
 
     "spec.k1": "Odak",
@@ -179,7 +180,6 @@ const I18N = {
     "proj.prod": "Yayında",
     "proj.private": "Kapalı repo",
     "proj.with": "Ortak geliştirici:",
-    "stamp.text": "KALİTE KONTROL · ONAYLANDI · AKO-2026 · ",
 
     "skills.title": "Yetenekler ve Araçlar",
     "skills.g1": "Diller",
@@ -187,8 +187,8 @@ const I18N = {
     "skills.g3": "Yapay Zekâ ve Optimizasyon",
     "skills.g4": "Backend ve Araçlar",
 
-    "contact.kicker": "§ 05 — İletişim",
-    "contact.title": "Gömülü tarafta bir işiniz var mı?",
+    "contact.kicker": "05 — İletişim",
+    "contact.title": "Gömülü tarafta bir işiniz <em>var mı?</em>",
     "contact.desc": "Gömülü sistemler, edge AI ve sistem programlama alanlarında staj ve yeni mezun pozisyonlarına açığım. Bir sorunuz varsa ya da sadece merhaba demek isterseniz — kutum açık.",
     "contact.cta": "Merhaba De",
     "contact.cv": "CV'yi İndir (PDF)",
