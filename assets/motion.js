@@ -86,6 +86,9 @@
   }
 
   function heroIn() {
+    // with the GSAP layer on, fx.js plays the intro timeline; the class
+    // stays as the CSS fallback either way
+    if (window.__akoIntro) window.__akoIntro();
     root.classList.add("hero-in");
   }
 
@@ -412,6 +415,11 @@
   }
 
   /* ===================== Start ===================== */
+  // fx.js (GSAP + Lenis) takes over headline splitting, reveals and smooth
+  // scrolling when its libraries loaded; otherwise this file does it alone.
+  const gsapOn = motionOn && !!(window.gsap && window.ScrollTrigger && window.SplitText);
+  if (gsapOn) root.classList.add("gsap-on");
+
   ribbons(motionOn);
   if (finePointer) cardGlow();
 
@@ -422,14 +430,14 @@
   }
 
   indexStaggers();
-  splitHeadline();
+  if (!gsapOn) splitHeadline();
   setupCounts();
   setupLiveDiagrams();
-  if (finePointer) smoothWheel();
+  if (finePointer && !(gsapOn && window.Lenis)) smoothWheel();
 
   // a language switch rewrites the headline; split it again
   const title = document.getElementById("hero-title");
-  if (title) {
+  if (title && !gsapOn) {
     new MutationObserver(() => {
       if (!title.querySelector(".w")) splitHeadline();
     }).observe(title, { childList: true });

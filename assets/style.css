@@ -1296,6 +1296,138 @@ html:not(.motion) .g-pulses { display: none; }
 .motion .pill-dot { animation: blink 2s ease-in-out infinite; }
 @keyframes blink { 50% { opacity: 0.35; } }
 
+/* ===== GSAP + Lenis layer (assets/fx.js) =====
+   When GSAP runs it owns these elements' motion, so CSS transitions and
+   CSS-held hidden states step aside instead of fighting its inline styles.
+   Without the layer, the rules above still reveal everything. */
+.gsap-on .reveal,
+.gsap-on .reveal.visible { opacity: 1; transform: none; transition: none; }
+.gsap-on .reveal :is(.f-card, .p-card, .t-item, .stat-card, .skill-group, .about-list li),
+.gsap-on .reveal.visible :is(.f-card, .p-card, .t-item, .stat-card, .skill-group, .about-list li) {
+  opacity: 1;
+  transform: none;
+  transition: background-color 0.18s ease, border-color 0.25s ease;
+}
+.gsap-on .reveal .section-title,
+.gsap-on .reveal.visible .section-title { opacity: 1; transform: none; transition: none; }
+.gsap-on .hero-text .pill,
+.gsap-on .hero-name,
+.gsap-on .hero-desc,
+.gsap-on .hero-cta,
+.gsap-on .hero-spec,
+.gsap-on .hero-loc { transition: none; }
+.gsap-on .hero-panel { opacity: 1; transform: none; filter: none; transition: none; }
+
+/* SplitText word masks: room for descenders and the italic overhang */
+.sw-mask, .tw-mask { padding: 0 0.08em 0.14em 0; margin: 0 -0.08em -0.14em 0; }
+
+/* nav slides away while reading down, returns on the way up */
+.nav { transition: transform 0.5s cubic-bezier(0.2, 0.75, 0.15, 1); }
+.nav.nav-hidden { transform: translateY(-100%); }
+
+/* experience: a scrubbed progress line through the dots */
+.gsap-on .timeline::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 23px; top: 30px; bottom: 30px;
+  width: 1px;
+  z-index: 1;
+  background: var(--line-2);
+}
+.gsap-on .t-fill {
+  display: block;
+  position: absolute;
+  left: 23px; top: 30px; bottom: 30px;
+  width: 1px;
+  height: auto;
+  z-index: 1;
+  background: linear-gradient(180deg, var(--lime), var(--mint));
+  box-shadow: 0 0 10px var(--lime-glow);
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+/* TiltedCard — hero panel on a perspective parent, with a moving glare.
+   Adapted from React Bits (reactbits.dev) — © David Haz, MIT + Commons Clause */
+.hero-panel-wrap { perspective: 1100px; }
+.hero-panel { transform-style: preserve-3d; will-change: transform; }
+.hp-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    farthest-corner circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(200, 241, 53, calc(var(--glare, 0) * 0.3)) 0%,
+    rgba(200, 241, 53, calc(var(--glare, 0) * 0.12)) 22%,
+    rgba(200, 241, 53, 0) 55%
+  );
+}
+
+/* Magnet — the wrapper is measured, the button moves */
+.magnet { display: inline-flex; position: relative; }
+.magnet > .btn { will-change: transform; }
+
+/* ScrollVelocity — two rows of the stack drifting in opposite directions.
+   Adapted from React Bits (reactbits.dev) — © David Haz, MIT + Commons Clause */
+.velocity {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 72px 0 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.v-row { overflow: hidden; }
+.v-track { display: flex; width: max-content; will-change: transform; }
+.v-copy {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: clamp(2.2rem, 6.2vw, 5.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  color: var(--text);
+}
+.v-copy i {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.2em;
+  height: 0.2em;
+  margin: 0 0.5em;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 18px var(--lime-glow);
+}
+.v-outline .v-copy {
+  color: transparent;
+  -webkit-text-stroke: max(1px, 0.022em) rgba(233, 236, 223, 0.5);
+}
+.v-outline .v-copy i { background: transparent; border: 1px solid var(--lime); box-shadow: none; }
+
+/* ShinyText — a light sweep across the hero pill.
+   Adapted from React Bits (reactbits.dev) — © David Haz, MIT + Commons Clause */
+.motion .shiny {
+  background: linear-gradient(120deg, var(--body) 0%, var(--body) 40%, #f6faea 50%, var(--body) 60%, var(--body) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shiny 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes shiny {
+  0% { background-position: 100% 0; }
+  60%, 100% { background-position: 0% 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }

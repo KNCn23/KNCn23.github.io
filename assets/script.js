@@ -793,7 +793,8 @@ function buildRail() {
 
     dot.addEventListener("click", () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      window.scrollTo({ top: dot._target || 0, behavior: reduce ? "auto" : "smooth" });
+      if (window.__lenis) window.__lenis.scrollTo(dot._target || 0);
+      else window.scrollTo({ top: dot._target || 0, behavior: reduce ? "auto" : "smooth" });
     });
 
     track.appendChild(dot);
@@ -845,7 +846,10 @@ function updateTimelineFill() {
   if (!fill || !timeline) return;
   const rect = timeline.getBoundingClientRect();
   const trigger = window.innerHeight * 0.55;
-  fill.style.height = Math.min(rect.height - 16, Math.max(0, trigger - rect.top - 8)) + "px";
+  // with the GSAP layer on, a scrubbed ScrollTrigger draws the line (assets/fx.js)
+  if (!document.documentElement.classList.contains("gsap-on")) {
+    fill.style.height = Math.min(rect.height - 16, Math.max(0, trigger - rect.top - 8)) + "px";
+  }
   timeline.querySelectorAll(".t-item").forEach(item => {
     item.classList.toggle("lit", item.getBoundingClientRect().top + 32 < trigger);
   });

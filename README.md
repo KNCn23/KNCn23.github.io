@@ -10,7 +10,7 @@ Embedded systems · Edge AI · Systems programming · Optimization
 [![Live](https://img.shields.io/badge/live-kncn23.github.io-c8f135?style=flat-square&labelColor=0a0c09)](https://kncn23.github.io)
 [![Deploy](https://img.shields.io/github/deployments/KNCn23/KNCn23.github.io/github-pages?style=flat-square&label=pages&labelColor=0a0c09&color=c8f135)](https://github.com/KNCn23/KNCn23.github.io/deployments)
 [![Stack](https://img.shields.io/badge/stack-HTML%20%2F%20CSS%20%2F%20JS-c8f135?style=flat-square&labelColor=0a0c09)](#-structure)
-[![Dependencies](https://img.shields.io/badge/dependencies-0-c8f135?style=flat-square&labelColor=0a0c09)](#-running-locally)
+[![Motion](https://img.shields.io/badge/motion-GSAP%20%C2%B7%20Lenis-c8f135?style=flat-square&labelColor=0a0c09)](#-motion)
 
 **[Visit the site →](https://kncn23.github.io)**
 
@@ -21,11 +21,11 @@ Embedded systems · Edge AI · Systems programming · Optimization
 ## ✨ Highlights
 
 - 🌐 **Bilingual (EN / TR)** — language switcher with browser-language auto-detection, choice persisted in `localStorage`
-- 🎨 **Hand-crafted cinematic dark design** — light ribbons drawn on a canvas behind the hero, glass panels and one acid-lime signal colour; pure HTML/CSS/JS, no frameworks, no build step, zero dependencies
+- 🎨 **Hand-crafted cinematic dark design** — light ribbons drawn on a canvas behind the hero, glass panels and one acid-lime signal colour; pure HTML/CSS/JS, no frameworks, no build step
 - ⭐ **Live GitHub data** — star counts and repo stats fetched from the GitHub API at runtime; degrades gracefully when offline or rate-limited
 - 🗂️ **Filterable project grid** — Embedded & Systems · AI & ML · Security & Crypto · Optimization · Web & Backend · Games
 - 🧵 **Scroll spine & rail** — animated SVG path that follows your reading progress through the page
-- 🎞️ **Motion layer, still zero dependencies** — boot sequence, animated light ribbons, eased wheel scrolling, cursor-following card glow, count-up figures, staggered reveals and project diagrams that run while on screen (a TCP handshake, an RTOS scheduler, the INT8 pipeline). All of it switches off under `prefers-reduced-motion`
+- 🎞️ **Motion layer** — boot sequence, light ribbons that follow the reader, Lenis smooth scrolling and GSAP choreography (see [Motion](#-motion)); project diagrams run while on screen (a TCP handshake, an RTOS scheduler, the INT8 pipeline). All of it switches off under `prefers-reduced-motion`, and the page renders complete without it
 - 🔍 **SEO-ready** — sitemap, robots.txt, Open Graph card, semantic markup
 
 ## 🎨 Design language
@@ -59,7 +59,8 @@ Glass surfaces and hairlines are white at low alpha (`--glass` 3.5 %, `--line` 8
 ├── assets/
 │   ├── style.css          # design tokens + all styles
 │   ├── script.js          # i18n dictionary, project data, filters, GitHub API, scroll spine
-│   ├── motion.js          # boot sequence, smooth scrolling, crosshair, count-ups, live diagrams
+│   ├── motion.js          # boot sequence, light ribbons, count-ups, live diagrams, CSS-path fallbacks
+│   ├── fx.js              # GSAP + Lenis layer: intro, scroll reveals, parallax, React Bits ports
 │   ├── og-image.png       # social preview card
 │   └── cv/                # downloadable CV (PDF)
 ├── robots.txt
@@ -67,6 +68,17 @@ Glass surfaces and hairlines are white at low alpha (`--glass` 3.5 %, `--line` 8
 ```
 
 Everything is data-driven from [`assets/script.js`](assets/script.js): the `I18N` dictionary holds every string in both languages, and `FEATURED` / `PROJECTS` arrays feed the project cards — adding a project is a single array entry.
+
+## 🎞️ Motion
+
+[GSAP 3.15](https://gsap.com) (ScrollTrigger, SplitText, ScrambleText) and [Lenis 1.3](https://github.com/darkroomengineering/lenis) load from jsDelivr with pinned versions and SRI hashes. [`assets/fx.js`](assets/fx.js) drives:
+
+- **Lenis** smooth scrolling on GSAP's ticker, feeding ScrollTrigger; anchors respect the nav's `scroll-padding-top`
+- **SplitText** headlines — words rise out of masks; **ScrambleText** decodes the section numbers
+- **ScrollTrigger** — blur-in batch reveals, a scrubbed hero exit parallax, a scrubbed progress line through the experience timeline, and a nav that hides on the way down
+- Ports of [React Bits](https://reactbits.dev) effects to vanilla JS: **Magnet** buttons, a **TiltedCard** hero panel with glare, a **ScrollVelocity** band of the stack, and **ShinyText** on the hero pill — © David Haz, MIT + Commons Clause
+
+`motion.js` only switches the layer on when motion is allowed and the libraries actually loaded. If the CDN is unreachable, the original CSS/IntersectionObserver reveals take over.
 
 ## 🚀 Running locally
 
@@ -86,6 +98,6 @@ python3 -m http.server 8000   # → http://localhost:8000
 
 [**GitHub**](https://github.com/KNCn23) · [**LinkedIn**](https://www.linkedin.com/in/ata-kaan-can-olcay-0154a2208/) · [**CV**](assets/cv/Ata-Kaan-Can-Olcay-CV.pdf)
 
-<sub>Built with plain HTML, CSS and JS — no frameworks were harmed in the making of this site.</sub>
+<sub>Built with plain HTML, CSS and JS — no frameworks and no build step, just GSAP and Lenis from a CDN.</sub>
 
 </div>
