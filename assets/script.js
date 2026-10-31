@@ -32,6 +32,7 @@ const I18N = {
     "metric.model": "Smallest CNN model",
     "metric.deps": "Runtime dependencies",
 
+    "statement": "I write the software that sits <em>closest to the metal</em> — where every byte, every cycle and every millisecond has to be accounted for.",
     "about.title": "About Me",
     "about.p1": "I'm a final-year computer engineering student focused on embedded systems and software that runs close to the hardware. My personal projects include a TCP/IP stack written from scratch, a bare-metal ARM operating system and a small real-time operating system.",
     "about.p2": "During my internships at BİTES and Meteksan Savunma I gained hands-on experience with edge-AI optimization for CNNs and embedded software development in the defense industry. I also build optimization tools with Google OR-Tools, including a university course scheduler and a vehicle routing solver.",
@@ -138,6 +139,7 @@ const I18N = {
     "metric.model": "En küçük CNN modeli",
     "metric.deps": "Çalışma zamanı bağımlılığı",
 
+    "statement": "Her baytın, her döngünün ve her milisaniyenin hesabının verildiği yerde, <em>donanıma en yakın</em> yazılımı yazıyorum.",
     "about.title": "Hakkımda",
     "about.p1": "Gömülü sistemlere ve donanıma yakın çalışan yazılımlara odaklanan son sınıf bilgisayar mühendisliği öğrencisiyim. Kişisel projelerim arasında sıfırdan yazdığım bir TCP/IP yığını, bare-metal bir ARM işletim sistemi ve küçük bir gerçek zamanlı işletim sistemi (RTOS) bulunuyor.",
     "about.p2": "BİTES ve Meteksan Savunma stajlarımda, savunma sanayisinde CNN'ler için edge-AI optimizasyonu ve gömülü yazılım geliştirme konularında uygulamalı deneyim kazandım. Ayrıca Google OR-Tools ile optimizasyon araçları geliştiriyorum; üniversite ders programı planlayıcısı ve araç rotalama çözücüsü bunlara örnek.",
@@ -1016,7 +1018,18 @@ function setupBurger() {
   );
 }
 
+/* ===================== Local clock ===================== */
+function startClock() {
+  const el = document.getElementById("clock");
+  if (!el) return;
+  const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const tick = () => { el.textContent = fmt.format(new Date()) + " GMT+3"; };
+  tick();
+  setInterval(tick, 1000);
+}
+
 /* ===================== Init ===================== */
+startClock();
 buildSpine();
 buildRail();
 setLang(currentLang);

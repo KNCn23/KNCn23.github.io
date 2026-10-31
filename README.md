@@ -25,7 +25,7 @@ Embedded systems · Edge AI · Systems programming · Optimization
 - ⭐ **Live GitHub data** — star counts and repo stats fetched from the GitHub API at runtime; degrades gracefully when offline or rate-limited
 - 🗂️ **Filterable project grid** — Embedded & Systems · AI & ML · Security & Crypto · Optimization · Web & Backend · Games
 - 🧵 **Scroll spine & rail** — animated SVG path that follows your reading progress through the page
-- 🎞️ **Motion layer** — a handwritten "hello" intro that lifts away like a curtain, light ribbons that follow the reader, Lenis smooth scrolling and GSAP choreography (see [Motion](#-motion)); project diagrams run while on screen (a TCP handshake, an RTOS scheduler, the INT8 pipeline). All of it switches off under `prefers-reduced-motion`, and the page renders complete without it
+- 🎞️ **Motion layer** — a handwritten "hello" intro that lifts away like a curtain, light ribbons that follow the reader, a statement that lights up word by word, crossed tapes above the contact panel, a live Ankara clock, Lenis smooth scrolling and GSAP choreography (see [Motion](#-motion)); project diagrams run while on screen (a TCP handshake, an RTOS scheduler, the INT8 pipeline). All of it switches off under `prefers-reduced-motion`, and the page renders complete without it
 - 🔍 **SEO-ready** — sitemap, robots.txt, Open Graph card, semantic markup
 
 ## 🎨 Design language

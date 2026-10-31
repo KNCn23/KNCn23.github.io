@@ -390,8 +390,9 @@ a:hover { color: var(--lime); }
 }
 .hero-title em { font-size: 1.07em; letter-spacing: -0.01em; }
 /* brushed-metal headline; once split, each word carries the gradient itself */
-.hero-title:not(:has(.w)),
-.hero-title .w > * {
+.hero-title:not(:has(.w, .sw)),
+.hero-title .w > *,
+.hero-title .sw {
   background: linear-gradient(180deg, var(--text) 38%, #8d9582 118%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -431,6 +432,8 @@ a:hover { color: var(--lime); }
 }
 .hero-loc a { color: var(--body); border-bottom: 1px solid var(--line-2); }
 .hero-loc a:hover { color: var(--lime); border-color: var(--lime); }
+.clock { font-variant-numeric: tabular-nums; }
+.clock:not(:empty)::before { content: " · "; }
 
 /* ===== Hero panel (glass UI card with the stack graph) ===== */
 .hero-panel {
@@ -519,6 +522,62 @@ html:not(.motion) .g-pulses { display: none; }
   background: var(--lime);
   box-shadow: 0 0 8px var(--lime);
 }
+
+/* ===== Crossed marquee tapes above the contact panel ===== */
+.marquee { position: relative; z-index: 1; overflow: hidden; }
+.marquee-track { display: flex; align-items: center; width: max-content; }
+.marquee-track > * { flex: none; }
+.motion .marquee-track { animation: marquee var(--mq-dur, 40s) linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+
+.statement {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: clamp(80px, 13vw, 170px) 24px clamp(40px, 6vw, 80px);
+}
+.statement-text {
+  max-width: 24ch;
+  font-size: clamp(1.9rem, 4.6vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--text);
+}
+.statement-text em { color: var(--lime); }
+/* a soft three-word front: words ahead of it wait dimmed */
+.motion .statement-text .w > * {
+  opacity: clamp(0.16, calc((var(--p, 0) * (var(--n, 1) + 3) - var(--i, 0)) / 3), 1);
+}
+
+.tapes {
+  display: grid;
+  place-items: center;
+  height: clamp(150px, 16vw, 210px);
+  margin-top: clamp(40px, 6vw, 90px);
+  overflow: hidden;
+}
+.tape {
+  grid-area: 1 / 1;
+  width: 124vw;
+  padding: 13px 0;
+  border-block: 1px solid var(--line-2);
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+  transform: rotate(-4deg);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --mq-dur: 34s;
+}
+.tape-2 { transform: rotate(3deg); --mq-dur: 40s; }
+.motion .tape-2 .marquee-track { animation-direction: reverse; }
+.tape span { padding: 0 16px; }
+.tape i { font-style: normal; color: var(--lime); }
 
 /* ===== Metrics ===== */
 .metrics { padding: 0 24px; }
@@ -1210,12 +1269,6 @@ html:not(.motion) .g-pulses { display: none; }
   filter: blur(8px);
   transition: opacity 1s ease 0.45s, transform 1.2s cubic-bezier(0.2, 0.75, 0.15, 1) 0.45s, filter 1s ease 0.45s;
 }
-.motion .nav {
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: opacity 0.6s ease 0.4s, transform 0.9s cubic-bezier(0.2, 0.75, 0.15, 1) 0.4s;
-}
-.hero-in .nav { opacity: 1; transform: none; }
 .hero-in .hero-title .w > * { transform: none; }
 .hero-in .hero-text .pill,
 .hero-in .hero-name,
@@ -1244,12 +1297,32 @@ html:not(.motion) .g-pulses { display: none; }
   opacity: 1;
   transform: none;
 }
-.motion .reveal .section-title {
+.motion .reveal .section-title > .mono {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(12px);
   transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.75, 0.15, 1);
 }
-.motion .reveal.visible .section-title { opacity: 1; transform: none; }
+.motion .reveal.visible .section-title > .mono { opacity: 1; transform: none; }
+/* the title arrives behind a lime block that sweeps in and back out */
+.motion .reveal .section-title > span:not(.mono) { position: relative; opacity: 0; }
+.motion .reveal .section-title > span:not(.mono)::after {
+  content: "";
+  position: absolute;
+  inset: 0.06em -0.14em;
+  background: var(--lime);
+  transform: scaleX(0);
+}
+.motion .reveal.visible .section-title > span:not(.mono) { animation: block-text 0.9s 0.2s both; }
+.motion .reveal.visible .section-title > span:not(.mono)::after {
+  animation: block-wipe 0.9s cubic-bezier(0.77, 0, 0.18, 1) 0.2s both;
+}
+@keyframes block-text { 0% { opacity: 1; color: transparent; } 50% { color: transparent; } 50.1%, 100% { opacity: 1; color: var(--text); } }
+@keyframes block-wipe {
+  0% { transform: scaleX(0); transform-origin: left; }
+  50% { transform: scaleX(1); transform-origin: left; }
+  50.1% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
 
 .reveal {
   opacity: 0;

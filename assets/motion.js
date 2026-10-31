@@ -53,11 +53,12 @@
     boot.addEventListener("click", finish);
   }
 
-  /* ===================== Hero headline ===================== */
-  // Each word rises out of its own mask. Words inside <em> keep their italic
-  // serif accent. Built from text content so the string is never parsed as HTML.
-  function splitHeadline() {
-    const el = document.getElementById("hero-title");
+  /* ===================== Word splitting ===================== */
+  // Wraps each word in .w > span (or em) with its index in --i: the hero
+  // headline rises word by word out of these masks, the statement lights up
+  // through them. Words inside <em> keep their italic serif accent. Built
+  // from text content so the string is never parsed as HTML.
+  function splitWords(el) {
     if (!el) return;
     const frag = document.createDocumentFragment();
     let i = 0;
@@ -82,6 +83,32 @@
       else if (n.nodeType === Node.ELEMENT_NODE) addWords(n.textContent, n.tagName === "EM");
     });
     el.replaceChildren(frag);
+    el.style.setProperty("--n", i);
+  }
+
+  // Statement: words brighten one after another as it scrolls through the view
+  function statementScrub(el) {
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect();
+      // 0 when its top reaches 85% of the viewport, 1 when its bottom passes 40%
+      const p = (innerHeight * 0.85 - r.top) / (innerHeight * 0.45 + r.height);
+      el.style.setProperty("--p", Math.min(1, Math.max(0, p)).toFixed(3));
+    };
+    addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+    update();
+  }
+
+  // Marquees loop by sliding the track -50%, so each half must outrun the viewport
+  function fillMarquees() {
+    document.querySelectorAll(".marquee-track").forEach(track => {
+      const items = Array.from(track.children);
+      const reps = Math.ceil(innerWidth * 1.3 / (track.scrollWidth || innerWidth));
+      for (let k = 1; k < reps; k++) track.append(...items.map(n => n.cloneNode(true)));
+      track.append(...Array.from(track.children, n => n.cloneNode(true)));
+    });
   }
 
   function heroIn() {
@@ -429,18 +456,24 @@
   }
 
   indexStaggers();
-  if (!gsapOn) splitHeadline();
+  const title = document.getElementById("hero-title");
+  const statement = document.getElementById("statement");
+  if (!gsapOn) splitWords(title);
+  splitWords(statement);
+  statementScrub(statement);
+  fillMarquees();
   setupCounts();
   setupLiveDiagrams();
   if (finePointer && !(gsapOn && window.Lenis)) smoothWheel();
 
-  // a language switch rewrites the headline; split it again
-  const title = document.getElementById("hero-title");
-  if (title && !gsapOn) {
+  // a language switch rewrites these; split them again (fx.js owns the
+  // headline when the GSAP layer is on)
+  [gsapOn ? null : title, statement].forEach(el => {
+    if (!el) return;
     new MutationObserver(() => {
-      if (!title.querySelector(".w")) splitHeadline();
-    }).observe(title, { childList: true });
-  }
+      if (!el.querySelector(".w")) splitWords(el);
+    }).observe(el, { childList: true });
+  });
 
   if (root.classList.contains("booting")) runBoot(heroIn);
   else requestAnimationFrame(heroIn);
