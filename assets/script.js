@@ -83,7 +83,7 @@ const I18N = {
     "skills.g4": "Backend & Tools",
 
     "contact.kicker": "05 — Contact",
-    "contact.title": "Got something on the <em>embedded side?</em>",
+    "contact.title": "Always building, <em>always learning.</em>",
     "contact.desc": "I'm open to internship and entry-level opportunities in embedded systems, edge AI and systems programming. Whether you have a question or just want to say hi — my inbox is open.",
     "contact.cta": "Say Hello",
     "contact.cv": "Download CV (PDF)",
@@ -190,7 +190,7 @@ const I18N = {
     "skills.g4": "Backend ve Araçlar",
 
     "contact.kicker": "05 — İletişim",
-    "contact.title": "Gömülü tarafta bir işiniz <em>var mı?</em>",
+    "contact.title": "Hep geliştiriyorum, <em>hep öğreniyorum.</em>",
     "contact.desc": "Gömülü sistemler, edge AI ve sistem programlama alanlarında staj ve yeni mezun pozisyonlarına açığım. Bir sorunuz varsa ya da sadece merhaba demek isterseniz — kutum açık.",
     "contact.cta": "Merhaba De",
     "contact.cv": "CV'yi İndir (PDF)",
