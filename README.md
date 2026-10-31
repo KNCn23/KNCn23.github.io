@@ -35,7 +35,7 @@ The whole site runs on a small set of CSS custom properties.
 A green-tinted near-black ground, luminous ribbons behind the hero (Canvas 2D,
 additive blending, paused off-screen), glass panels with hairline borders, and a
 single acid-lime signal colour for anything live, selected or clickable.
-Headlines set in a geometric sans carry one italic-serif accent word.
+Headlines set in a geometric sans carry one accent phrase in lime.
 
 | | Token | Hex | Role |
 |---|---|---|---|
@@ -49,7 +49,7 @@ Headlines set in a geometric sans carry one italic-serif accent word.
 
 Glass surfaces and hairlines are white at low alpha (`--glass` 3.5 %, `--line` 8 %, `--line-2` 14 %).
 
-**Typography:** [Geist](https://fonts.google.com/specimen/Geist) for headlines and body · [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) italic for accent words · [Geist Mono](https://fonts.google.com/specimen/Geist+Mono) for labels, codes and parameters
+**Typography:** [Geist](https://fonts.google.com/specimen/Geist) for headlines, accents and body · [Geist Mono](https://fonts.google.com/specimen/Geist+Mono) for labels, codes and parameters
 
 ## 🗂️ Structure
 

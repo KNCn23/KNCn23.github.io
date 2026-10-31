@@ -1,7 +1,7 @@
 /* ===== Base =====
    Visual language: cinematic dark. A green-tinted near-black ground, light
    ribbons behind the hero, glass panels, one acid-lime signal colour, and
-   headlines in a geometric sans with italic-serif accent words. */
+   headlines in a geometric sans with lime accent words. */
 :root {
   --bg: #0a0c09;
   --bg-2: #12150f;
@@ -21,7 +21,6 @@
   --mint: #8fe0b2;
 
   --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
 
   --radius: 16px;
@@ -82,12 +81,8 @@ body::after {
 .cond { font-family: var(--sans); }
 .accent { color: var(--lime); }
 
-em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.005em;
-}
+/* accent words in headings: same face, set apart by the signal colour */
+em { font-style: normal; color: var(--lime); }
 
 a { color: var(--text); text-decoration: none; }
 a:hover { color: var(--lime); }
@@ -388,7 +383,6 @@ a:hover { color: var(--lime); }
   color: var(--text);
   max-width: 15ch;
 }
-.hero-title em { font-size: 1.07em; letter-spacing: -0.01em; }
 /* brushed-metal headline; once split, each word carries the gradient itself */
 .hero-title:not(:has(.w, .sw)),
 .hero-title .w > *,
@@ -398,6 +392,14 @@ a:hover { color: var(--lime); }
   background-clip: text;
   color: transparent;
 }
+.hero-title .w > em,
+.hero-title em .sw { background: none; color: var(--lime); }
+/* the text-clipped gradient only paints inside the box: stretch it over descenders and cedillas */
+.hero-title .w > *,
+.hero-title .sw { padding-bottom: 0.14em; margin-bottom: -0.14em; }
+/* SplitText word masks clip at the line box; leave room for g, y, ç, ş below the baseline */
+.sw-mask,
+.tw-mask { padding-bottom: 0.14em; margin-bottom: -0.14em; }
 
 .hero-desc {
   max-width: 54ch;
@@ -546,7 +548,6 @@ html:not(.motion) .g-pulses { display: none; }
   letter-spacing: -0.035em;
   color: var(--text);
 }
-.statement-text em { color: var(--lime); }
 /* a soft three-word front: words ahead of it wait dimmed */
 .motion .statement-text .w > * {
   opacity: clamp(0.16, calc((var(--p, 0) * (var(--n, 1) + 3) - var(--i, 0)) / 3), 1);
@@ -1147,7 +1148,6 @@ html:not(.motion) .g-pulses { display: none; }
   line-height: 1.02;
   letter-spacing: -0.04em;
 }
-.contact-title em { font-size: 1.06em; }
 .contact-desc { color: var(--body); margin-bottom: 22px; }
 .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .contact-links {
@@ -1210,7 +1210,7 @@ html:not(.motion) .g-pulses { display: none; }
   transition: opacity 0.45s ease, transform 1s cubic-bezier(0.76, 0, 0.24, 1);
 }
 .boot-hello text {
-  font-family: "Sacramento", var(--serif);
+  font-family: "Sacramento", cursive;
   font-size: 168px;
   fill: transparent;
   stroke: var(--text);

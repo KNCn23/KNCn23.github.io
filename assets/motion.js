@@ -56,7 +56,7 @@
   /* ===================== Word splitting ===================== */
   // Wraps each word in .w > span (or em) with its index in --i: the hero
   // headline rises word by word out of these masks, the statement lights up
-  // through them. Words inside <em> keep their italic serif accent. Built
+  // through them. Words inside <em> keep their accent. Built
   // from text content so the string is never parsed as HTML.
   function splitWords(el) {
     if (!el) return;
