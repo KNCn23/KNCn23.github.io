@@ -8,7 +8,7 @@ const I18N = {
     "nav.contact": "Contact",
 
     "hero.hello": "Hi, my name is",
-    "hero.title": "Software at the layer closest to the <em>hardware.</em>",
+    "hero.title": "Turning ideas into <em>working software.</em>",
     "hero.desc": "Final-year Computer Engineering student at Başkent University with internship experience in the Turkish defense industry. I build personal projects in edge-AI optimization, embedded software and systems programming — primarily in C, C++ and Python.",
     "hero.tag2": "Embedded Systems",
     "hero.tag3": "Systems Programming",
@@ -115,7 +115,7 @@ const I18N = {
     "nav.contact": "İletişim",
 
     "hero.hello": "Merhaba, ben",
-    "hero.title": "Donanıma en yakın katmanda <em>yazılım.</em>",
+    "hero.title": "Fikirleri <em>çalışan yazılıma</em> dönüştürüyorum.",
     "hero.desc": "Başkent Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim; Türk savunma sanayisinde staj deneyimim var. Edge AI optimizasyonu, gömülü yazılım ve sistem programlama alanlarında ağırlıklı olarak C, C++ ve Python ile kişisel projeler geliştiriyorum.",
     "hero.tag2": "Gömülü Sistemler",
     "hero.tag3": "Sistem Programlama",
