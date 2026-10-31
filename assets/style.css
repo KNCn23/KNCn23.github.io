@@ -389,6 +389,14 @@ a:hover { color: var(--lime); }
   max-width: 15ch;
 }
 .hero-title em { font-size: 1.07em; letter-spacing: -0.01em; }
+/* brushed-metal headline; once split, each word carries the gradient itself */
+.hero-title:not(:has(.w)),
+.hero-title .w > * {
+  background: linear-gradient(180deg, var(--text) 38%, #8d9582 118%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 .hero-desc {
   max-width: 54ch;
@@ -1118,42 +1126,55 @@ html:not(.motion) .g-pulses { display: none; }
   justify-content: center;
   padding: 24px;
   background: var(--bg);
-  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
   /* if motion.js never runs, the overlay still gets out of the way */
   animation: boot-fallback 0.01s 6s forwards;
 }
-.boot.is-leaving { opacity: 0; transform: scale(1.03); }
+/* lime edge on the curtain as it lifts */
+.boot::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.boot.is-leaving { transform: translateY(-100%); }
+.boot.is-leaving::after { opacity: 0.8; }
 @keyframes boot-fallback { to { visibility: hidden; } }
 
-.boot-inner { width: min(520px, 100%); font-size: 0.78rem; }
-.boot-head {
+.boot-hello {
+  width: min(560px, 88vw);
+  height: auto;
+  overflow: visible;
+  transition: opacity 0.45s ease, transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.boot-hello text {
+  font-family: "Sacramento", var(--serif);
+  font-size: 168px;
+  fill: transparent;
+  stroke: var(--text);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+}
+/* the wipe makes the pen travel left to right while each stroke draws */
+.boot.is-writing .boot-hello { animation: hello-wipe 1.6s cubic-bezier(0.45, 0, 0.35, 1) both; }
+.boot.is-writing .boot-hello text {
+  animation: hello-draw 2s cubic-bezier(0.45, 0, 0.35, 1) forwards, hello-ink 0.6s ease 1.25s forwards;
+}
+.boot.is-leaving .boot-hello { opacity: 0; transform: translateY(-48px); }
+@keyframes hello-wipe { from { clip-path: inset(-20% 100% -20% 0); } to { clip-path: inset(-20% 0 -20% 0); } }
+@keyframes hello-draw { to { stroke-dashoffset: 0; } }
+@keyframes hello-ink { to { fill: var(--text); } }
+
+.boot-foot {
+  position: absolute;
+  left: 24px; right: 24px; bottom: 22px;
   display: flex;
   justify-content: space-between;
-  font-size: 0.66rem;
-  color: var(--muted);
-}
-.boot-rule {
-  height: 1px;
-  margin: 12px 0 18px;
-  background: linear-gradient(90deg, var(--lime), transparent);
-  transform-origin: left;
-  animation: rule-draw 0.7s cubic-bezier(0.7, 0, 0.2, 1) both;
-}
-@keyframes rule-draw { from { transform: scaleX(0); } }
-.boot-log {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  min-height: 9.5em;
-}
-.boot-log li { display: flex; gap: 10px; animation: boot-line 0.22s ease-out both; }
-.boot-log li span { flex: 1; overflow: hidden; white-space: nowrap; color: var(--body); }
-.boot-log li span::after { content: " ............................................................"; color: var(--line-2); }
-.boot-log b { color: var(--lime); font-weight: 500; }
-@keyframes boot-line { from { opacity: 0; transform: translateX(-6px); } }
-.boot-skip {
-  margin-top: 22px;
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1189,6 +1210,12 @@ html:not(.motion) .g-pulses { display: none; }
   filter: blur(8px);
   transition: opacity 1s ease 0.45s, transform 1.2s cubic-bezier(0.2, 0.75, 0.15, 1) 0.45s, filter 1s ease 0.45s;
 }
+.motion .nav {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.6s ease 0.4s, transform 0.9s cubic-bezier(0.2, 0.75, 0.15, 1) 0.4s;
+}
+.hero-in .nav { opacity: 1; transform: none; }
 .hero-in .hero-title .w > * { transform: none; }
 .hero-in .hero-text .pill,
 .hero-in .hero-name,

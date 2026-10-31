@@ -10,18 +10,12 @@
   const finePointer = window.matchMedia("(pointer: fine)").matches;
 
   /* ===================== Boot sequence ===================== */
-  const BOOT_LOG = [
-    ["power-on self test", "OK"],
-    ["clock tree · caches", "OK"],
-    ["mount /projects", "38"],
-    ["link github.com/KNCn23", "UP"],
-    ["render portfolio", "▮"]
-  ];
-
+  // A handwritten greeting draws itself, then the overlay lifts like a
+  // curtain while the headline rises underneath.
   function runBoot(done) {
     const boot = document.getElementById("boot");
-    const log = document.getElementById("boot-log");
-    if (!boot || !log) return done();
+    const word = document.getElementById("boot-word");
+    if (!boot || !word) return done();
 
     let finished = false;
     const timers = [];
@@ -31,24 +25,29 @@
       timers.forEach(clearTimeout);
       try { sessionStorage.setItem("ako-boot", "1"); } catch (e) { /* private mode */ }
       boot.classList.add("is-leaving");
-      setTimeout(done, 260);
-      setTimeout(() => root.classList.remove("booting"), 900);
+      setTimeout(done, 300);
+      setTimeout(() => root.classList.remove("booting"), 1100);
       removeEventListener("keydown", finish);
       boot.removeEventListener("click", finish);
     };
 
-    BOOT_LOG.forEach(([label, status], i) => {
-      timers.push(setTimeout(() => {
-        const li = document.createElement("li");
-        const k = document.createElement("span");
-        const v = document.createElement("b");
-        k.textContent = "> " + label + " ";
-        v.textContent = status;
-        li.append(k, v);
-        log.appendChild(li);
-      }, 140 + i * 170));
-    });
-    timers.push(setTimeout(finish, 140 + BOOT_LOG.length * 170 + 380));
+    if (root.lang === "tr") word.textContent = "merhaba";
+    // the script face is only needed here, so fetch just these glyphs
+    const font = document.createElement("link");
+    font.rel = "stylesheet";
+    font.href = "https://fonts.googleapis.com/css2?family=Sacramento&display=block&text=" + encodeURIComponent(word.textContent);
+    document.head.appendChild(font);
+
+    const write = () => {
+      if (finished) return;
+      boot.classList.add("is-writing");
+      timers.push(setTimeout(finish, 2300));
+    };
+    // never hold the page on the network: after 900 ms write in whatever face is ready
+    Promise.race([
+      new Promise(r => { font.onload = r; }).then(() => document.fonts.load('160px "Sacramento"', word.textContent)),
+      new Promise(r => timers.push(setTimeout(r, 900)))
+    ]).then(write, write);
 
     addEventListener("keydown", finish);
     boot.addEventListener("click", finish);
